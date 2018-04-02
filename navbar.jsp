@@ -13,7 +13,17 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">项目主页 <span class="sr-only">(current)</span></a></li>
-            </ul>   
-          </div><!-- /.navbar-collapse -->
+            </ul>
+               
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="#">登录</a>
+              </li>
+              <li>
+                <a href="#">注册</a>
+              </li>
+            </ul>
+            
+          </div><!-- /.navbar-collapse -->   
         </div><!-- /.container-fluid -->
       </nav>
