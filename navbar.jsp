@@ -12,15 +12,16 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">项目主页 <span class="sr-only">(current)</span></a></li>
-              <li><a href="index.jsp">主页</a></li>
+              <li id="project_index"><a href="index.jsp">项目主页 <span class="sr-only">(current)</span></a></li>
+              <li id="project_roadmap"><a href="roadmap.jsp">路线图</a></li>
+              <li id="index"><a href="index.jsp">主页</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-              <li>
+              <li id="sign_in">
                 <a href="#">登录</a>
               </li>
-              <li>
+              <li id="sign_out">
                 <a href="#">注册</a>
               </li>
             </ul>

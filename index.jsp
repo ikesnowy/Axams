@@ -5,11 +5,13 @@
 <html lang="zh-CN">
   <head>
     <%@ include file="header.jsp" %>
+    <%@ include file="script.jsp" %>
     <title>Axam-主页</title>
+
   </head>
   <body>
       <%@include file="navbar.jsp" %>
-
+      <script>setNavbarActive('project_index');</script>
       <div class="container">
         <div class="row">              
           <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
@@ -27,9 +29,33 @@
                   </div>
                 </div>
                 <p><strong>更新日志</strong></p>
-
+                
                 
                 <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">2018年4月3日</h3>
+                    </div>
+                    <div class="panel-body">
+                      <dl>
+                        <dt>界面</dt>
+                        <dd>
+                          <ol>
+                            <li>增加 Axam.js，现在导航条按钮能够随页面切换自动切换</li>
+                          </ol>
+                        </dd>
+                        <dt>架构</dt>
+                        <dd>
+                          <ol>
+                            <li>将脚本引入放到 head 标签内</li>
+                            <li>更新页面模板，增加修改导航条切换语句</li>
+                          </ol>
+                        </dd>
+                      </dl>
+                    </div>
+                </div>
+                
+                
+                <div class="panel panel-info">
                     <div class="panel-heading">
                       <h3 class="panel-title">2018年4月2日</h3>
                     </div>
@@ -59,7 +85,6 @@
                     </div>
                 </div>
                 
-                
                 <div class="panel panel-info">
                     <div class="panel-heading">
                       <h3 class="panel-title">2018年3月31日</h3>
@@ -71,6 +96,6 @@
           </div>
         </div>
       </div>
-      <%@ include file="script.jsp" %>
+
   </body>
 </html>
