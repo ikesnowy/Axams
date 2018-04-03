@@ -67,14 +67,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="info">
+                                    <td>实现登录后跳转</td>
+                                    <td>进行中</td>
+                                </tr>
+
+                                <tr class="success">
                                     <td>建立数据库</td>
-                                    <td>未完成</td>
+                                    <td>已完成</td>
                                 </tr>
                                 
-                                <tr>
+                                <tr class="success">
                                     <td>实现登录页面，数据有效性不依赖于数据库</td>
-                                    <td>未完成</td>
+                                    <td>已完成</td>
                                 </tr>
                             </tbody>
                         </table>

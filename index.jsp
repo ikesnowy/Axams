@@ -23,14 +23,12 @@
                   <div 
                   class="progress-bar progress-bar-info progress-bar-striped active" 
                   role="progressbar" 
-                  aria-valuenow="3" aria-valuemin="0" aria-valuemax="100" 
-                  style="width: 3%; min-width: 2em">
-                     3%
+                  aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" 
+                  style="width: 12%; min-width: 2em">
+                     12%
                   </div>
                 </div>
-                <p><strong>更新日志</strong></p>
-                
-                
+                <p><strong>更新日志</strong></p>               
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                       <h3 class="panel-title">2018年4月3日</h3>
@@ -40,6 +38,7 @@
                         <dt>界面</dt>
                         <dd>
                           <ol>
+                            <li>增加登录页</li>
                             <li>增加 Axam.js，现在导航条按钮能够随页面切换自动切换</li>
                           </ol>
                         </dd>
@@ -48,6 +47,8 @@
                           <ol>
                             <li>将脚本引入放到 head 标签内</li>
                             <li>更新页面模板，增加修改导航条切换语句</li>
+                            <li>添加 Axam 数据库</li>
+                            <li>增加 server_login.jsp，能够与后台数据库通信确认登录</li>
                           </ol>
                         </dd>
                       </dl>

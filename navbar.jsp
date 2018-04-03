@@ -19,7 +19,7 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li id="sign_in">
-                <a href="#">登录</a>
+                <a href="signin.jsp">登录</a>
               </li>
               <li id="sign_out">
                 <a href="#">注册</a>
