@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -23,13 +22,39 @@
                   <div 
                   class="progress-bar progress-bar-info progress-bar-striped active" 
                   role="progressbar" 
-                  aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" 
-                  style="width: 12%; min-width: 2em">
-                     12%
+                  aria-valuenow="21" aria-valuemin="0" aria-valuemax="100" 
+                  style="width: 21%; min-width: 2em">
+                     21%
                   </div>
                 </div>
-                <p><strong>更新日志</strong></p>               
+                <p><strong>更新日志</strong></p>
+                               
                 <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">2018年4月5日</h3>
+                    </div>
+                    <div class="panel-body">
+                      <dl>
+                        <dt>界面</dt>
+                        <dd>
+                          <ol>
+                            <li>导航栏现在可以显示登录状态</li>
+                            <li>增加登录页错误提示</li>
+                            <li>实现退出登录功能</li>
+                          </ol>
+                        </dd>
+                        <dt>架构</dt>
+                        <dd>
+                          <ol>
+                            <li>通过 web.xml 保存 HTML 元素 ID 和 session 属性，实现前后端的进一步解耦</li>
+                          </ol>
+                        </dd>
+                      </dl>
+                    </div>
+                </div>
+                
+                
+                <div class="panel panel-info">
                     <div class="panel-heading">
                       <h3 class="panel-title">2018年4月3日</h3>
                     </div>
@@ -54,8 +79,7 @@
                       </dl>
                     </div>
                 </div>
-                
-                
+                                
                 <div class="panel panel-info">
                     <div class="panel-heading">
                       <h3 class="panel-title">2018年4月2日</h3>

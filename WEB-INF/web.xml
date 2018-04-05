@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+    <context-param>
+        <!-- 导航条-登录按钮 -->
+        <param-name>HTML_NAVBAR_SIGNIN_BUTTON</param-name>
+        <param-value>sign_in</param-value>
+    </context-param>
+    <context-param>
+        <!-- 导航条-注册按钮 -->
+        <param-name>HTML_NAVBAR_SIGNUP_BUTTON</param-name>
+        <param-value>sign_up</param-value>
+    </context-param>
+    <context-param>
+        <!-- 导航条-用户名按钮 -->
+        <param-name>HTML_NAVBAR_USER_BUTTON</param-name>
+        <param-value>username</param-value>
+    </context-param>
+    <context-param>
+        <!-- 导航条-用户名内容超链接 -->
+        <param-name>HTML_NAVBAR_USER_NAME</param-name>
+        <param-value>dashboard</param-value>
+    </context-param>
+    <context-param>
+        <!-- 登录页-用户名或密码错误弹窗 -->
+        <param-name>HTML_SIGNIN_ALERT_INVALID_PASS</param-name>
+        <param-value>error_invalid_pass</param-value>
+    </context-param>
+    <context-param>
+        <!-- 登录页-用户不存在错误弹窗-->
+        <param-name>HTML_SIGNIN_ALERT_INVALID_USER</param-name>
+        <param-value>error_invalid_user</param-value>
+    </context-param>
+    <context-param>
+        <!-- 登录页-表单-email 输入框-->
+        <param-name>HTML_SIGNIN_INPUT_EMAIL</param-name>
+        <param-value>email</param-value>
+    </context-param>
+    <context-param>
+        <!-- 登录页-表单-密码输入框-->
+        <param-name>HTML_SIGNIN_INPUT_PASSWORD</param-name>
+        <param-value>password</param-value>
+    </context-param>
+    <context-param>
+        <!-- session-用户名-->
+        <param-name>ATTR_USERNAME</param-name>
+        <param-value>attr_username</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-用户名-->
+        <param-name>DB_USERNAME</param-name>
+        <param-value>sname</param-value>
+    </context-param>
+</web-app>

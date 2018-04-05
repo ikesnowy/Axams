@@ -38,8 +38,20 @@
                         </thead>
                         <tbody>
                             <tr class="info">
+                                <td>建立数据有效性验证js</td>
+                                <td>进行中</td>
+                            </tr>
+                            <tr class="info">
                                 <td>建立登录/注册页</td>
                                 <td>进行中</td>
+                            </tr>
+                            <tr>
+                                <td>建立考试页</td>
+                                <td>未开始</td>
+                            </tr>
+                            <tr>
+                                <td>建立用户控制台</td>
+                                <td>未开始</td>
                             </tr>
                             <tr class="success">
                                 <td>实现导航条</td>

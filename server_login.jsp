@@ -4,11 +4,10 @@
 <%@page import="java.sql.Connection"%>  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  
 <%  
 	request.setCharacterEncoding("UTF-8");
-	String uemail = request.getParameter("email");
-	String upass = request.getParameter("password");
+	String uemail = request.getParameter(application.getInitParameter("HTML_SIGNIN_INPUT_EMAIL"));
+	String upass = request.getParameter(application.getInitParameter("HTML_SIGNIN_INPUT_PASSWORD"));
     out.print(uemail);
     out.print(upass);
     String sql = "SELECT * FROM astudent WHERE semail = '" 
@@ -22,22 +21,21 @@
     String url = "jdbc:mysql://123.206.201.200:3306/Axam";  
     String user = "root";  
     String pass = "acLALDIQc3Qb";
-    try {
-        out.print("Driver start");  
+    try { 
         Class.forName("com.mysql.jdbc.Driver");  
         //数据库的地址，密码，用户名  
-        out.print("start conn");
         conn = DriverManager.getConnection(url, user, pass);
-        out.print("Connection successful");
         st = conn.createStatement();
         rs = st.executeQuery(sql);
         
-
 		if (!rs.next()){
-        	out.print("no user");
-		} else {
-			out.print("hello!");
-		}
+        	session.setAttribute(application.getInitParameter("HTML_SIGNIN_ALERT_INVALID_PASS"), true);
+            response.sendRedirect("signin.jsp");  
+        } else {
+			String username = rs.getString(application.getInitParameter("DB_USERNAME"));
+            session.setAttribute(application.getInitParameter("ATTR_USERNAME"), username);
+            response.sendRedirect("index.jsp");
+        }
   
     } catch (Exception e) {  
   		out.print(e.getMessage());
@@ -45,15 +43,13 @@
     } finally {  
         try {  
             rs.close();  
-        } catch (Exception e) {  
-        }  
+        } catch (Exception e) {}  
         try {  
             st.close();  
-        } catch (Exception e) {  
-        }  
+        } catch (Exception e) {}  
         try {  
             conn.close();  
-        } catch (Exception e) {  
-        }  
-    }  
+        } catch (Exception e) {}  
+    }
+
 %>
