@@ -42,7 +42,7 @@
                                 <td>进行中</td>
                             </tr>
                             <tr class="info">
-                                <td>建立登录/注册页</td>
+                                <td>建立注册页</td>
                                 <td>进行中</td>
                             </tr>
                             <tr>
@@ -52,6 +52,10 @@
                             <tr>
                                 <td>建立用户控制台</td>
                                 <td>未开始</td>
+                            </tr>
+                            <tr class="success">
+                                <td>建立登录页</td>
+                                <td>已完成</td>
                             </tr>
                             <tr class="success">
                                 <td>实现导航条</td>
@@ -79,9 +83,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="info">
+                                <tr>
+                                    <td>数据库-题目表</td>
+                                    <td>未完成</td>
+                                </tr>
+                                <tr>
+                                    <td>数据库-考试表</td>
+                                    <td>未完成</td>
+                                </tr>
+                                <tr class="success">
                                     <td>实现登录后跳转</td>
-                                    <td>进行中</td>
+                                    <td>已完成</td>
                                 </tr>
 
                                 <tr class="success">
