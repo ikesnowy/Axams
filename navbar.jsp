@@ -29,7 +29,7 @@
             <a href="index.jsp">主页</a>
           </li>
           <li id="new_exam">
-            <a href="">新建考试</a>
+            <a href="new_exam.jsp">新建考试</a>
           </li>
           <li id="take_exam">
             <a href="">参加考试</a>
