@@ -7,11 +7,13 @@ function setNavbarActive(id)
 function displayElement(id)
 {
     document.getElementById(id).removeAttribute('style');
+    document.getElementById(id).removeAttribute('hidden');
 }
 
 function hideElement(id)
 {
     document.getElementById(id).setAttribute('style', 'display:none');
+    document.getElementById(id).setAttribute('hidden', 'hidden');
 }
 
 function changeInnerHTML(id, content)
