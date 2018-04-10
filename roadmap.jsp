@@ -38,20 +38,20 @@
                         </thead>
                         <tbody>
                             <tr class="info">
-                                <td>建立数据有效性验证js</td>
+                                <td>建立新建考试页</td>
                                 <td>进行中</td>
-                            </tr>
-                            <tr class="info">
-                                <td>建立注册页</td>
-                                <td>进行中</td>
-                            </tr>
-                            <tr>
-                                <td>建立考试页</td>
-                                <td>未开始</td>
                             </tr>
                             <tr>
                                 <td>建立用户控制台</td>
                                 <td>未开始</td>
+                            </tr>
+                            <tr class="success">
+                                <td>建立数据有效性验证js</td>
+                                <td>已完成</td>
+                            </tr>
+                            <tr class="success">
+                                <td>建立注册页</td>
+                                <td>已完成</td>
                             </tr>
                             <tr class="success">
                                 <td>建立登录页</td>
@@ -83,13 +83,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="success">
                                     <td>数据库-题目表</td>
-                                    <td>未完成</td>
+                                    <td>已完成</td>
                                 </tr>
-                                <tr>
+                                <tr class="success">
                                     <td>数据库-考试表</td>
-                                    <td>未完成</td>
+                                    <td>已完成</td>
                                 </tr>
                                 <tr class="success">
                                     <td>实现登录后跳转</td>

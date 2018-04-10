@@ -22,7 +22,6 @@
     <div class="container"> 
         <div class="row row-centered">
             <div class="well col-xs-6 col-sm-6 col-md-6 col-lg-6 col-centered">
-          
                 <div id="error_invalid_pass" class="alert alert-danger" hidden="hidden">
                     <strong>登录失败！</strong> 用户名或密码错误
                 </div>
@@ -32,17 +31,21 @@
                 </div>
                 <form action="server_login.jsp" method="POST" role="form">
                     <legend>登录</legend>    
-                    <div class="form-group">
+                    <div class="form-group" id="email-input">
                         <label for="">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="输入电子邮件">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="输入电子邮件" onblur="loginVaildtion('email', 'email-input', 'email-input-success', 'email-input-failed', 'password', 'password-input', 'password-input-success', 'password-input-failed', 'login-button');">
+                        <span id="email-input-success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="display: none"></span>
+                        <span id="email-input-failed" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="password-input">
                         <label for="">密码</label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="输入密码">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="输入密码" onblur="loginVaildtion('email', 'email-input', 'email-input-success', 'email-input-failed', 'password', 'password-input', 'password-input-success', 'password-input-failed', 'login-button');">
+                        <span id="password-input-success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="display: none"></span>
+                        <span id="password-input-failed" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none"></span>
                     </div>
                     
                     <a class="btn btn-link" href="#" role="button">忘记密码？</a>   
-                    <button type="submit" class="btn btn-primary pull-right">登录</button>
+                    <button id="login-button" type="submit" class="btn btn-primary pull-right">登录</button>
                 </form>
                 <!-- 重置登录状态标志位，用户名或密码错误，用户不存在等 -->
                 <%
