@@ -40,7 +40,7 @@
             <a href="signin.jsp">登录</a>
           </li>
           <li id="sign_up" hidden="hidden">
-            <a href="#">注册</a>
+            <a href="signup.jsp">注册</a>
           </li>
           <li class="dropdown" id="username" hidden="hidden">
             <a id="dashboard" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User</a>

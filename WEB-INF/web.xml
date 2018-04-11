@@ -23,7 +23,7 @@
         <param-value>dashboard</param-value>
     </context-param>
     <context-param>
-        <!-- 登录页-用户名或密码错误弹窗 -->
+        <!-- 登录/注册页-用户名或密码错误弹窗 -->
         <param-name>HTML_SIGNIN_ALERT_INVALID_PASS</param-name>
         <param-value>error_invalid_pass</param-value>
     </context-param>
@@ -42,6 +42,23 @@
         <param-name>HTML_SIGNIN_INPUT_PASSWORD</param-name>
         <param-value>password</param-value>
     </context-param>
+       <context-param>
+        <!-- 注册页-表单-email 输入框-->
+        <param-name>HTML_SIGNUP_INPUT_EMAIL</param-name>
+        <param-value>email</param-value>
+    </context-param>
+       <context-param>
+        <!-- 注册页-表单-密码输入框-->
+        <param-name>HTML_SIGNUP_INPUT_PASSWORD</param-name>
+        <param-value>password</param-value>
+    </context-param>
+
+     <context-param>
+        <!-- 注册页-表单-用户名输入框-->
+        <param-name>HTML_SIGNUP_INPUT_USERNAME</param-name>
+        <param-value>username</param-value>
+    </context-param>
+
     <context-param>
         <!-- session-用户名-->
         <param-name>ATTR_USERNAME</param-name>
@@ -51,5 +68,15 @@
         <!-- 数据库-用户名-->
         <param-name>DB_USERNAME</param-name>
         <param-value>sname</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-密码-->
+        <param-name>DB_PASSWORD</param-name>
+        <param-value>spassword</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-Email-->
+        <param-name>DB_EMAIL</param-name>
+        <param-value>semail</param-value>
     </context-param>
 </web-app>
