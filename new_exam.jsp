@@ -41,7 +41,7 @@
 
 
         <!-- 各类模态框 -->
-        
+        <!-- 修改考试名称 -->
         <div class="modal fade" id="modal-modify-title">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -49,15 +49,13 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">修改考试名称</h4>
                     </div>
-                    <div class="modal-body">
-                        
+                    <div class="modal-body">                      
                         <form action="" method="POST" role="form">   
                             <div class="form-group">
                                 <label for="">输入新的考试名称</label>
                                 <input type="text" class="form-control" id="input-title" autocomplete="off" placeholder="考试名称……">
                             </div>
                         </form>
-                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -66,6 +64,27 @@
                 </div>
             </div>
         </div>
+
+        <!-- 新增选择题 -->      
+        <div class="modal fade" id="modal-add-choice-question">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">添加选择题</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary">添加s</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
         
         <!-- 工具条 -->
         
@@ -101,6 +120,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="">保存</a>
+                        </li>
+                        <li>
+                            <a href="">完成</a>
                         </li>
                     </ul>
                 </div>

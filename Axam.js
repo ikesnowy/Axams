@@ -36,10 +36,18 @@ function enableControl(id) {
 
 // functions for form validations
 function numberValidation(number, min, max) {
-    if (number >= min && number <= max) {
+    if (number > min && number <= max) {
         return true;
     }
     return false;
+}
+
+function stringLengthValidation(inputId, min, max) {
+    if (document.getElementById(inputId).value.length <= min ||
+        document.getElementById(inputId).value.length > max) {
+        return false;
+    }
+    return true;
 }
 
 function emailValidation(inputId, divId, successId, failedId) {
@@ -49,13 +57,13 @@ function emailValidation(inputId, divId, successId, failedId) {
     }
     if (!document.getElementById(inputId).value.match(regEmail) ||
         document.getElementById(inputId).value.length < 100) {
-        document.getElementById(divId).className = 'form-group has-error has-feedback';
+        document.getElementById(divId).classList.add('has-error', 'has-feedback');
         displayElement(failedId);
         hideElement(successId);
         return false;
     }
     else {
-        document.getElementById(divId).className = 'form-group has-success has-feedback';
+        document.getElementById(divId).classList.remove('has-error', 'has-feedback');
         displayElement(successId);
         hideElement(failedId);
         return true;
@@ -68,13 +76,13 @@ function passwordValidation(inputId, divId, successId, failedId) {
     }
     if (document.getElementById(inputId).value.length < 6 ||
         document.getElementById(inputId).value.length > 18) {
-        document.getElementById(divId).className = 'form-group has-error has-feedback';
+        document.getElementById(divId).classList.add('has-error', 'has-feedback');
         displayElement(failedId);
         hideElement(successId);
         return false;
     }
     else {
-        document.getElementById(divId).className = 'form-group has-success has-feedback';
+        document.getElementById(divId).classList.remove('has-error', 'has-feedback');
         displayElement(successId);
         hideElement(failedId);
         return true;
@@ -86,13 +94,13 @@ function usernameValidation(inputId, divId, successId, failedId) {
         return false;
     }
     if (document.getElementById(inputId).value.length > 10) {
-        document.getElementById(divId).className = 'form-group has-error has-feedback';
+        document.getElementById(divId).classList.add('has-error', 'has-feedback');
         displayElement(failedId);
         hideElement(successId);
         return false;
     }
     else {
-        document.getElementById(divId).className = 'form-group has-success has-feedback';
+        document.getElementById(divId).classList.remove('has-error', 'has-feedback');
         displayElement(successId);
         hideElement(failedId);
         return true;
@@ -106,5 +114,38 @@ function loginValidation(emailInput, emailDiv, emailSuccess, emailFailed, passwo
     }
     else {
         disableControl(submitButton);
+    }
+}
+
+function registerValidation(usernameInput, usernameDiv, usernameSuccess, usernameFailed, emailInput, emailDiv, emailSuccess, emailFailed, passwordInput, passwordDiv, passwordSuccess, passwordFailed, submitButton) {
+    if (usernameValidation(usernameInput, usernameDiv, usernameSuccess, usernameFailed) &&
+        emailValidation(emailInput, emailDiv, emailSuccess, emailFailed) &&
+        passwordValidation(passwordInput, passwordDiv, passwordSuccess, passwordFailed)) {
+        enableControl(submitButton);
+    }
+    else {
+        disableControl(submitButton);
+    }
+}
+
+function questionValidation(inputId, divId, failedId) {
+    if (!stringLengthValidation(inputId, 0, 500)) {
+        document.getElementById(divId).classList.add('has-error', 'has-feedback');
+        displayElement(failedId);
+    }
+    else {
+        document.getElementById(divId).classList.remove('has-error', 'has-feedback');
+        hideElement(failedId);
+    }
+}
+
+function optionValidation(inputId, divId, failedId) {
+    if (!stringLengthValidation(inputId, 0, 100)) {
+        document.getElementById(divId).classList.add('has-error', 'has-feedback');
+        displayElement(failedId);
+    }
+    else {
+        document.getElementById(divId).classList.remove('has-error', 'has-feedback');
+        hideElement(failedId);
     }
 }
