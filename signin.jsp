@@ -33,13 +33,13 @@
                     <legend>登录</legend>    
                     <div class="form-group" id="email-input">
                         <label for="">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="输入电子邮件" onblur="loginVaildtion('email', 'email-input', 'email-input-success', 'email-input-failed', 'password', 'password-input', 'password-input-success', 'password-input-failed', 'login-button');">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="输入电子邮件" onblur="loginValidation('email', 'email-input', 'email-input-success', 'email-input-failed', 'password', 'password-input', 'password-input-success', 'password-input-failed', 'login-button');">
                         <span id="email-input-success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="display: none"></span>
                         <span id="email-input-failed" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none"></span>
                     </div>
                     <div class="form-group" id="password-input">
                         <label for="">密码</label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="输入密码" onblur="loginVaildtion('email', 'email-input', 'email-input-success', 'email-input-failed', 'password', 'password-input', 'password-input-success', 'password-input-failed', 'login-button');">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="输入密码" onblur="loginValidation('email', 'email-input', 'email-input-success', 'email-input-failed', 'password', 'password-input', 'password-input-success', 'password-input-failed', 'login-button');">
                         <span id="password-input-success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="display: none"></span>
                         <span id="password-input-failed" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none"></span>
                     </div>
