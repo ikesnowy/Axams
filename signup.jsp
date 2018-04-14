@@ -33,20 +33,29 @@
                 <form action="server_register.jsp" method="POST" role="form">
                     <legend>注册</legend>    
 
-                    <div class="form-group">
+                    <div id="username-div" class="form-group">
                         <label for="">用户名</label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="输入用户名">
+                        <input id="username-input" type="text" class="form-control" name="username" id="username" placeholder="输入用户名" onblur="registerValidation('username-input', 'username-div', 'username-input-success', 'username-input-failed', 'email-input', 'email-div', 'email-input-success', 'email-input-failed', 'password-input', 'password-div', 'password-input-success', 'password-input-failed', 'submit-button')">
+                        <span id="username-input-success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="display: none"></span>
+                        <span id="username-input-failed" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none"></span>
+                        <span class="help-block">用户名最多不能超过 30 字节</span>
                     </div>
-                    <div class="form-group">
+                    <div id="email-div" class="form-group">
                         <label for="">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="输入电子邮件">
+                        <input id="email-input" type="text" class="form-control" id="email" name="email" placeholder="输入电子邮件" onblur="registerValidation('username-input', 'username-div', 'username-input-success', 'username-input-failed', 'email-input', 'email-div', 'email-input-success', 'email-input-failed', 'password-input', 'password-div', 'password-input-success', 'password-input-failed', 'submit-button')">
+                        <span id="email-input-success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="display: none"></span>
+                        <span id="email-input-failed" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none"></span>
+                        <span class="help-block">Email 不能超过 30 字节</span>
                     </div>
-                    <div class="form-group">
+                    <div id="password-div" class="form-group">
                         <label for="">密码</label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="输入密码">
+                        <input type="password" class="form-control" name="password" id="password-input" placeholder="输入密码" onblur="registerValidation('username-input', 'username-div', 'username-input-success', 'username-input-failed', 'email-input', 'email-div', 'email-input-success', 'email-input-failed', 'password-input', 'password-div', 'password-input-success', 'password-input-failed', 'submit-button')">
+                        <span id="password-input-success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="display: none"></span>
+                        <span id="password-input-failed" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none"></span>
+                        <span class="help-block">不少于 6 位的数字和字母组合</span>
                     </div>
                 
-                    <button type="submit" class="btn btn-primary pull-right">注册</button>
+                    <button id="submit-button" type="submit" class="btn btn-primary pull-right">注册</button>
                 </form>
                 <!-- 重置登录状态标志位，用户名或密码错误，用户不存在等 -->
                 <%

@@ -56,14 +56,16 @@ function emailValidation(inputId, divId, successId, failedId) {
         return false;
     }
     if (!document.getElementById(inputId).value.match(regEmail) ||
-        document.getElementById(inputId).value.length < 100) {
-        document.getElementById(divId).classList.add('has-error', 'has-feedback');
+        document.getElementById(inputId).value.length > 100) {
+            document.getElementById(divId).classList.remove('has-success');
+            document.getElementById(divId).classList.add('has-error', 'has-feedback');
         displayElement(failedId);
         hideElement(successId);
         return false;
     }
     else {
-        document.getElementById(divId).classList.remove('has-error', 'has-feedback');
+        document.getElementById(divId).classList.remove('has-error');
+        document.getElementById(divId).classList.add('has-success', 'has-feedback');
         displayElement(successId);
         hideElement(failedId);
         return true;
@@ -76,13 +78,15 @@ function passwordValidation(inputId, divId, successId, failedId) {
     }
     if (document.getElementById(inputId).value.length < 6 ||
         document.getElementById(inputId).value.length > 18) {
-        document.getElementById(divId).classList.add('has-error', 'has-feedback');
+            document.getElementById(divId).classList.remove('has-success');
+            document.getElementById(divId).classList.add('has-error', 'has-feedback');
         displayElement(failedId);
         hideElement(successId);
         return false;
     }
     else {
-        document.getElementById(divId).classList.remove('has-error', 'has-feedback');
+        document.getElementById(divId).classList.remove('has-error');
+        document.getElementById(divId).classList.add('has-success', 'has-feedback');
         displayElement(successId);
         hideElement(failedId);
         return true;
@@ -94,13 +98,15 @@ function usernameValidation(inputId, divId, successId, failedId) {
         return false;
     }
     if (document.getElementById(inputId).value.length > 10) {
+        document.getElementById(divId).classList.remove('has-success');
         document.getElementById(divId).classList.add('has-error', 'has-feedback');
         displayElement(failedId);
         hideElement(successId);
         return false;
     }
     else {
-        document.getElementById(divId).classList.remove('has-error', 'has-feedback');
+        document.getElementById(divId).classList.remove('has-error');
+        document.getElementById(divId).classList.add('has-success', 'has-feedback');
         displayElement(successId);
         hideElement(failedId);
         return true;
