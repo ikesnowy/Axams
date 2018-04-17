@@ -33,6 +33,11 @@
         <param-value>success_register_success</param-value>
     </context-param>
     <context-param>
+        <!-- 登录页-请先登录弹窗 -->
+        <param-name>HTML_SIGNIN_ALERT_SIGNIN_FIRST</param-name>
+        <param-value>info_need_login</param-value>
+    </context-param>
+    <context-param>
         <!-- 登录页-表单-email 输入框-->
         <param-name>HTML_SIGNIN_INPUT_EMAIL</param-name>
         <param-value>email</param-value>

@@ -28,7 +28,9 @@
                 <div id="success_register_success" class="alert alert-success" hidden="hidden">
                     <strong>注册成功！</strong>
                 </div>
-
+                <div id="info_need_login" class="alert alert-info" hidden="hidden">
+                    <strong>请先登录！</strong>
+                </div>
                 <form action="server_login.jsp" method="POST" role="form">
                     <legend>登录</legend>    
                     <div class="form-group" id="email-input">
@@ -51,8 +53,10 @@
                 <%
                     String alert_invalid_pass = application.getInitParameter("HTML_SIGNIN_ALERT_INVALID_PASS");
                     String alert_register_successful = application.getInitParameter("HTML_SIGNIN_ALERT_USER_REGISTER_SUCCESSFUL");
+                    String alert_need_login_first = application.getInitParameter("HTML_SIGNIN_ALERT_SIGNIN_FIRST");
                     Boolean isUsernameOrPasswordInvalid = (Boolean)session.getAttribute(alert_invalid_pass);
                     Boolean isUserRegisterSuccessful = (Boolean)session.getAttribute(alert_register_successful);
+                    Boolean isSigninNeeded = (Boolean)session.getAttribute(alert_need_login_first);
                     if (isUsernameOrPasswordInvalid == null)
                     {
                         session.setAttribute(alert_invalid_pass, false);
@@ -64,6 +68,12 @@
                         session.setAttribute(alert_register_successful, false);
                         isUserRegisterSuccessful = false;
                     }
+
+                    if (isSigninNeeded == null)
+                    {
+                        session.setAttribute(alert_need_login_first, false);
+                        isSigninNeeded = false;
+                    }
                         
                     if (isUsernameOrPasswordInvalid)
                     {
@@ -74,6 +84,11 @@
                     {
                         out.print("<script>displayElement('" + alert_register_successful +"'); </script>");
                         session.setAttribute(alert_register_successful, false);
+                    }
+                    if (isSigninNeeded)
+                    {
+                        out.print("<script>displayElement('" + alert_need_login_first +"'); </script>");
+                        session.setAttribute(alert_need_login_first, false);
                     }
                 %>      
             </div>

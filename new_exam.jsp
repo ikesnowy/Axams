@@ -5,6 +5,7 @@
     <head>
         <%@ include file="header.jsp" %>
         <%@ include file="script.jsp" %>
+        <%@ include file="login_check.jsp" %>
         <style>body { padding-bottom: 70px; }</style>
         <title>Axam-新增考试</title>
     </head>
