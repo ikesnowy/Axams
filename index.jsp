@@ -22,15 +22,33 @@
                   <div 
                   class="progress-bar progress-bar-info progress-bar-striped active" 
                   role="progressbar" 
-                  aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" 
-                  style="width: 32%; min-width: 2em">
-                     32%
+                  aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" 
+                  style="width: 35%; min-width: 2em">
+                     35%
                   </div>
                 </div>
                 <p><strong>更新日志</strong></p>
                 
                 
                 <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">2018年4月17日</h3>
+                    </div>
+                    <div class="panel-body">
+                      <dl>
+                        <dt>界面</dt>
+                        <dd>
+                          <ol>
+                            <li>增加注册时重复用户校验，已存在的email不允许注册</li>
+                            <li>现在注册成功后将自动跳转到登陆界面，同时弹出提示</li>
+                          </ol>
+                        </dd>
+                      </dl>
+                    </div>
+                </div>
+                
+                
+                <div class="panel panel-info">
                     <div class="panel-heading">
                       <h3 class="panel-title">2018年4月10日</h3>
                     </div>

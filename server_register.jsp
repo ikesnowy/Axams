@@ -20,7 +20,7 @@
     sql += ", '" + upass + "'";
     sql += ", '" + uemail + "')";
 
-    String checkUserExist = "select * from astudent where email = '" + uemail + "'";
+    String checkUserExist = "select * from astudent where " + application.getInitParameter("DB_EMAIL") + " = '" + uemail + "'";
     // 数据库链接  
     Connection conn = null;  
     // 向数据库发送sql语句  
