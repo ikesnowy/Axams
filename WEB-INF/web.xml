@@ -23,14 +23,14 @@
         <param-value>dashboard</param-value>
     </context-param>
     <context-param>
-        <!-- 登录/注册页-用户名或密码错误弹窗 -->
+        <!-- 登录页-用户名或密码错误弹窗 -->
         <param-name>HTML_SIGNIN_ALERT_INVALID_PASS</param-name>
         <param-value>error_invalid_pass</param-value>
     </context-param>
     <context-param>
-        <!-- 登录页-用户不存在错误弹窗-->
-        <param-name>HTML_SIGNIN_ALERT_INVALID_USER</param-name>
-        <param-value>error_invalid_user</param-value>
+        <!-- 登录页-用户注册成功弹窗 -->
+        <param-name>HTML_SIGNIN_ALERT_USER_REGISTER_SUCCESSFUL</param-name>
+        <param-value>success_register_success</param-name>
     </context-param>
     <context-param>
         <!-- 登录页-表单-email 输入框-->
@@ -42,23 +42,26 @@
         <param-name>HTML_SIGNIN_INPUT_PASSWORD</param-name>
         <param-value>password</param-value>
     </context-param>
-       <context-param>
+    <context-param>
         <!-- 注册页-表单-email 输入框-->
         <param-name>HTML_SIGNUP_INPUT_EMAIL</param-name>
         <param-value>email</param-value>
     </context-param>
-       <context-param>
+    <context-param>
         <!-- 注册页-表单-密码输入框-->
         <param-name>HTML_SIGNUP_INPUT_PASSWORD</param-name>
         <param-value>password</param-value>
     </context-param>
-
-     <context-param>
+    <context-param>
         <!-- 注册页-表单-用户名输入框-->
         <param-name>HTML_SIGNUP_INPUT_USERNAME</param-name>
         <param-value>username</param-value>
     </context-param>
-
+    <context-param>
+        <!-- 注册页-Email 已被注册提示框 -->
+        <param-name>HTML_SIGNUP_ALERT_USER_ALREADY_EXIST</param-name>
+        <param-value>error_user_already_exist</param-value>
+    </context-param>
     <context-param>
         <!-- session-用户名-->
         <param-name>ATTR_USERNAME</param-name>

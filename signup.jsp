@@ -23,12 +23,8 @@
         <div class="row row-centered">
             <div class="well col-xs-6 col-sm-6 col-md-6 col-lg-6 col-centered">
           
-                <div id="error_invalid_user" class="alert alert-danger" hidden="hidden">
-                    <strong>注册失败！</strong> 用户名无效！请输入1~10位用户名！
-                </div>
-
-                <div id="error_invalid_pass" class="alert alert-danger" hidden="hidden">
-                    <strong>注册失败！</strong> 密码无效！不能短于6位！！
+                <div id="error_user_already_exist" class="alert alert-danger" hidden="hidden">
+                    <strong>注册失败！</strong> 该 Email 已经被注册，是否需要<a href="signin.jsp">登录</a>？
                 </div>
                 <form action="server_register.jsp" method="POST" role="form">
                     <legend>注册</legend>    
@@ -59,31 +55,19 @@
                 </form>
                 <!-- 重置登录状态标志位，用户名或密码错误，用户不存在等 -->
                 <%
-                    String alert_invalid_pass = application.getInitParameter("HTML_SIGNIN_ALERT_INVALID_PASS");
-                    String alert_invalid_user = application.getInitParameter("HTML_SIGNIN_ALERT_INVALID_USER");
-                    Boolean isUsernameOrPasswordInvalid = (Boolean)session.getAttribute(alert_invalid_pass);
-                    Boolean isUserNotFound = (Boolean)session.getAttribute(alert_invalid_user);
-                    if (isUsernameOrPasswordInvalid == null)
-                    {
-                        session.setAttribute(alert_invalid_pass, false);
-                        isUsernameOrPasswordInvalid = false;
-                    }
+                    String alert_user_already_exist = application.getInitParameter("HTML_SIGNUP_ALERT_USER_ALREADY_EXIST");
+                    Boolean isUserAlreadyExist = (Boolean)session.getAttribute(alert_user_already_exist);
 
-                    if (isUserNotFound == null)
+                    if (isUserAlreadyExist == null)
                     {
-                        session.setAttribute(alert_invalid_user, false);
-                        isUserNotFound = false;
+                        session.setAttribute(alert_user_already_exist, false);
+                        isUserAlreadyExist = false;
                     }
                         
-                    if (isUsernameOrPasswordInvalid)
+                    if (isUserAlreadyExist)
                     {
-                        out.print("<script>displayElement('" + alert_invalid_pass +"'); </script>");
-                        session.setAttribute(alert_invalid_pass, false);
-                    }
-                    if (isUserNotFound)
-                    {
-                        out.print("<script>displayElement('" + alert_invalid_user +"'); </script>");
-                        session.setAttribute(alert_invalid_user, false);
+                        out.print("<script>displayElement('" + alert_user_already_exist +"'); </script>");
+                        session.setAttribute(alert_user_already_exist, false);
                     }
                 %>      
             </div>

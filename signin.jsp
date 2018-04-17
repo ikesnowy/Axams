@@ -25,10 +25,10 @@
                 <div id="error_invalid_pass" class="alert alert-danger" hidden="hidden">
                     <strong>登录失败！</strong> 用户名或密码错误
                 </div>
-
-                <div id="error_invalid_user" class="alert alert-danger" hidden="hidden">
-                    <strong>登录失败！</strong> 用户不存在
+                <div id="success_register_success" class="alert alert-success" hidden="hidden">
+                    <strong>注册成功！</strong>
                 </div>
+
                 <form action="server_login.jsp" method="POST" role="form">
                     <legend>登录</legend>    
                     <div class="form-group" id="email-input">
@@ -50,19 +50,19 @@
                 <!-- 重置登录状态标志位，用户名或密码错误，用户不存在等 -->
                 <%
                     String alert_invalid_pass = application.getInitParameter("HTML_SIGNIN_ALERT_INVALID_PASS");
-                    String alert_invalid_user = application.getInitParameter("HTML_SIGNIN_ALERT_INVALID_USER");
+                    String alert_register_successful = application.getInitParameter("HTML_SIGNIN_ALERT_USER_REGISTER_SUCCESSFUL");
                     Boolean isUsernameOrPasswordInvalid = (Boolean)session.getAttribute(alert_invalid_pass);
-                    Boolean isUserNotFound = (Boolean)session.getAttribute(alert_invalid_user);
+                    Boolean isUserRegisterSuccessful = (Boolean)session.getAttribute(alert_register_successful);
                     if (isUsernameOrPasswordInvalid == null)
                     {
                         session.setAttribute(alert_invalid_pass, false);
                         isUsernameOrPasswordInvalid = false;
                     }
 
-                    if (isUserNotFound == null)
+                    if (isUserRegisterSuccessful == null)
                     {
-                        session.setAttribute(alert_invalid_user, false);
-                        isUserNotFound = false;
+                        session.setAttribute(alert_register_successful, false);
+                        isUserRegisterSuccessful = false;
                     }
                         
                     if (isUsernameOrPasswordInvalid)
@@ -70,10 +70,10 @@
                         out.print("<script>displayElement('" + alert_invalid_pass +"'); </script>");
                         session.setAttribute(alert_invalid_pass, false);
                     }
-                    if (isUserNotFound)
+                    if (isUserRegisterSuccessful)
                     {
-                        out.print("<script>displayElement('" + alert_invalid_user +"'); </script>");
-                        session.setAttribute(alert_invalid_user, false);
+                        out.print("<script>displayElement('" + alert_register_successful +"'); </script>");
+                        session.setAttribute(alert_register_successful, false);
                     }
                 %>      
             </div>
