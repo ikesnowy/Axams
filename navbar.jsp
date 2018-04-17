@@ -46,7 +46,7 @@
             <a id="dashboard" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User</a>
             <ul class="dropdown-menu">
               <li>
-                <a href="#">个人中心</a>
+                <a href="dashboard.jsp">个人中心</a>
               </li>
               <li>
                 <a href="server_logout.jsp">退出登录</a>

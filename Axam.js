@@ -1,6 +1,6 @@
 // functions for navbar
 function setNavbarActive(id) {
-    document.getElementById(id).className = "active";
+    document.getElementById(id).classList.toggle('active');
 }
 
 // common functions
