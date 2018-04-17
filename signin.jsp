@@ -44,9 +44,19 @@
                         <input type="password" class="form-control" name="password" id="password" placeholder="输入密码" onblur="loginValidation('email', 'email-input', 'email-input-success', 'email-input-failed', 'password', 'password-input', 'password-input-success', 'password-input-failed', 'login-button');">
                         <span id="password-input-success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" style="display: none"></span>
                         <span id="password-input-failed" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none"></span>
+                    </div>                    
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="usertype" value="student" checked="checked">
+                            学生
+                        </label>
                     </div>
-                    
-                    <a class="btn btn-link" href="#" role="button">忘记密码？</a>   
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="usertype" value="teacher">
+                            教师
+                        </label>
+                    </div>                                           
                     <button id="login-button" type="submit" class="btn btn-primary pull-right">登录</button>
                 </form>
                 <!-- 重置登录状态标志位，用户名或密码错误，用户不存在等 -->

@@ -48,6 +48,21 @@
         <param-value>password</param-value>
     </context-param>
     <context-param>
+        <!-- 登录页-表单-学生/教师登录单选按钮-->
+        <param-name>HTML_SIGNIN_RADIO_USERTYPE</param-name>
+        <param-value>usertype</param-value>
+    </context-param>
+    <context-param>
+        <!-- 登录页-表单-教师登录选择-->
+        <param-name>HTML_SIGNIN_RADIO_VALUE_TEACHER</param-name>
+        <param-value>teacher</param-value>
+    </context-param>
+    <context-param>
+        <!-- 登录页-表单-学生登录选择-->
+        <param-name>HTML_SIGNIN_RADIO_VALUE_STUDENT</param-name>
+        <param-value>student</param-value>
+    </context-param>
+    <context-param>
         <!-- 注册页-表单-email 输入框-->
         <param-name>HTML_SIGNUP_INPUT_EMAIL</param-name>
         <param-value>email</param-value>
@@ -68,23 +83,43 @@
         <param-value>error_user_already_exist</param-value>
     </context-param>
     <context-param>
-        <!-- session-用户名-->
+        <!-- session-用户名 -->
         <param-name>ATTR_USERNAME</param-name>
         <param-value>attr_username</param-value>
     </context-param>
     <context-param>
-        <!-- 数据库-用户名-->
-        <param-name>DB_USERNAME</param-name>
+        <!-- session-用户类型 -->
+        <param-name>ATTR_USERTYPE</param-name>
+        <param-value>attr_usertype</param-value>
+    </context-param>   
+    <context-param>
+        <!-- 数据库-学生用户名-->
+        <param-name>DB_SUSERNAME</param-name>
         <param-value>sname</param-value>
     </context-param>
     <context-param>
-        <!-- 数据库-密码-->
-        <param-name>DB_PASSWORD</param-name>
+        <!-- 数据库-学生密码-->
+        <param-name>DB_SPASSWORD</param-name>
         <param-value>spassword</param-value>
     </context-param>
     <context-param>
-        <!-- 数据库-Email-->
-        <param-name>DB_EMAIL</param-name>
+        <!-- 数据库-学生 Email-->
+        <param-name>DB_SEMAIL</param-name>
         <param-value>semail</param-value>
     </context-param>
+    <context-param>
+        <!-- 数据库-教师用户名-->
+        <param-name>DB_TUSERNAME</param-name>
+        <param-value>tname</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-教师密码-->
+        <param-name>DB_TPASSWORD</param-name>
+        <param-value>tpassword</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-教师 Email-->
+        <param-name>DB_TEMAIL</param-name>
+        <param-value>temail</param-value>
+    </context-param>    
 </web-app>

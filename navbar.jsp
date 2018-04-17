@@ -61,7 +61,8 @@
                 String usernameButtonId = application.getInitParameter("HTML_NAVBAR_USER_BUTTON");
                 String usernameLabelId = application.getInitParameter("HTML_NAVBAR_USER_NAME");
                 String username = (String)session.getAttribute(application.getInitParameter("ATTR_USERNAME"));
-                if (username == null)
+                Boolean isStudent = (Boolean)session.getAttribute(application.getInitParameter("ATTR_USERTYPE"));
+                if (username == null || isStudent == null)
                 {
                   out.print("<script>document.getElementById('" + loginButtonId + "').removeAttribute('style');</script>");
                   out.print("<script>document.getElementById('" + registerButtonId + "').removeAttribute('style');</script>");
@@ -69,6 +70,10 @@
                 }
                 else
                 {
+                  if (isStudent)
+                    username += " 同学";
+                  else
+                    username += " 老师";
                   out.print("<script>document.getElementById('" + loginButtonId + "').setAttribute('style', 'display:none');</script>");
                   out.print("<script>document.getElementById('" + registerButtonId + "').setAttribute('style', 'display:none');</script>");
                   out.print("<script>document.getElementById('" + usernameButtonId + "').removeAttribute('style');</script>");

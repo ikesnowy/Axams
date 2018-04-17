@@ -25,9 +25,9 @@
               <strong>项目进度</strong>
             </p>
             <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="35" aria-valuemin="0"
-                aria-valuemax="100" style="width: 35%; min-width: 2em">
-                35%
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="36" aria-valuemin="0"
+                aria-valuemax="100" style="width: 36%; min-width: 2em">
+                36%
               </div>
             </div>
             <p>
@@ -45,12 +45,13 @@
                     <ol>
                       <li>增加注册时重复用户校验，已存在的 email 不允许注册</li>
                       <li>现在注册成功后将自动跳转到登陆界面，同时弹出提示</li>
+                      <li>增加登录状态校验，阻止未经授权的访问</li>
+                      <li>提供教师登录和学生登录的选项</li>
                     </ol>
                   </dd>
                 </dl>
               </div>
             </div>
-
 
             <div class="panel panel-info">
               <div class="panel-heading">

@@ -13,9 +13,9 @@
     out.print(upass);
     out.print(uname);
 
-    String sql = "insert into astudent("+ application.getInitParameter("DB_USERNAME");
-    sql += ", " + application.getInitParameter("DB_PASSWORD") + "";
-    sql += ", " + application.getInitParameter("DB_EMAIL") + ") ";
+    String sql = "insert into astudent("+ application.getInitParameter("DB_SUSERNAME");
+    sql += ", " + application.getInitParameter("DB_SPASSWORD") + "";
+    sql += ", " + application.getInitParameter("DB_SEMAIL") + ") ";
     sql += "values ('" + uname + "'";
     sql += ", '" + upass + "'";
     sql += ", '" + uemail + "')";
