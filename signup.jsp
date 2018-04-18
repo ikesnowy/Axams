@@ -50,7 +50,18 @@
                         <span id="password-input-failed" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none"></span>
                         <span class="help-block">不少于 6 位的数字和字母组合</span>
                     </div>
-                
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="usertype" value="student" checked="checked">
+                            学生
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="usertype" value="teacher">
+                            教师
+                        </label>
+                    </div> 
                     <button id="submit-button" type="submit" class="btn btn-primary pull-right">注册</button>
                 </form>
                 <!-- 重置登录状态标志位，用户名或密码错误，用户不存在等 -->

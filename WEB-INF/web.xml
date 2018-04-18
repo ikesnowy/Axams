@@ -83,6 +83,21 @@
         <param-value>error_user_already_exist</param-value>
     </context-param>
     <context-param>
+        <!-- 注册页-表单-学生/教师登录单选按钮-->
+        <param-name>HTML_SIGNUP_RADIO_USERTYPE</param-name>
+        <param-value>usertype</param-value>
+    </context-param>
+    <context-param>
+        <!-- 注册页-表单-教师登录选择-->
+        <param-name>HTML_SIGNUP_RADIO_VALUE_TEACHER</param-name>
+        <param-value>teacher</param-value>
+    </context-param>
+    <context-param>
+        <!-- 注册页-表单-学生登录选择-->
+        <param-name>HTML_SIGNUP_RADIO_VALUE_STUDENT</param-name>
+        <param-value>student</param-value>
+    </context-param>
+    <context-param>
         <!-- session-用户名 -->
         <param-name>ATTR_USERNAME</param-name>
         <param-value>attr_username</param-value>

@@ -9,18 +9,29 @@
 	String uemail = request.getParameter(application.getInitParameter("HTML_SIGNUP_INPUT_EMAIL"));
 	String upass = request.getParameter(application.getInitParameter("HTML_SIGNUP_INPUT_PASSWORD"));
     String uname = request.getParameter(application.getInitParameter("HTML_SIGNUP_INPUT_USERNAME"));
-    out.print(uemail);
-    out.print(upass);
-    out.print(uname);
+    String loginType = request.getParameter(application.getInitParameter("HTML_SIGNUP_RADIO_USERTYPE"));
+    Boolean isStudent = loginType.equals(application.getInitParameter("HTML_SIGNUP_RADIO_VALUE_STUDENT"));
 
-    String sql = "insert into astudent("+ application.getInitParameter("DB_SUSERNAME");
-    sql += ", " + application.getInitParameter("DB_SPASSWORD") + "";
-    sql += ", " + application.getInitParameter("DB_SEMAIL") + ") ";
-    sql += "values ('" + uname + "'";
-    sql += ", '" + upass + "'";
-    sql += ", '" + uemail + "')";
+    String sql, checkUserExist;
+    if (isStudent) {
+        sql = "insert into astudent("+ application.getInitParameter("DB_SUSERNAME");
+        sql += ", " + application.getInitParameter("DB_SPASSWORD") + "";
+        sql += ", " + application.getInitParameter("DB_SEMAIL") + ") ";
+        sql += "values ('" + uname + "'";
+        sql += ", '" + upass + "'";
+        sql += ", '" + uemail + "')";
+        checkUserExist = "select * from astudent where " + application.getInitParameter("DB_SEMAIL") + " = '" + uemail + "'";
+    } else {
+        sql = "insert into ateacher("+ application.getInitParameter("DB_TUSERNAME");
+        sql += ", " + application.getInitParameter("DB_TPASSWORD") + "";
+        sql += ", " + application.getInitParameter("DB_TEMAIL") + ") ";
+        sql += "values ('" + uname + "'";
+        sql += ", '" + upass + "'";
+        sql += ", '" + uemail + "')";
+        checkUserExist = "select * from ateacher where " + application.getInitParameter("DB_TEMAIL") + " = '" + uemail + "'";
+    }
 
-    String checkUserExist = "select * from astudent where " + application.getInitParameter("DB_EMAIL") + " = '" + uemail + "'";
+
     // 数据库链接  
     Connection conn = null;  
     // 向数据库发送sql语句  

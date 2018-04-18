@@ -25,16 +25,34 @@
               <strong>项目进度</strong>
             </p>
             <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="36" aria-valuemin="0"
-                aria-valuemax="100" style="width: 36%; min-width: 2em">
-                36%
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="37" aria-valuemin="0"
+                aria-valuemax="100" style="width: 37%; min-width: 2em">
+                37%
               </div>
             </div>
             <p>
               <strong>更新日志</strong>
             </p>
 
+            
             <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年4月18日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>增加学生注册和教师注册选择按钮</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+
+            <div class="panel panel-info">
               <div class="panel-heading">
                 <h3 class="panel-title">2018年4月17日</h3>
               </div>
