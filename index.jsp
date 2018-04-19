@@ -25,17 +25,39 @@
               <strong>项目进度</strong>
             </p>
             <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="37" aria-valuemin="0"
-                aria-valuemax="100" style="width: 37%; min-width: 2em">
-                37%
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="47" aria-valuemin="0"
+                aria-valuemax="100" style="width: 47%; min-width: 2em">
+                47%
               </div>
             </div>
             <p>
               <strong>更新日志</strong>
             </p>
-
             
             <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年4月19日</h3>
+                </div>
+                <div class="panel-body">
+                 <dl>界面</dl>
+                 <dd>
+                   <ol>
+                     <li>添加试卷编辑页（edit_exam.jsp）</li>
+                     <li>新增修改考试信息模态框</li>
+                   </ol>
+                 </dd>
+                 <dt>架构</dt>
+                 <dd>
+                   <ol>
+                     <li>利用 AJAX 进行表单上传（Axam.js）</li>
+                     <li>添加用于服务器解析 AJAX 数据的代码（server_change_exam_info.jsp）</li>
+                   </ol>
+                 </dd>
+                </div>
+            </div>
+            
+            
+            <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">2018年4月18日</h3>
                 </div>

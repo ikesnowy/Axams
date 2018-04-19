@@ -41,16 +41,20 @@
                             </thead>
                             <tbody>
                                 <tr class="info">
-                                    <td>建立新建考试页</td>
+                                    <td>建立用户控制台</td>
                                     <td>进行中</td>
                                 </tr>
                                 <tr class="info">
-                                    <td>建立用户控制台</td>
+                                    <td>建立“添加/修改题目”模态框</td>
                                     <td>进行中</td>
                                 </tr>
                                 <tr>
                                     <td>showExam.jsp 用于向学生或老师展示考试情况</td>
                                     <td>未完成</td>
+                                </tr>
+                                <tr class="success">
+                                    <td>建立新建考试页</td>
+                                    <td>已完成</td>
                                 </tr>
                                 <tr class="success">
                                     <td>建立数据有效性验证js</td>
@@ -88,19 +92,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <tr class="info">
-                                    <td>createExam.jsp 用于向数据库添加考试</td>
-                                    <td>进行中</td>
-                                </tr>
-                                <tr>
                                     <td>editExam.jsp 用于向数据库查询考试内容并编辑</td>
-                                    <td>未完成</td>
+                                    <td>进行中</td>
                                 </tr>
                                 <tr>
                                     <td>doExam.jsp 用于向数据库查询考试信息并开始考试</td>
                                     <td>未完成</td>
                                 </tr>
-
+                                <tr class="success">
+                                    <td>createExam.jsp 用于向数据库添加考试</td>
+                                    <td>已完成</td>
+                                </tr>
                                 <tr class="success">
                                     <td>数据库-题目表</td>
                                     <td>已完成</td>
