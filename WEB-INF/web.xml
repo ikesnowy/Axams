@@ -38,6 +38,11 @@
         <param-value>info_need_login</param-value>
     </context-param>
     <context-param>
+        <!-- 登录页-需要权限弹窗 -->
+        <param-name>HTML_SIGNIN_ALERT_NEED_AUTH</param-name>
+        <param-value>info_need_auth</param-value>
+    </context-param>
+    <context-param>
         <!-- 登录页-表单-email 输入框-->
         <param-name>HTML_SIGNIN_INPUT_EMAIL</param-name>
         <param-value>email</param-value>
@@ -98,15 +103,35 @@
         <param-value>student</param-value>
     </context-param>
     <context-param>
+        <!-- 考试编辑页-修改考试信息-考试名称-->
+        <param-name>HTML_EDIT_EXAM_INPUT_EXAM_TITLE</param-name>
+        <param-value>exam_name</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-修改考试信息-考试时长-->
+        <param-name>HTML_EDIT_EXAM_INPUT_EXAM_DURATION</param-name>
+        <param-value>exam_duration</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-修改考试信息-考试ID-->
+        <param-name>HTML_EDIT_EXAM_INPUT_EXAM_ID</param-name>
+        <param-value>exam_id</param-value>
+    </context-param>
+    <context-param>
         <!-- session-用户名 -->
-        <param-name>ATTR_USERNAME</param-name>
+        <param-name>ATTR_USERNAME</param-name> 
         <param-value>attr_username</param-value>
     </context-param>
     <context-param>
         <!-- session-用户类型 -->
-        <param-name>ATTR_USERTYPE</param-name>
+        <param-name>ATTR_IS_STUDENT</param-name>
         <param-value>attr_usertype</param-value>
-    </context-param>   
+    </context-param>
+    <context-param>
+        <!-- session-用户 ID -->
+        <param-name>ATTR_USERID</param-name>
+        <param-value>attr_userid</param-value>
+    </context-param>     
     <context-param>
         <!-- 数据库-学生用户名-->
         <param-name>DB_SUSERNAME</param-name>
@@ -123,6 +148,11 @@
         <param-value>semail</param-value>
     </context-param>
     <context-param>
+        <!-- 数据库-学生 ID-->
+        <param-name>DB_SID</param-name>
+        <param-value>sid</param-value>
+    </context-param>
+    <context-param>
         <!-- 数据库-教师用户名-->
         <param-name>DB_TUSERNAME</param-name>
         <param-value>tname</param-value>
@@ -136,5 +166,25 @@
         <!-- 数据库-教师 Email-->
         <param-name>DB_TEMAIL</param-name>
         <param-value>temail</param-value>
-    </context-param>    
+    </context-param>
+    <context-param>
+        <!-- 数据库-教师 ID-->
+        <param-name>DB_TID</param-name>
+        <param-value>tid</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-考试名称-->
+        <param-name>DB_ENAME</param-name>
+        <param-value>ename</param-value>
+    </context-param> 
+    <context-param>
+        <!-- 数据库-考试 ID-->
+        <param-name>DB_EID</param-name>
+        <param-value>eid</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-考试时长-->
+        <param-name>DB_EDURATION</param-name>
+        <param-value>eduration</param-value>
+    </context-param>     
 </web-app>

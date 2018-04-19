@@ -29,7 +29,7 @@
             <a href="index.jsp">主页</a>
           </li>
           <li id="new_exam">
-            <a href="new_exam.jsp">新建考试</a>
+            <a href="create_exam.jsp">新建考试</a>
           </li>
           <li id="take_exam">
             <a href="">参加考试</a>
@@ -61,7 +61,7 @@
                 String usernameButtonId = application.getInitParameter("HTML_NAVBAR_USER_BUTTON");
                 String usernameLabelId = application.getInitParameter("HTML_NAVBAR_USER_NAME");
                 String username = (String)session.getAttribute(application.getInitParameter("ATTR_USERNAME"));
-                Boolean isStudent = (Boolean)session.getAttribute(application.getInitParameter("ATTR_USERTYPE"));
+                Boolean isStudent = (Boolean)session.getAttribute(application.getInitParameter("ATTR_IS_STUDENT"));
                 if (username == null || isStudent == null)
                 {
                   out.print("<script>document.getElementById('" + loginButtonId + "').removeAttribute('style');</script>");

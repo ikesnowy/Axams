@@ -12,10 +12,10 @@
     Boolean isStudent = loginType.equals(application.getInitParameter("HTML_SIGNIN_RADIO_VALUE_STUDENT"));
     String sql;
     if (isStudent){
-        sql = "SELECT sname FROM astudent WHERE semail = '"
+        sql = "SELECT * FROM astudent WHERE semail = '"
         + uemail + "' AND spassword = '" + upass + "'";
     } else {
-        sql = "SELECT tname FROM ateacher WHERE temail = '" 
+        sql = "SELECT * FROM ateacher WHERE temail = '" 
         + uemail + "' AND tpassword = '" + upass + "'";
     }
 
@@ -40,14 +40,18 @@
             response.sendRedirect("signin.jsp");  
         } else {
             String username;
+            String userid;
             if (isStudent){
                 username = rs.getString(application.getInitParameter("DB_SUSERNAME"));
+                userid = rs.getString(application.getInitParameter("DB_SID"));
             } else {
                 username = rs.getString(application.getInitParameter("DB_TUSERNAME"));
+                userid = rs.getString(application.getInitParameter("DB_TID"));
             }
-
+            
+            session.setAttribute(application.getInitParameter("ATTR_USERID"), userid);
             session.setAttribute(application.getInitParameter("ATTR_USERNAME"), username);
-            session.setAttribute(application.getInitParameter("ATTR_USERTYPE"), isStudent);
+            session.setAttribute(application.getInitParameter("ATTR_IS_STUDENT"), isStudent);
             response.sendRedirect("index.jsp");
         }
   

@@ -31,6 +31,9 @@
                 <div id="info_need_login" class="alert alert-info" hidden="hidden">
                     <strong>请先登录！</strong>
                 </div>
+                <div id="info_need_auth" class="alert alert-danger" hidden="hidden">
+                    <strong>只有教师账户可以修改考试信息！</strong>
+                </div>
                 <form action="server_login.jsp" method="POST" role="form">
                     <legend>登录</legend>    
                     <div class="form-group" id="email-input">
@@ -64,41 +67,46 @@
                     String alert_invalid_pass = application.getInitParameter("HTML_SIGNIN_ALERT_INVALID_PASS");
                     String alert_register_successful = application.getInitParameter("HTML_SIGNIN_ALERT_USER_REGISTER_SUCCESSFUL");
                     String alert_need_login_first = application.getInitParameter("HTML_SIGNIN_ALERT_SIGNIN_FIRST");
+                    String alert_need_auth = application.getInitParameter("HTML_SIGNIN_ALERT_NEED_AUTH");
                     Boolean isUsernameOrPasswordInvalid = (Boolean)session.getAttribute(alert_invalid_pass);
                     Boolean isUserRegisterSuccessful = (Boolean)session.getAttribute(alert_register_successful);
                     Boolean isSigninNeeded = (Boolean)session.getAttribute(alert_need_login_first);
-                    if (isUsernameOrPasswordInvalid == null)
-                    {
+                    Boolean isAuthNeeded = (Boolean)session.getAttribute(alert_need_auth);
+                    if (isUsernameOrPasswordInvalid == null) {
                         session.setAttribute(alert_invalid_pass, false);
                         isUsernameOrPasswordInvalid = false;
                     }
 
-                    if (isUserRegisterSuccessful == null)
-                    {
+                    if (isUserRegisterSuccessful == null) {
                         session.setAttribute(alert_register_successful, false);
                         isUserRegisterSuccessful = false;
                     }
 
-                    if (isSigninNeeded == null)
-                    {
+                    if (isSigninNeeded == null) {
                         session.setAttribute(alert_need_login_first, false);
                         isSigninNeeded = false;
                     }
+
+                    if (isAuthNeeded == null) {
+                        session.setAttribute(alert_need_auth, false);
+                        isAuthNeeded = false;
+                    }
                         
-                    if (isUsernameOrPasswordInvalid)
-                    {
+                    if (isUsernameOrPasswordInvalid) {
                         out.print("<script>displayElement('" + alert_invalid_pass +"'); </script>");
                         session.setAttribute(alert_invalid_pass, false);
                     }
-                    if (isUserRegisterSuccessful)
-                    {
+                    if (isUserRegisterSuccessful) {
                         out.print("<script>displayElement('" + alert_register_successful +"'); </script>");
                         session.setAttribute(alert_register_successful, false);
                     }
-                    if (isSigninNeeded)
-                    {
+                    if (isSigninNeeded) {
                         out.print("<script>displayElement('" + alert_need_login_first +"'); </script>");
                         session.setAttribute(alert_need_login_first, false);
+                    }
+                    if (isAuthNeeded) {
+                        out.print("<script>displayElement('" + alert_need_auth +"'); </script>");
+                        session.setAttribute(alert_need_auth, false);
                     }
                 %>      
             </div>

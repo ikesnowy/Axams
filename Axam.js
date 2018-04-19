@@ -19,6 +19,8 @@ function changeInnerHTML(id, content) {
 }
 
 function changeInnerHTMLByInput(targetId, inputId) {
+    if (document.getElementById(inputId).value.length == 0)
+        return;
     var content = new String();
     var appendAfter = new String();
     content = document.getElementById(targetId).innerHTML;
@@ -57,8 +59,8 @@ function emailValidation(inputId, divId, successId, failedId) {
     }
     if (!document.getElementById(inputId).value.match(regEmail) ||
         document.getElementById(inputId).value.length > 100) {
-            document.getElementById(divId).classList.remove('has-success');
-            document.getElementById(divId).classList.add('has-error', 'has-feedback');
+        document.getElementById(divId).classList.remove('has-success');
+        document.getElementById(divId).classList.add('has-error', 'has-feedback');
         displayElement(failedId);
         hideElement(successId);
         return false;
@@ -78,8 +80,8 @@ function passwordValidation(inputId, divId, successId, failedId) {
     }
     if (document.getElementById(inputId).value.length < 6 ||
         document.getElementById(inputId).value.length > 18) {
-            document.getElementById(divId).classList.remove('has-success');
-            document.getElementById(divId).classList.add('has-error', 'has-feedback');
+        document.getElementById(divId).classList.remove('has-success');
+        document.getElementById(divId).classList.add('has-error', 'has-feedback');
         displayElement(failedId);
         hideElement(successId);
         return false;
@@ -155,3 +157,34 @@ function optionValidation(inputId, divId, failedId) {
         hideElement(failedId);
     }
 }
+
+// js for edit exam
+function changeInputValue(inputId, newVal) {
+    document.getElementById(inputId).setAttribute('value', newVal);
+}
+
+function sendData(formId, targetURL) {
+    var XHR = new XMLHttpRequest();
+
+    // We bind the FormData object and the form element
+    var f = document.getElementById(formId);
+    var FD = new FormData(f);
+
+    // We define what will happen if the data are successfully sent
+    XHR.addEventListener("load", function (event) {
+        location.reload();
+    });
+
+    // We define what will happen if case of error
+    XHR.addEventListener("error", function (event) {
+        alert('Oups! Something goes wrong.');
+    });
+
+    // We setup our request
+    XHR.open("POST", targetURL);
+    // XHR.setRequestHeader("Content-Type", "multipart/form-data");
+
+    // The data send are the one the user provide in the form
+    XHR.send(FD);
+}
+
