@@ -5,8 +5,8 @@
 
   <head>
     <%@ include file="header.jsp" %>
-    <%@ include file="script.jsp" %>
-      <title>Axam-主页</title>
+      <%@ include file="script.jsp" %>
+        <title>Axam-主页</title>
 
   </head>
 
@@ -33,46 +33,49 @@
             <p>
               <strong>更新日志</strong>
             </p>
-            
+
             <div class="panel panel-primary">
-                <div class="panel-heading">
-                  <h3 class="panel-title">2018年4月19日</h3>
-                </div>
-                <div class="panel-body">
-                 <dl>界面</dl>
-                 <dd>
-                   <ol>
-                     <li>添加试卷编辑页（edit_exam.jsp）</li>
-                     <li>新增修改考试信息模态框</li>
-                   </ol>
-                 </dd>
-                 <dt>架构</dt>
-                 <dd>
-                   <ol>
-                     <li>利用 AJAX 进行表单上传（Axam.js）</li>
-                     <li>添加用于服务器解析 AJAX 数据的代码（server_change_exam_info.jsp）</li>
-                   </ol>
-                 </dd>
-                </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">2018年4月19日</h3>
+              </div>
+              <div class="panel-body">
+                <dl>
+                  <dt>界面</dt>
+                  <dd>
+                    <ol>
+                      <li>添加试卷编辑页（edit_exam.jsp）</li>
+                      <li>新增修改考试信息模态框</li>
+                    </ol>
+                  </dd>
+                  <dt>架构</dt>
+                  <dd>
+                    <ol>
+                      <li>利用 AJAX 进行表单上传（Axam.js）</li>
+                      <li>添加用于服务器解析 AJAX 数据的代码（server_change_exam_info.jsp）</li>
+                    </ol>
+                  </dd>
+                </dl>
+
+              </div>
             </div>
-            
-            
+
+
             <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h3 class="panel-title">2018年4月18日</h3>
-                </div>
-                <div class="panel-body">
-                  <dl>
-                    <dt>界面</dt>
-                    <dd>
-                      <ol>
-                        <li>增加学生注册和教师注册选择按钮</li>
-                      </ol>
-                    </dd>
-                  </dl>
-                </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">2018年4月18日</h3>
+              </div>
+              <div class="panel-body">
+                <dl>
+                  <dt>界面</dt>
+                  <dd>
+                    <ol>
+                      <li>增加学生注册和教师注册选择按钮</li>
+                    </ol>
+                  </dd>
+                </dl>
+              </div>
             </div>
-            
+
 
             <div class="panel panel-info">
               <div class="panel-heading">
