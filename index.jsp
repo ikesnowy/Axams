@@ -5,8 +5,8 @@
 
   <head>
     <%@ include file="header.jsp" %>
-      <%@ include file="script.jsp" %>
-        <title>Axam-主页</title>
+    <%@ include file="script.jsp" %>
+    <title>Axam-主页</title>
 
   </head>
 
@@ -25,16 +25,33 @@
               <strong>项目进度</strong>
             </p>
             <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="47" aria-valuemin="0"
-                aria-valuemax="100" style="width: 47%; min-width: 2em">
-                47%
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="48" aria-valuemin="0"
+                aria-valuemax="100" style="width: 48%; min-width: 2em">
+                48%
               </div>
             </div>
             <p>
               <strong>更新日志</strong>
             </p>
-
+            
             <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年4月20日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>添加考试时间单位</li>
+                        <li>现在修改考试信息的输入框内会含有默认值</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+            <div class="panel panel-info">
               <div class="panel-heading">
                 <h3 class="panel-title">2018年4月19日</h3>
               </div>

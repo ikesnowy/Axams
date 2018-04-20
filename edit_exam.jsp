@@ -74,7 +74,7 @@
                 <div class="page-header">
                     <h1 id="exam-title" onmouseover="displayElement('modify_title');" onmouseout="hideElement('modify_title')"><%=examName%>  
                         <small>
-                            考试时长：<%out.print(examDuration == 0 ? "无限制" : examDuration);%>
+                            考试时长：<%out.print(examDuration == 0 ? "无限制" : examDuration + "分钟");%>
                         </small>
                         <small>
                             <a id="modify_title" class="glyphicon glyphicon glyphicon-pencil" data-toggle="modal" href='#modal-modify-title'></a>                          
@@ -111,10 +111,12 @@
                             <div class="form-group">
                                 <label for="">输入新的考试名称</label>
                                 <input type="text" class="form-control" name="exam_name" id="input-title" autocomplete="off" placeholder="考试名称……">
+                                <%out.print("<script>changeInputValue('input-title', '" + examName + "')</script>");%>
                             </div>
                             <div class="form-group">
-                                <label for="">输入考试时长（分钟）</label>
-                                <input type="number" class="form-control" name="exam_duration" id="input-duration" autocomplete="off" placeholder="考试时长……">
+                                <label for="">输入考试时长（分钟）（0=无限制）</label>
+                                <input type="number" class="form-control" name="exam_duration" id="input-duration" autocomplete="off" placeholder="考试时长……" >
+                                <%out.print("<script>changeInputValue('input-duration', '" + examDuration + "')</script>");%>
                             </div>
                         </form>
                     </div>
