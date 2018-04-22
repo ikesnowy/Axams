@@ -69,7 +69,7 @@
     <body>
         <script>setNavbarActive('new_exam');</script>
         <!-- 在这里增加网站内容 -->
-        <div class="container">            
+        <div class="container" id="main-container">            
             <div class="row">
                 <div class="page-header">
                     <h1 id="exam-title" onmouseover="displayElement('modify_title');" onmouseout="hideElement('modify_title')"><%=examName%>  
@@ -84,15 +84,27 @@
             </div>            
             <div class="row">   
                 <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <h4>1.北京奥运会举办于那一年？</h4>
-                    </a>
+                    <li class="list-group-item">
+                        <h3>1.北京奥运会举办于那一年？<small>（5分）</small></h3>
+                    </li>
                     <a href="#" class="list-group-item">2008</a>
                     <a href="#" class="list-group-item">2012</a>
                     <a href="#" class="list-group-item">2019</a>
+                    <form id="form-question-1" style="display: none">
+                        <input type="text" name="qid" id="qid" value="qid">
+                        <input type="text" name="oid" id="oid" value="choice">
+                    </form>
+                </div>
+            </div>            
+            <div class="row" id="add-question">   
+                <div class="list-group">
+                    <a class="list-group-item" data-toggle="modal" href="#modal-add-choice-question">
+                        <h4><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加题目</h4>
+                    </a>
                 </div>
             </div>
         </div>
+
         <!-- 各类模态框 -->
         <!-- 修改考试名称 -->
         <div class="modal fade" id="modal-modify-title">
@@ -141,7 +153,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary">添加s</button>
+                        <button type="button" class="btn btn-primary">添加</button>
                     </div>
                 </div>
             </div>

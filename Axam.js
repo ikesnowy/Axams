@@ -188,3 +188,51 @@ function sendData(formId, targetURL) {
     XHR.send(FD);
 }
 
+function addQuestions(number, points, question, ...options) {
+    // <div class="row">
+    var divRow = document.createElement("div");
+    divRow.classList.add("row");
+
+    // <div class="list-group">
+    var divListGroup = document.createElement("div");
+    divListGroup.classList.add("list-group");
+
+    // <li class="list-group-item">
+    var liQuestion = document.createElement("li");
+    liQuestion.classList.add("list-group-item");
+
+    // <h3>
+    var questionContent = document.createTextNode(number + "." + question);
+    var h3Question = document.createElement("h3");
+    h3Question.appendChild(questionContent);
+
+    // <small></small>
+    var pointContent = document.createTextNode("（" + points + "分）");
+    var smallPoint = document.createElement("small");
+    smallPoint.appendChild(pointContent);
+
+    // </h3>
+    h3Question.appendChild(smallPoint);
+    
+    // </li>
+    liQuestion.appendChild(h3Question);
+    divListGroup.appendChild(liQuestion);
+
+    var optionMark = new Array(
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 
+        'H', 'I', 'J', 'K', 'L', 'M', 'N', 
+        'O', 'P', 'Q', 'R', 'S', 'T', 
+        'U', 'V', 'W', 'X', 'Y', 'Z');
+    for(var i = 0; i < options.length; i++) {
+        var optionContent = document.createTextNode(optionMark[i] + "." + options[i]);
+        var aOption = document.createElement("a");
+        aOption.appendChild(optionContent);
+        aOption.setAttribute("href", "javascript:void(0)");
+        aOption.classList.add("list-group-item");
+        divListGroup.appendChild(aOption);
+    }
+
+    divRow.appendChild(divListGroup);
+    var divAddQuestion = document.getElementById("add-question");
+    divAddQuestion.parentNode.insertBefore(divRow, divAddQuestion);
+}
