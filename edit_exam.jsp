@@ -81,21 +81,7 @@
                         </small>
                     </h1>
                 </div>
-            </div>            
-            <div class="row">   
-                <div class="list-group">
-                    <li class="list-group-item">
-                        <h3>1.北京奥运会举办于那一年？<small>（5分）</small></h3>
-                    </li>
-                    <a href="#" class="list-group-item">2008</a>
-                    <a href="#" class="list-group-item">2012</a>
-                    <a href="#" class="list-group-item">2019</a>
-                    <form id="form-question-1" style="display: none">
-                        <input type="text" name="qid" id="qid" value="qid">
-                        <input type="text" name="oid" id="oid" value="choice">
-                    </form>
-                </div>
-            </div>            
+            </div>                     
             <div class="row" id="add-question">   
                 <div class="list-group">
                     <a class="list-group-item" data-toggle="modal" href="#modal-add-choice-question">
@@ -103,6 +89,55 @@
                     </a>
                 </div>
             </div>
+            <%
+                String getQuestionList = "select * from get_exam_question_option_list where " + application.getInitParameter("DB_EID") + "=" + eid + " order by " + application.getInitParameter("DB_QNUMBER");
+                String script = "<script>addQuestions(";
+                try { 
+                    Class.forName("com.mysql.jdbc.Driver");  
+                    //数据库的地址，密码，用户名  
+                    conn = DriverManager.getConnection(url, user, pass);
+                    st = conn.createStatement();
+                    rs = st.executeQuery(getQuestionList);
+                    int questionNum = 0;
+                    while (rs.next()) {
+                        if (questionNum != rs.getInt(application.getInitParameter("DB_QNUMBER"))){
+                            if (questionNum != 0) {
+                                script += ");</script>";
+                                out.print(script);
+                                script = "<script>addQuestions(";
+                            }
+                            questionNum = rs.getInt(application.getInitParameter("DB_QNUMBER"));
+                            script += questionNum;
+                            script += ", ";
+                            script += "'" + rs.getString(application.getInitParameter("DB_QSCORE")) + "'";
+                            script += ", ";
+                            script += "'" + rs.getString(application.getInitParameter("DB_QCONTENT")) + "'";
+                            script += ", ";
+                            script += "'" + rs.getString(application.getInitParameter("DB_OCONTENT")) + "'";
+                        } else {
+                            script += ", ";
+                            script += "'" + rs.getString(application.getInitParameter("DB_OCONTENT")) + "'";
+                        }
+                    }
+                    if (!script.equals("<script>addQuestions()")) {
+                        script += ");</script>";
+                        out.print(script);
+                    }
+                } catch (Exception e) {  
+                    out.print(e.getMessage());
+                    out.print(e);
+                } finally {  
+                    try {  
+                        rs.close();  
+                    } catch (Exception e) {}  
+                    try {  
+                        st.close();  
+                    } catch (Exception e) {}  
+                    try {  
+                        conn.close();  
+                    } catch (Exception e) {}  
+                }
+            %>  
         </div>
 
         <!-- 各类模态框 -->
@@ -149,7 +184,60 @@
                         <h4 class="modal-title">添加选择题</h4>
                     </div>
                     <div class="modal-body">
-                        
+                        <form id="form_add_question" action="" method="POST" role="form">
+                            <div class="form-group" style="display: none">
+                                <input type="text" name="exam_id" id="exam_id">
+                                <%out.print("<script>changeInputValue('exam_id', '" + eid + "')</script>");%>
+                            </div>   
+                            <div class="form-group">
+                                <label for="">题目内容</label>
+                                <input type="text" class="form-control" name="question-content" id="input-question-content" autocomplete="off" placeholder="题目内容……">
+                            </div>
+                            <div class="form-group">
+                                <label for="">题目分值</label>
+                                <input type="number" class="form-control" name="question-score" id="input-question-score" autocomplete="off" placeholder="题目分值……" value = "1">
+                            </div>
+                            <div class="form-group">
+                                <label>选项列表</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">A.</span>
+                                    <input type="text" class="form-control" name="option-1" id="input-option-1" autocomplete="off" placeholder="输入选项……">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-minus"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">B.</span>
+                                    <input type="text" class="form-control" name="option-2" id="input-option-2" autocomplete="off" placeholder="输入选项……">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-minus"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">C.</span>
+                                    <input type="text" class="form-control" name="option-3" id="input-option-3" autocomplete="off" placeholder="输入选项……">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-minus"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <a>+增加选项</a>
+                            </div>
+                            <div class="form-group">
+                                <label>正确答案</label>
+                                <select class="form-control">
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+                                </select>
+                            </div>
+                        </form>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

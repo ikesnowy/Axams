@@ -25,16 +25,43 @@
               <strong>项目进度</strong>
             </p>
             <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="48" aria-valuemin="0"
-                aria-valuemax="100" style="width: 48%; min-width: 2em">
-                48%
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="56" aria-valuemin="0"
+                aria-valuemax="100" style="width: 56%; min-width: 2em">
+                56%
               </div>
             </div>
             <p>
               <strong>更新日志</strong>
             </p>
             
+            
             <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年4月22日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>添加题目分值显示</li>
+                        <li>现在编辑界面的问题可以从数据库中自动读取并显示了</li>
+                        <li>增加了添加问题模态框</li>
+                      </ol>
+                    </dd>
+                    <dt>架构</dt>
+                    <dd>
+                      <ol>
+                        <li>aquestion 表中添加了用于存储分值的 qscore 列</li>
+                        <li>添加了 AddQuestions 函数，现在问题可以通过 js 动态添加到页面中（Axam.js）</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+
+            <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">2018年4月20日</h3>
                 </div>

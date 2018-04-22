@@ -186,5 +186,25 @@
         <!-- 数据库-考试时长-->
         <param-name>DB_EDURATION</param-name>
         <param-value>eduration</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-题目序号-->
+        <param-name>DB_QNUMBER</param-name>
+        <param-value>qnumber</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-题目内容-->
+        <param-name>DB_QCONTENT</param-name>
+        <param-value>qcontent</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-题目分值-->
+        <param-name>DB_QSCORE</param-name>
+        <param-value>qscore</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-选项内容-->
+        <param-name>DB_OCONTENT</param-name>
+        <param-value>ocontent</param-value>
     </context-param>     
 </web-app>
