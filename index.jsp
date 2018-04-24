@@ -25,9 +25,9 @@
               <strong>项目进度</strong>
             </p>
             <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="62" aria-valuemin="0"
-                aria-valuemax="100" style="width: 62%; min-width: 2em">
-                62%
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="68" aria-valuemin="0"
+                aria-valuemax="100" style="width: 68%; min-width: 2em">
+                68%
               </div>
             </div>
             <p>
@@ -47,12 +47,14 @@
                         <li>完成添加问题功能</li>
                         <li>为“添加题目”和“修改考试信息”模态框添加表单验证</li>
                         <li>“新增考试”页更名为“修改考试”</li>
+                        <li>增加正确答案显示</li>
                       </ol>
                     </dd>
                     <dt>架构</dt>
                     <dd>
                       <ol>
                         <li>添加 server_add_question.jsp，为添加题目提供后端支持</li>
+                        <li>添加视图 get_exam_answer_sheet，可以从数据库获取正确答案列表</li>
                       </ol>
                     </dd>
                   </dl>
