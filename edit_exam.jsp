@@ -66,7 +66,7 @@
     <head>
         <%@ include file="header.jsp" %>
         <%@ include file="script.jsp" %>
-        <title>Axam-新增考试</title>
+        <title>Axam-编辑考试</title>
     </head>
     <body>
         <script>setNavbarActive('new_exam');</script>
