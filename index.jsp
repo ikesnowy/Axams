@@ -25,17 +25,65 @@
               <strong>项目进度</strong>
             </p>
             <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="56" aria-valuemin="0"
-                aria-valuemax="100" style="width: 56%; min-width: 2em">
-                56%
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="62" aria-valuemin="0"
+                aria-valuemax="100" style="width: 62%; min-width: 2em">
+                62%
               </div>
             </div>
             <p>
               <strong>更新日志</strong>
             </p>
-            
+             
             
             <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年4月24日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>完成添加问题功能</li>
+                      </ol>
+                    </dd>
+                    <dt>架构</dt>
+                    <dd>
+                      <ol>
+                        <li>添加 server_add_question.jsp，为添加题目提供后端支持</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+
+            <div class="panel panel-infp">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年4月23日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>添加动态增加选项输入框功能</li>
+                        <li>添加动态删除选项输入框功能</li>
+                        <li>添加动态产生选项数边界提示（2~6个选项）</li>
+                      </ol>
+                    </dd>
+                    <dt>架构</dt>
+                    <dd>
+                      <ol>
+                        <li>现在问题、考试、选项均采用时间戳作为索引</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+            
+            <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">2018年4月22日</h3>
                 </div>

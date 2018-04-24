@@ -4,6 +4,7 @@
 <%@page import="java.sql.Connection"%>  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%
     request.setCharacterEncoding("UTF-8");
     // exam infomation
@@ -16,10 +17,12 @@
     if (userid == null || isStudent == null){
         session.setAttribute(application.getInitParameter("HTML_SIGNIN_ALERT_SIGNIN_FIRST"), true);
         response.sendRedirect("signin.jsp");
+        return;
     }
     if (isStudent) {
         session.setAttribute(application.getInitParameter("HTML_SIGNIN_ALERT_NEED_AUTH"), true);
         response.sendRedirect("signin.jsp");
+        return;
     }
     // 数据库链接  
     Connection conn = null;  
@@ -59,7 +62,6 @@
         } catch (Exception e) {}  
     }
 %>
-<!DOCTYPE html>
 <html lang="zh-CN">
     <head>
         <%@ include file="header.jsp" %>
@@ -84,7 +86,7 @@
             </div>                     
             <div class="row" id="add-question">   
                 <div class="list-group">
-                    <a class="list-group-item" data-toggle="modal" href="#modal-add-choice-question">
+                    <a class="list-group-item" data-toggle="modal" href="#modal-add-choice-question" onclick="initOptions();">
                         <h4><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加题目</h4>
                     </a>
                 </div>
@@ -92,13 +94,13 @@
             <%
                 String getQuestionList = "select * from get_exam_question_option_list where " + application.getInitParameter("DB_EID") + "=" + eid + " order by " + application.getInitParameter("DB_QNUMBER");
                 String script = "<script>addQuestions(";
+                int questionNum = 0;
                 try { 
                     Class.forName("com.mysql.jdbc.Driver");  
                     //数据库的地址，密码，用户名  
                     conn = DriverManager.getConnection(url, user, pass);
                     st = conn.createStatement();
                     rs = st.executeQuery(getQuestionList);
-                    int questionNum = 0;
                     while (rs.next()) {
                         if (questionNum != rs.getInt(application.getInitParameter("DB_QNUMBER"))){
                             if (questionNum != 0) {
@@ -119,10 +121,11 @@
                             script += "'" + rs.getString(application.getInitParameter("DB_OCONTENT")) + "'";
                         }
                     }
-                    if (!script.equals("<script>addQuestions()")) {
+                    if (!script.equals("<script>addQuestions()") && questionNum != 0) {
                         script += ");</script>";
                         out.print(script);
                     }
+                    questionNum++;
                 } catch (Exception e) {  
                     out.print(e.getMessage());
                     out.print(e);
@@ -186,8 +189,15 @@
                     <div class="modal-body">
                         <form id="form_add_question" action="" method="POST" role="form">
                             <div class="form-group" style="display: none">
-                                <input type="text" name="exam_id" id="exam_id">
-                                <%out.print("<script>changeInputValue('exam_id', '" + eid + "')</script>");%>
+                                <input type="text" name="exam_id" id="exam_id_add_question" value="0">
+                                <%out.print("<script>changeInputValue('exam_id_add_question', '" + eid + "')</script>");%>
+                            </div>
+                            <div class="form-group" style="display: none">
+                                <input type="number" name="question_number" id="question_number" value="0">
+                                <%out.print("<script>changeInputValue('question_number', '" + questionNum + "')</script>");%>
+                            </div> 
+                            <div class="form-group" style="display: none">
+                                <input type="number" name="option_sum" id="option_sum" value="0">
                             </div>   
                             <div class="form-group">
                                 <label for="">题目内容</label>
@@ -199,49 +209,22 @@
                             </div>
                             <div class="form-group">
                                 <label>选项列表</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">A.</span>
-                                    <input type="text" class="form-control" name="option-1" id="input-option-1" autocomplete="off" placeholder="输入选项……">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-minus"></span></button>
-                                    </span>
-                                </div>
                             </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon">B.</span>
-                                    <input type="text" class="form-control" name="option-2" id="input-option-2" autocomplete="off" placeholder="输入选项……">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-minus"></span></button>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon">C.</span>
-                                    <input type="text" class="form-control" name="option-3" id="input-option-3" autocomplete="off" placeholder="输入选项……">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-minus"></span></button>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <a>+增加选项</a>
+                            
+                            <div class="form-group" id="add-options">
+                                <a class="form-control-static" onclick="addOptions();">+增加选项</a>
                             </div>
                             <div class="form-group">
                                 <label>正确答案</label>
-                                <select class="form-control">
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <option>C</option>
+                                <select class="form-control" id="select-answer" name="right-answer">
                                 </select>
                             </div>
+                            <script>addOptions();addOptions();</script>
                         </form>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary">添加</button>
+                        <button type="button" class="btn btn-primary" onclick="submitAddQuestionForm();">添加</button>
                     </div>
                 </div>
             </div>

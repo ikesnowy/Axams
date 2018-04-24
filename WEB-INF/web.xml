@@ -118,6 +118,41 @@
         <param-value>exam_id</param-value>
     </context-param>
     <context-param>
+        <!-- 考试编辑页-添加试题-选项数目-->
+        <param-name>HTML_EDIT_EXAM_INPUT_OPTION_NUM</param-name>
+        <param-value>option_sum</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-题目名称-->
+        <param-name>HTML_EDIT_EXAM_INPUT_QUESTION_TITLE</param-name>
+        <param-value>question-content</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-题目分值-->
+        <param-name>HTML_EDIT_EXAM_INPUT_QUESTION_SCORE</param-name>
+        <param-value>question-score</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-题目序号-->
+        <param-name>HTML_EDIT_EXAM_INPUT_QUESTION_INDEX</param-name>
+        <param-value>question_number</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-选项前缀-->
+        <param-name>HTML_EDIT_EXAM_INPUT_OPTION_PREFIX</param-name>
+        <param-value>option</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-正确答案-->
+        <param-name>HTML_EDIT_EXAM_INPUT_RIGHT_ANSWER</param-name>
+        <param-value>right-answer</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-选项数目-->
+        <param-name>HTML_EDIT_EXAM_INPUT_OPTION_NUM</param-name>
+        <param-value>option_sum</param-value>
+    </context-param>
+    <context-param>
         <!-- session-用户名 -->
         <param-name>ATTR_USERNAME</param-name> 
         <param-value>attr_username</param-value>
@@ -203,8 +238,23 @@
         <param-value>qscore</param-value>
     </context-param>
     <context-param>
+        <!-- 数据库-题目答案-->
+        <param-name>DB_QANSWER</param-name>
+        <param-value>qanswer</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-题目ID-->
+        <param-name>DB_QID</param-name>
+        <param-value>qid</param-value>
+    </context-param>
+    <context-param>
         <!-- 数据库-选项内容-->
         <param-name>DB_OCONTENT</param-name>
         <param-value>ocontent</param-value>
-    </context-param>     
+    </context-param>
+    <context-param>
+        <!-- 数据库-选项ID-->
+        <param-name>DB_OID</param-name>
+        <param-value>oid</param-value>
+    </context-param>       
 </web-app>
