@@ -93,16 +93,22 @@
             </div>
             <%
                 String getQuestionList = "select * from get_exam_question_option_list where " + application.getInitParameter("DB_EID") + "=" + eid + " order by " + application.getInitParameter("DB_QNUMBER");
+                String getAnswerSheet = "select * from get_exam_answer_sheet where " + application.getInitParameter("DB_EID") + "=" + eid + " order by " + application.getInitParameter("DB_QNUMBER");
                 String script = "<script>addQuestions(";
                 int questionNum = 0;
+                Statement answerSt = null; 
+                ResultSet answerRS = null;
                 try { 
                     Class.forName("com.mysql.jdbc.Driver");  
                     //数据库的地址，密码，用户名  
                     conn = DriverManager.getConnection(url, user, pass);
+                    answerSt = conn.createStatement();
                     st = conn.createStatement();
                     rs = st.executeQuery(getQuestionList);
+                    answerRS = answerSt.executeQuery(getAnswerSheet);
                     while (rs.next()) {
                         if (questionNum != rs.getInt(application.getInitParameter("DB_QNUMBER"))){
+                            answerRS.next();
                             if (questionNum != 0) {
                                 script += ");</script>";
                                 out.print(script);
@@ -114,6 +120,8 @@
                             script += "'" + rs.getString(application.getInitParameter("DB_QSCORE")) + "'";
                             script += ", ";
                             script += "'" + rs.getString(application.getInitParameter("DB_QCONTENT")) + "'";
+                            script += ", ";
+                            script += "'" + answerRS.getString(application.getInitParameter("DB_OCONTENT")) + "'";
                             script += ", ";
                             script += "'" + rs.getString(application.getInitParameter("DB_OCONTENT")) + "'";
                         } else {
@@ -130,11 +138,13 @@
                     out.print(e.getMessage());
                     out.print(e);
                 } finally {  
-                    try {  
+                    try {
+                        answerRS.close();  
                         rs.close();  
                     } catch (Exception e) {}  
                     try {  
-                        st.close();  
+                        st.close();
+                        answerSt.close();
                     } catch (Exception e) {}  
                     try {  
                         conn.close();  

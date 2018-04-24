@@ -59,8 +59,7 @@
                 </div>
             </div>
             
-
-            <div class="panel panel-infp">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">2018年4月23日</h3>
                 </div>

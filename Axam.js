@@ -188,7 +188,7 @@ function sendData(formId, targetURL) {
     XHR.send(FD);
 }
 
-function addQuestions(number, points, question, ...options) {
+function addQuestions(number, points, question, rightAnswer, ...options) {
     // <div class="row">
     var divRow = document.createElement("div");
     divRow.classList.add("row");
@@ -229,6 +229,9 @@ function addQuestions(number, points, question, ...options) {
         aOption.appendChild(optionContent);
         aOption.setAttribute("href", "javascript:void(0)");
         aOption.classList.add("list-group-item");
+        if (options[i] == rightAnswer) {
+            aOption.classList.add("list-group-item-success");
+        }
         divListGroup.appendChild(aOption);
     }
 
