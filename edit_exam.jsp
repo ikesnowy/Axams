@@ -158,13 +158,13 @@
                                 <input type="text" name="exam_id" id="exam_id">
                                 <%out.print("<script>changeInputValue('exam_id', '" + eid + "')</script>");%>
                             </div>   
-                            <div class="form-group">
-                                <label for="">输入新的考试名称</label>
+                            <div class="form-group" id="div-title">
+                                <label for="">考试名称</label>
                                 <input type="text" class="form-control" name="exam_name" id="input-title" autocomplete="off" placeholder="考试名称……">
                                 <%out.print("<script>changeInputValue('input-title', '" + examName + "')</script>");%>
                             </div>
-                            <div class="form-group">
-                                <label for="">输入考试时长（分钟）（0=无限制）</label>
+                            <div class="form-group" id="div-duration">
+                                <label for="">考试时长（分钟）（0=无限制）</label>
                                 <input type="number" class="form-control" name="exam_duration" id="input-duration" autocomplete="off" placeholder="考试时长……" >
                                 <%out.print("<script>changeInputValue('input-duration', '" + examDuration + "')</script>");%>
                             </div>
@@ -172,7 +172,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sendData('form_change_exam_info', 'server_change_exam_info.jsp');">确定</button>
+                        <button type="button" class="btn btn-primary" onclick="submitAlterExamForm();">确定</button>
                     </div>
                 </div>
             </div>
@@ -199,11 +199,11 @@
                             <div class="form-group" style="display: none">
                                 <input type="number" name="option_sum" id="option_sum" value="0">
                             </div>   
-                            <div class="form-group">
+                            <div class="form-group" id="div-question-content">
                                 <label for="">题目内容</label>
                                 <input type="text" class="form-control" name="question-content" id="input-question-content" autocomplete="off" placeholder="题目内容……">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="div-question-score">
                                 <label for="">题目分值</label>
                                 <input type="number" class="form-control" name="question-score" id="input-question-score" autocomplete="off" placeholder="题目分值……" value = "1">
                             </div>

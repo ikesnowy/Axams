@@ -372,25 +372,88 @@ function makeAlert(before, alertId, title, content) {
 }
 
 function checkQuestionForm() {
-    if (document.getElementById("input-question-content").value == null) {
+    if (document.getElementById("input-question-content").value.length == 0) {
+        document.getElementById("div-question-content").classList.add("has-error");
+        makeAlert("form_add_question", "question_form_alert", "题目内容不能为空", "");
         return false;
-    } else if (document.getElementById("input-question-score").value == null) {
+    } else if (document.getElementById("input-question-content").value.length > 110) {
+        document.getElementById("div-question-content").classList.add("has-error");
+        makeAlert("form_add_question", "question_form_alert", "题目内容太长", "");
         return false;
+    } else {
+        document.getElementById("div-question-content").classList.remove("has-error");
     }
+    if (document.getElementById("input-question-score").value.length == 0) {
+        makeAlert("form_add_question", "question_form_alert", "分值不能为空", "");
+        document.getElementById("div-question-score").classList.add("has-error");
+        return false;
+    } else {
+        document.getElementById("div-question-score").classList.remove("has-error");
+    }
+    if (document.getElementById("input-question-score").value.length > 3) {
+        makeAlert("form_add_question", "question_form_alert", "分值太大", "");
+        document.getElementById("div-question-score").classList.add("has-error");
+        return false;
+    } else {
+        document.getElementById("div-question-score").classList.remove("has-error");
+    }
+
     var num = document.getElementById("option_sum").value;
     var sum = parseInt(num);
     for (var i = 1; i <= sum; i++) {
-        if (document.getElementById("input-option" + i).value == null) {
+        if (document.getElementById("input-option" + i).value.length == 0) {
+            makeAlert("form_add_question", "question_form_alert", "选项不能为空！", "");
+            document.getElementById("div-option" + i).classList.add("has-error");
             return false;
+        } else if (document.getElementById("input-option" + i).value.length >= 200) {
+            makeAlert("form_add_question", "question_form_alert", "选项太长！", "");
+            document.getElementById("div-option" + i).classList.add("has-error");
+            return false;
+        } else {
+            document.getElementById("div-option" + i).classList.remove("has-error");
         }
     }
     return true;
 }
 
+function checkAlterExamForm() {
+    if (document.getElementById("input-title").value.length == 0) {
+        makeAlert("div-title", "alter_exam_alert", "考试标题不能为空！", "");
+        document.getElementById("div-title").classList.add("has-error");
+        return false;
+    } else if (document.getElementById("input-title").value.length > 30) {
+        makeAlert("div-title", "alter_exam_alert", "考试名称太长！", "");
+        document.getElementById("div-title").classList.add("has-error");
+        return false;
+    } else {
+        document.getElementById("div-title").classList.remove("has-error");
+    }
+
+    if (document.getElementById("input-duration").value.length == 0) {
+        makeAlert("div-duration", "alter_exam_alert", "考试时长不能为空！", "");
+        document.getElementById("div-duration").classList.add("has-error");
+        return false;
+    } else if (document.getElementById("input-duration").value.length > 5) {
+        makeAlert("div-duration", "alter_exam_alert", "考试时间太长！", "");
+        document.getElementById("div-duration").classList.add("has-error");
+        return false;
+    } else {
+        document.getElementById("div-duration").classList.remove("has-error");
+    }
+
+    return true;
+}
+
 function submitAddQuestionForm() {
     if (checkQuestionForm() == false) {
-        makeAlert("form_add_question", "question_form_alert", "所有表单项均为必填！", "");
         return;
     }
     sendData("form_add_question", "server_addQuestion.jsp");
+}
+
+function submitAlterExamForm() {
+    if (checkAlterExamForm() == false) {
+        return;
+    }
+    sendData("form_change_exam_info", "server_change_exam_info.jsp");
 }
