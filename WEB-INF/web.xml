@@ -23,14 +23,24 @@
         <param-value>dashboard</param-value>
     </context-param>
     <context-param>
-        <!-- 登录/注册页-用户名或密码错误弹窗 -->
+        <!-- 登录页-用户名或密码错误弹窗 -->
         <param-name>HTML_SIGNIN_ALERT_INVALID_PASS</param-name>
         <param-value>error_invalid_pass</param-value>
     </context-param>
     <context-param>
-        <!-- 登录页-用户不存在错误弹窗-->
-        <param-name>HTML_SIGNIN_ALERT_INVALID_USER</param-name>
-        <param-value>error_invalid_user</param-value>
+        <!-- 登录页-用户注册成功弹窗 -->
+        <param-name>HTML_SIGNIN_ALERT_USER_REGISTER_SUCCESSFUL</param-name>
+        <param-value>success_register_success</param-value>
+    </context-param>
+    <context-param>
+        <!-- 登录页-请先登录弹窗 -->
+        <param-name>HTML_SIGNIN_ALERT_SIGNIN_FIRST</param-name>
+        <param-value>info_need_login</param-value>
+    </context-param>
+    <context-param>
+        <!-- 登录页-需要权限弹窗 -->
+        <param-name>HTML_SIGNIN_ALERT_NEED_AUTH</param-name>
+        <param-value>info_need_auth</param-value>
     </context-param>
     <context-param>
         <!-- 登录页-表单-email 输入框-->
@@ -42,41 +52,209 @@
         <param-name>HTML_SIGNIN_INPUT_PASSWORD</param-name>
         <param-value>password</param-value>
     </context-param>
-       <context-param>
+    <context-param>
+        <!-- 登录页-表单-学生/教师登录单选按钮-->
+        <param-name>HTML_SIGNIN_RADIO_USERTYPE</param-name>
+        <param-value>usertype</param-value>
+    </context-param>
+    <context-param>
+        <!-- 登录页-表单-教师登录选择-->
+        <param-name>HTML_SIGNIN_RADIO_VALUE_TEACHER</param-name>
+        <param-value>teacher</param-value>
+    </context-param>
+    <context-param>
+        <!-- 登录页-表单-学生登录选择-->
+        <param-name>HTML_SIGNIN_RADIO_VALUE_STUDENT</param-name>
+        <param-value>student</param-value>
+    </context-param>
+    <context-param>
         <!-- 注册页-表单-email 输入框-->
         <param-name>HTML_SIGNUP_INPUT_EMAIL</param-name>
         <param-value>email</param-value>
     </context-param>
-       <context-param>
+    <context-param>
         <!-- 注册页-表单-密码输入框-->
         <param-name>HTML_SIGNUP_INPUT_PASSWORD</param-name>
         <param-value>password</param-value>
     </context-param>
-
-     <context-param>
+    <context-param>
         <!-- 注册页-表单-用户名输入框-->
         <param-name>HTML_SIGNUP_INPUT_USERNAME</param-name>
         <param-value>username</param-value>
     </context-param>
-
     <context-param>
-        <!-- session-用户名-->
-        <param-name>ATTR_USERNAME</param-name>
+        <!-- 注册页-Email 已被注册提示框 -->
+        <param-name>HTML_SIGNUP_ALERT_USER_ALREADY_EXIST</param-name>
+        <param-value>error_user_already_exist</param-value>
+    </context-param>
+    <context-param>
+        <!-- 注册页-表单-学生/教师登录单选按钮-->
+        <param-name>HTML_SIGNUP_RADIO_USERTYPE</param-name>
+        <param-value>usertype</param-value>
+    </context-param>
+    <context-param>
+        <!-- 注册页-表单-教师登录选择-->
+        <param-name>HTML_SIGNUP_RADIO_VALUE_TEACHER</param-name>
+        <param-value>teacher</param-value>
+    </context-param>
+    <context-param>
+        <!-- 注册页-表单-学生登录选择-->
+        <param-name>HTML_SIGNUP_RADIO_VALUE_STUDENT</param-name>
+        <param-value>student</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-修改考试信息-考试名称-->
+        <param-name>HTML_EDIT_EXAM_INPUT_EXAM_TITLE</param-name>
+        <param-value>exam_name</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-修改考试信息-考试时长-->
+        <param-name>HTML_EDIT_EXAM_INPUT_EXAM_DURATION</param-name>
+        <param-value>exam_duration</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-修改考试信息-考试ID-->
+        <param-name>HTML_EDIT_EXAM_INPUT_EXAM_ID</param-name>
+        <param-value>exam_id</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-选项数目-->
+        <param-name>HTML_EDIT_EXAM_INPUT_OPTION_NUM</param-name>
+        <param-value>option_sum</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-题目名称-->
+        <param-name>HTML_EDIT_EXAM_INPUT_QUESTION_TITLE</param-name>
+        <param-value>question-content</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-题目分值-->
+        <param-name>HTML_EDIT_EXAM_INPUT_QUESTION_SCORE</param-name>
+        <param-value>question-score</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-题目序号-->
+        <param-name>HTML_EDIT_EXAM_INPUT_QUESTION_INDEX</param-name>
+        <param-value>question_number</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-选项前缀-->
+        <param-name>HTML_EDIT_EXAM_INPUT_OPTION_PREFIX</param-name>
+        <param-value>option</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-正确答案-->
+        <param-name>HTML_EDIT_EXAM_INPUT_RIGHT_ANSWER</param-name>
+        <param-value>right-answer</param-value>
+    </context-param>
+    <context-param>
+        <!-- 考试编辑页-添加试题-选项数目-->
+        <param-name>HTML_EDIT_EXAM_INPUT_OPTION_NUM</param-name>
+        <param-value>option_sum</param-value>
+    </context-param>
+    <context-param>
+        <!-- session-用户名 -->
+        <param-name>ATTR_USERNAME</param-name> 
         <param-value>attr_username</param-value>
     </context-param>
     <context-param>
-        <!-- 数据库-用户名-->
-        <param-name>DB_USERNAME</param-name>
+        <!-- session-用户类型 -->
+        <param-name>ATTR_IS_STUDENT</param-name>
+        <param-value>attr_usertype</param-value>
+    </context-param>
+    <context-param>
+        <!-- session-用户 ID -->
+        <param-name>ATTR_USERID</param-name>
+        <param-value>attr_userid</param-value>
+    </context-param>     
+    <context-param>
+        <!-- 数据库-学生用户名-->
+        <param-name>DB_SUSERNAME</param-name>
         <param-value>sname</param-value>
     </context-param>
     <context-param>
-        <!-- 数据库-密码-->
-        <param-name>DB_PASSWORD</param-name>
+        <!-- 数据库-学生密码-->
+        <param-name>DB_SPASSWORD</param-name>
         <param-value>spassword</param-value>
     </context-param>
     <context-param>
-        <!-- 数据库-Email-->
-        <param-name>DB_EMAIL</param-name>
+        <!-- 数据库-学生 Email-->
+        <param-name>DB_SEMAIL</param-name>
         <param-value>semail</param-value>
     </context-param>
+    <context-param>
+        <!-- 数据库-学生 ID-->
+        <param-name>DB_SID</param-name>
+        <param-value>sid</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-教师用户名-->
+        <param-name>DB_TUSERNAME</param-name>
+        <param-value>tname</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-教师密码-->
+        <param-name>DB_TPASSWORD</param-name>
+        <param-value>tpassword</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-教师 Email-->
+        <param-name>DB_TEMAIL</param-name>
+        <param-value>temail</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-教师 ID-->
+        <param-name>DB_TID</param-name>
+        <param-value>tid</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-考试名称-->
+        <param-name>DB_ENAME</param-name>
+        <param-value>ename</param-value>
+    </context-param> 
+    <context-param>
+        <!-- 数据库-考试 ID-->
+        <param-name>DB_EID</param-name>
+        <param-value>eid</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-考试时长-->
+        <param-name>DB_EDURATION</param-name>
+        <param-value>eduration</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-题目序号-->
+        <param-name>DB_QNUMBER</param-name>
+        <param-value>qnumber</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-题目内容-->
+        <param-name>DB_QCONTENT</param-name>
+        <param-value>qcontent</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-题目分值-->
+        <param-name>DB_QSCORE</param-name>
+        <param-value>qscore</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-题目答案-->
+        <param-name>DB_QANSWER</param-name>
+        <param-value>qanswer</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-题目ID-->
+        <param-name>DB_QID</param-name>
+        <param-value>qid</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-选项内容-->
+        <param-name>DB_OCONTENT</param-name>
+        <param-value>ocontent</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-选项ID-->
+        <param-name>DB_OID</param-name>
+        <param-value>oid</param-value>
+    </context-param>       
 </web-app>

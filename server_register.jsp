@@ -9,30 +9,29 @@
 	String uemail = request.getParameter(application.getInitParameter("HTML_SIGNUP_INPUT_EMAIL"));
 	String upass = request.getParameter(application.getInitParameter("HTML_SIGNUP_INPUT_PASSWORD"));
     String uname = request.getParameter(application.getInitParameter("HTML_SIGNUP_INPUT_USERNAME"));
+    String loginType = request.getParameter(application.getInitParameter("HTML_SIGNUP_RADIO_USERTYPE"));
+    Boolean isStudent = loginType.equals(application.getInitParameter("HTML_SIGNUP_RADIO_VALUE_STUDENT"));
 
-    if(uname.length() >= 10 || uname.length() == 0 )
-    {
-        session.setAttribute(application.getInitParameter("HTML_SIGNIN_ALERT_INVALID_USER"), true);
-        response.sendRedirect("signup.jsp"); 
+    String sql, checkUserExist;
+    if (isStudent) {
+        sql = "insert into astudent("+ application.getInitParameter("DB_SUSERNAME");
+        sql += ", " + application.getInitParameter("DB_SPASSWORD") + "";
+        sql += ", " + application.getInitParameter("DB_SEMAIL") + ") ";
+        sql += "values ('" + uname + "'";
+        sql += ", '" + upass + "'";
+        sql += ", '" + uemail + "')";
+        checkUserExist = "select * from astudent where " + application.getInitParameter("DB_SEMAIL") + " = '" + uemail + "'";
+    } else {
+        sql = "insert into ateacher("+ application.getInitParameter("DB_TUSERNAME");
+        sql += ", " + application.getInitParameter("DB_TPASSWORD") + "";
+        sql += ", " + application.getInitParameter("DB_TEMAIL") + ") ";
+        sql += "values ('" + uname + "'";
+        sql += ", '" + upass + "'";
+        sql += ", '" + uemail + "')";
+        checkUserExist = "select * from ateacher where " + application.getInitParameter("DB_TEMAIL") + " = '" + uemail + "'";
     }
-    if(upass.length() < 6)
-    {
-        session.setAttribute(application.getInitParameter("HTML_SIGNIN_ALERT_INVALID_PASS"), true);
-        response.sendRedirect("signup.jsp"); 
-    }
 
-    out.print(uemail);
-    out.print(upass);
-    out.print(uname);
-   //String sql = "SELECT * FROM astudent WHERE semail = '" 
-			//+ uemail + "' AND spassword = '" + upass + "'";
 
-    String sql = "insert into astudent("+ application.getInitParameter("DB_USERNAME");
-    sql += ", " + application.getInitParameter("DB_PASSWORD") + "";
-    sql += ", " + application.getInitParameter("DB_EMAIL") + ") ";
-    sql += "values ('" + uname + "'";
-    sql += ", '" + upass + "'";
-    sql += ", '" + uemail + "')";
     // 数据库链接  
     Connection conn = null;  
     // 向数据库发送sql语句  
@@ -47,17 +46,16 @@
         //数据库的地址，密码，用户名  
         conn = DriverManager.getConnection(url, user, pass);
         st = conn.createStatement();
+        rs = st.executeQuery(checkUserExist);
+
+		if (rs.next()){
+        	session.setAttribute(application.getInitParameter("HTML_SIGNUP_ALERT_USER_ALREADY_EXIST"), true);
+            response.sendRedirect("signup.jsp");  
+        } 
+
         st.execute(sql);
-        
-		/*if (!rs.next()){
-        	session.setAttribute(application.getInitParameter("HTML_SIGNIN_ALERT_INVALID_PASS"), true);
-            response.sendRedirect("signin.jsp");  
-        } else {
-			String username = rs.getString(application.getInitParameter("DB_USERNAME"));
-            session.setAttribute(application.getInitParameter("ATTR_USERNAME"), username);
-            response.sendRedirect("index.jsp");
-        }*/
-  
+        session.setAttribute(application.getInitParameter("HTML_SIGNIN_ALERT_USER_REGISTER_SUCCESSFUL"), true);
+        response.sendRedirect("signin.jsp");
     } catch (Exception e) {  
   		out.print(e.getMessage());
     	out.print(e);
