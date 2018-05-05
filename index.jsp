@@ -33,9 +33,26 @@
             <p>
               <strong>更新日志</strong>
             </p>
-             
+            
             
             <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年5月5日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>完成重复选项提示功能</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+            
+            <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">2018年4月24日</h3>
                 </div>
