@@ -416,6 +416,20 @@ function checkQuestionForm() {
             document.getElementById("div-option" + i).classList.remove("has-error");
         }
     }
+
+    for (var i = 1; i <= sum; i++) {
+        for (var j = i + 1; j <= sum; j++) {
+            var op1 = document.getElementById("input-option" + i).value;
+            var op2 = document.getElementById("input-option" + j).value;
+            if (op1 == op2) {
+                makeAlert("form_add_question", "question_form_alert", "重复的选项！", "");
+                document.getElementById("div-option" + i).classList.add("has-error");
+                document.getElementById("div-option" + j).classList.add("has-error");
+                return false;
+            }
+        }
+    }
+
     return true;
 }
 
