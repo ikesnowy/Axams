@@ -79,14 +79,14 @@
                             考试时长：<%out.print(examDuration == 0 ? "无限制" : examDuration + "分钟");%>
                         </small>
                         <small>
-                            <a id="modify_title" class="glyphicon glyphicon glyphicon-pencil" data-toggle="modal" href='#modal-modify-title'></a>                          
+                            <a id="modify_title" class="glyphicon glyphicon-pencil" data-toggle="modal" href='#modal-modify-title'></a>                          
                         </small>
                     </h1>
                 </div>
             </div>                     
             <div class="row" id="add-question">   
                 <div class="list-group">
-                    <a class="list-group-item" data-toggle="modal" href="#modal-add-choice-question" onclick="initOptions();">
+                    <a class="list-group-item" data-toggle="modal" href="#modal-add-choice-question" onclick="initOptions('add');">
                         <h4><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加题目</h4>
                     </a>
                 </div>
@@ -114,6 +114,8 @@
                                 out.print(script);
                                 script = "<script>addQuestions(";
                             }
+                            script += "'" + rs.getString(application.getInitParameter("DB_QID")) + "'";
+                            script += ", ";
                             questionNum = rs.getInt(application.getInitParameter("DB_QNUMBER"));
                             script += questionNum;
                             script += ", ";
@@ -203,38 +205,89 @@
                                 <%out.print("<script>changeInputValue('exam_id_add_question', '" + eid + "')</script>");%>
                             </div>
                             <div class="form-group" style="display: none">
-                                <input type="number" name="question_number" id="question_number" value="0">
-                                <%out.print("<script>changeInputValue('question_number', '" + questionNum + "')</script>");%>
+                                <input type="number" name="question_number" id="question_number_add_question" value="0">
+                                <%out.print("<script>changeInputValue('question_number_add_question', '" + questionNum + "')</script>");%>
                             </div> 
                             <div class="form-group" style="display: none">
-                                <input type="number" name="option_sum" id="option_sum" value="0">
+                                <input type="number" name="option_sum" id="add-option_sum" value="0">
                             </div>   
-                            <div class="form-group" id="div-question-content">
+                            <div class="form-group" id="add-div-question-content">
                                 <label for="">题目内容</label>
-                                <input type="text" class="form-control" name="question-content" id="input-question-content" autocomplete="off" placeholder="题目内容……">
+                                <input type="text" class="form-control" name="question-content" id="add-input-question-content" autocomplete="off" placeholder="题目内容……">
                             </div>
-                            <div class="form-group" id="div-question-score">
+                            <div class="form-group" id="add-div-question-score">
                                 <label for="">题目分值</label>
-                                <input type="number" class="form-control" name="question-score" id="input-question-score" autocomplete="off" placeholder="题目分值……" value = "1">
+                                <input type="number" class="form-control" name="question-score" id="add-input-question-score" autocomplete="off" placeholder="题目分值……" value = "1">
                             </div>
                             <div class="form-group">
                                 <label>选项列表</label>
                             </div>
                             
-                            <div class="form-group" id="add-options">
-                                <a class="form-control-static" onclick="addOptions();">+增加选项</a>
+                            <div class="form-group" id="add-add-options">
+                                <a class="form-control-static" onclick="addOptions('add');">+增加选项</a>
                             </div>
                             <div class="form-group">
                                 <label>正确答案</label>
-                                <select class="form-control" id="select-answer" name="right-answer">
+                                <select class="form-control" id="add-select-answer" name="right-answer">
                                 </select>
                             </div>
-                            <script>addOptions();addOptions();</script>
+                            <script>addOptions('add');addOptions('add');</script>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-primary" onclick="submitAddQuestionForm();">添加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 修改选择题 -->
+        <div class="modal fade" id="modal-modify-choice-question">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">修改选择题</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form_modify_question" action="" method="POST" role="form">
+                            <div class="form-group" style="display: none">
+                                <input type="text" name="exam_id" id="exam_id_modify_question" value="0">
+                                <%out.print("<script>changeInputValue('exam_id_modify_question', '" + eid + "')</script>");%>
+                            </div>
+                            <div class="form-group" style="display: none">
+                                <input type="number" name="question_id" id="modify-question_id" value="0">
+                            </div>
+                            <div class="form-group" style="display: none">
+                                <input type="number" name="option_sum" id="modify-option_sum" value="0">
+                            </div>   
+                            <div class="form-group" id="modify-div-question-content">
+                                <label for="">题目内容</label>
+                                <input type="text" class="form-control" name="question-content" id="modify-input-question-content" autocomplete="off" placeholder="题目内容……">
+                            </div>
+                            <div class="form-group" id="modify-div-question-score">
+                                <label for="">题目分值</label>
+                                <input type="number" class="form-control" name="question-score" id="modify-input-question-score" autocomplete="off" placeholder="题目分值……" value = "1">
+                            </div>
+                            <div class="form-group">
+                                <label>选项列表</label>
+                            </div>
+                            
+                            <div class="form-group" id="modify-add-options">
+                                <a class="form-control-static" onclick="addOptions('modify');">+增加选项</a>
+                            </div>
+                            <div class="form-group">
+                                <label>正确答案</label>
+                                <select class="form-control" id="modify-select-answer" name="right-answer">
+                                </select>
+                            </div>
+                            <script>addOptions('modify');addOptions('modify');</script>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" onclick="submitModifyQuestionForm();">修改</button>
                     </div>
                 </div>
             </div>

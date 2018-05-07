@@ -21,16 +21,13 @@
         return;
     }
 
-    String sql = "insert into aexam("+ application.getInitParameter("DB_ENAME") + ")";
-    sql += " values ('输入考试名称')";
-
-    String getEid = "select MAX(" + application.getInitParameter("DB_EID") +") from aexam";
+    Long eid = System.currentTimeMillis();
+    String sql = "insert into aexam(" + application.getInitParameter("DB_EID") + ", " + application.getInitParameter("DB_ENAME") + ")";
+    sql += " values (" + eid +", '输入考试名称')";
     // 数据库链接  
     Connection conn = null;  
     // 向数据库发送sql语句  
     Statement st = null;  
-    // 结果集  
-    ResultSet rs = null;  
     String url = "jdbc:mysql://123.206.201.200:3306/Axam";  
     String user = "root";  
     String pass = "acLALDIQc3Qb";
@@ -40,10 +37,7 @@
         conn = DriverManager.getConnection(url, user, pass);
         st = conn.createStatement();
         st.execute(sql);
-        rs = st.executeQuery(getEid);
-        rs.next();
-        String eid = rs.getString("MAX(" + application.getInitParameter("DB_EID") + ")");
-		sql = "insert into ate values ('" + userid + "', '" + eid + "')";
+		sql = "insert into ate(" + application.getInitParameter("DB_TID") + ", " + application.getInitParameter("DB_EID") + ") values (" + userid + ", " + eid + ")";
         st.execute(sql);
         String editURL = "edit_exam.jsp?" + application.getInitParameter("DB_EID") + "=" + eid;
         response.sendRedirect(editURL);
@@ -51,9 +45,6 @@
   		out.print(e.getMessage());
     	out.print(e);
     } finally {  
-        try {  
-            rs.close();  
-        } catch (Exception e) {}  
         try {  
             st.close();  
         } catch (Exception e) {}  

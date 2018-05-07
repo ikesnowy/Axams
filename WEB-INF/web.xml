@@ -153,6 +153,11 @@
         <param-value>option_sum</param-value>
     </context-param>
     <context-param>
+        <!-- 考试编辑页-修改试题-问题 ID-->
+        <param-name>HTML_EDIT_EXAM_INPUT_QUESTION_ID</param-name>
+        <param-value>question_id</param-value>
+    </context-param>
+    <context-param>
         <!-- session-用户名 -->
         <param-name>ATTR_USERNAME</param-name> 
         <param-value>attr_username</param-value>

@@ -7,7 +7,6 @@
     <%@ include file="header.jsp" %>
     <%@ include file="script.jsp" %>
     <title>Axam-主页</title>
-
   </head>
 
   <body>
@@ -25,17 +24,59 @@
               <strong>项目进度</strong>
             </p>
             <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="68" aria-valuemin="0"
-                aria-valuemax="100" style="width: 68%; min-width: 2em">
-                68%
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="72" aria-valuemin="0"
+                aria-valuemax="100" style="width: 72%; min-width: 2em">
+                72%
               </div>
             </div>
             <p>
               <strong>更新日志</strong>
             </p>
-             
+            
             
             <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年5月7日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>增加修改问题功能</li>
+                      </ol>
+                    </dd>
+                    <dt>架构</dt>
+                    <dd>
+                      <ol>
+                        <li>修复新建考试时没有自动生成 eid 的问题</li>
+                        <li>增加问题内容修改后端支持（modifyQuestion.jsp）</li>
+                        <li>为修改问题模态框和添加问题模态框做 id 区分（添加前缀 'add' 以及 'modify'）</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年5月5日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>完成重复选项提示功能</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+            
+            <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">2018年4月24日</h3>
                 </div>

@@ -163,6 +163,7 @@ function changeInputValue(inputId, newVal) {
     document.getElementById(inputId).setAttribute('value', newVal);
 }
 
+// submit form
 function sendData(formId, targetURL) {
     var XHR = new XMLHttpRequest();
 
@@ -188,7 +189,8 @@ function sendData(formId, targetURL) {
     XHR.send(FD);
 }
 
-function addQuestions(number, points, question, rightAnswer, ...options) {
+// add a question to the page
+function addQuestions(id, number, points, question, rightAnswer, ...options) {
     // <div class="row">
     var divRow = document.createElement("div");
     divRow.classList.add("row");
@@ -205,31 +207,71 @@ function addQuestions(number, points, question, rightAnswer, ...options) {
     var questionContent = document.createTextNode(number + "." + question);
     var h3Question = document.createElement("h3");
     h3Question.appendChild(questionContent);
+    h3Question.setAttribute("onmouseover", "displayElement('modify-question-" + number + "');");
+    h3Question.setAttribute("onmouseout", "hideElement('modify-question-" + number + "');");
 
     // <small></small>
     var pointContent = document.createTextNode("（" + points + "分）");
     var smallPoint = document.createElement("small");
     smallPoint.appendChild(pointContent);
 
+    // <small></small>
+    var smallModifyQuetion = document.createElement("small");
+    var aModifyQuestion = document.createElement("a");
+    aModifyQuestion.setAttribute("id", "modify-question-" + number);
+    aModifyQuestion.classList.add("glyphicon");
+    aModifyQuestion.classList.add("glyphicon-pencil");
+    aModifyQuestion.setAttribute("onclick", "callModifyQuestionModel(" + id + ", " + number + ");");
+    aModifyQuestion.setAttribute("href", "javascript:void(0)");
+    smallModifyQuetion.appendChild(aModifyQuestion);
+    
     // </h3>
     h3Question.appendChild(smallPoint);
-    
+    h3Question.appendChild(smallModifyQuetion);
+
     // </li>
     liQuestion.appendChild(h3Question);
     divListGroup.appendChild(liQuestion);
 
     var optionMark = new Array(
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 
-        'H', 'I', 'J', 'K', 'L', 'M', 'N', 
-        'O', 'P', 'Q', 'R', 'S', 'T', 
-        'U', 'V', 'W', 'X', 'Y', 'Z');
-    for(var i = 0; i < options.length; i++) {
-        var optionContent = document.createTextNode(optionMark[i] + "." + options[i]);
+    'A', 'B', 'C', 'D', 'E', 'F', 'G',
+    'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    'O', 'P', 'Q', 'R', 'S', 'T',
+    'U', 'V', 'W', 'X', 'Y', 'Z');
+
+    // add Question content
+    var aQuestionContent = document.createElement("a");
+    var pureQuestionContent = document.createTextNode(question);
+    aQuestionContent.setAttribute("id", "question-" + number);
+    aQuestionContent.setAttribute("style", "display: none");
+    aQuestionContent.appendChild(pureQuestionContent);
+    divListGroup.appendChild(aQuestionContent);
+
+    // add Question point
+    var aQuestionPoint = document.createElement("a");
+    var pointValue = document.createTextNode(points + "");
+    aQuestionPoint.setAttribute("id", "question-point-" + number);
+    aQuestionPoint.setAttribute("style", "display: none");
+    aQuestionPoint.appendChild(pointValue);
+    divListGroup.appendChild(aQuestionPoint);
+
+    // add option sum
+    var aOptionSum = document.createElement("a");
+    var optionSumText = document.createTextNode(options.length + "");
+    aOptionSum.setAttribute("id", "option-sum-" + number);
+    aOptionSum.setAttribute("style", "display: none");
+    aOptionSum.appendChild(optionSumText);
+    divListGroup.appendChild(aOptionSum);
+    
+    // add options
+    for (var i = 1; i <= options.length; i++) {
+        var optionContent = document.createTextNode(optionMark[i - 1] + "." + options[i - 1]);
         var aOption = document.createElement("a");
         aOption.appendChild(optionContent);
+        aOption.setAttribute("id", "option-" + number + "-" + i);
         aOption.setAttribute("href", "javascript:void(0)");
         aOption.classList.add("list-group-item");
-        if (options[i] == rightAnswer) {
+        if (options[i - 1] == rightAnswer) {
             aOption.classList.add("list-group-item-success");
         }
         divListGroup.appendChild(aOption);
@@ -240,40 +282,41 @@ function addQuestions(number, points, question, rightAnswer, ...options) {
     divAddQuestion.parentNode.insertBefore(divRow, divAddQuestion);
 }
 
-function addOptions() {
+// add new option input box
+function addOptions(prefix) {
     var optionMark = new Array(
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 
-        'H', 'I', 'J', 'K', 'L', 'M', 'N', 
-        'O', 'P', 'Q', 'R', 'S', 'T', 
+        'A', 'B', 'C', 'D', 'E', 'F', 'G',
+        'H', 'I', 'J', 'K', 'L', 'M', 'N',
+        'O', 'P', 'Q', 'R', 'S', 'T',
         'U', 'V', 'W', 'X', 'Y', 'Z');
 
     // Add option sums
-    var number = document.getElementById("option_sum").value;
+    var number = document.getElementById(prefix + "-option_sum").value;
     if (number == 6) {
-        makeAlert("div-option1", "options_error", "最多含有6个选项", "");
+        makeAlert(prefix + "-div-option1", "options_error", "最多含有6个选项", "");
         return;
     }
     number++;
-    document.getElementById("option_sum").setAttribute("value", number);
+    document.getElementById(prefix + "-option_sum").setAttribute("value", number);
     // Create option input
     var divFormGroup = document.createElement("div");
     divFormGroup.classList.add("form-group");
-    divFormGroup.setAttribute("id", "div-option" + number);
+    divFormGroup.setAttribute("id", prefix + "-div-option" + number);
 
     var divInputGroup = document.createElement("div");
     divInputGroup.classList.add("input-group");
 
     var spanItemMark = document.createElement("span");
-    var itemMark =document.createTextNode(optionMark[number - 1] + ".");
+    var itemMark = document.createTextNode(optionMark[number - 1] + ".");
     spanItemMark.classList.add("input-group-addon");
     spanItemMark.appendChild(itemMark);
-    
+
     divInputGroup.appendChild(spanItemMark);
 
     var inputOption = document.createElement("input");
     inputOption.setAttribute("type", "text");
     inputOption.setAttribute("name", "option" + number);
-    inputOption.setAttribute("id", "input-option" + number);
+    inputOption.setAttribute("id", prefix + "-input-option" + number);
     inputOption.setAttribute("autocomplete", "off");
     inputOption.setAttribute("placeholder", "输入选项……");
     inputOption.classList.add("form-control");
@@ -283,7 +326,7 @@ function addOptions() {
     spanDeleteButton.classList.add("input-group-btn");
     var buttonDelete = document.createElement("button");
     buttonDelete.setAttribute("type", "button");
-    buttonDelete.setAttribute("onclick", "deleteOption(" + number + ");");
+    buttonDelete.setAttribute("onclick", "deleteOption('" + prefix + "', " + number + ");");
     buttonDelete.classList.add("btn", "btn-default");
     var spanDeleteMark = document.createElement("span");
     spanDeleteMark.classList.add("glyphicon", "glyphicon-minus");
@@ -292,61 +335,64 @@ function addOptions() {
     divInputGroup.appendChild(spanDeleteButton);
     divFormGroup.appendChild(divInputGroup);
 
-    var current = document.getElementById("add-options");
+    var current = document.getElementById(prefix + "-add-options");
     current.parentNode.insertBefore(divFormGroup, current);
 
     // add selection
-    document.getElementById("select-answer").options.add(new Option(optionMark[number - 1], number));
+    document.getElementById(prefix + "-select-answer").options.add(new Option(optionMark[number - 1], number));
 }
 
-function initOptions(){
-    // reset option sum
-    var number = document.getElementById("option_sum").value;
-    document.getElementById("option_sum").setAttribute("value", 0);
-
-    // delete all options and selections
-    var form = document.getElementById("form_add_question");
-    var selection = document.getElementById("select-answer");
-    for (var i = 1; i <= number; i++) {
-        form.removeChild(document.getElementById("div-option" + i));
-        selection.options.remove(0);
-    }
-    addOptions();
-    addOptions();
-}
-
-function deleteOption(index) {
+// delete a option box
+function deleteOption(prefix, index) {
     // option sum - 1
-    var number = document.getElementById("option_sum").value;
+    var number = document.getElementById(prefix + "-option_sum").value;
     var sum = parseInt(number);
     if (sum == 0 || sum == 1) {
         return;
     }
     if (sum == 2) {
         // make Alert
-        makeAlert("div-option1", "options_error", "至少包含两个选项", "");
+        makeAlert(prefix + "-div-option1", "options_error", "至少包含两个选项", "");
         return;
     }
-    
+
     // move option value
     for (var i = index; i < number; i++) {
         var next = i + 1;
-        var nextInput = document.getElementById("input-option" + next);
-        document.getElementById("input-option" + i).value=nextInput.value;
+        var nextInput = document.getElementById(prefix + "-input-option" + next);
+        document.getElementById(prefix + "-input-option" + i).value = nextInput.value;
     }
 
     // delete the final option input
-    var form = document.getElementById("form_add_question");
-    form.removeChild(document.getElementById("div-option" + number));
+    var form = document.getElementById("form_" + prefix + "_question");
+    form.removeChild(document.getElementById(prefix + "-div-option" + number));
 
     number--;
-    document.getElementById("option_sum").setAttribute("value", number);
+    document.getElementById(prefix + "-option_sum").setAttribute("value", number);
 
     // delete the final selection
-    var selection = document.getElementById("select-answer");
+    var selection = document.getElementById(prefix + "-select-answer");
     selection.remove(number);
 }
 
+// clear all option box
+function initOptions(prefix) {
+    // reset option sum
+    var number = document.getElementById(prefix + "-option_sum").value;
+    document.getElementById(prefix + "-option_sum").setAttribute("value", 0);
+
+    // delete all options and selections
+    var form = document.getElementById("form_" + prefix + "_question");
+    var selection = document.getElementById(prefix + "-select-answer");
+    for (var i = 1; i <= number; i++) {
+        form.removeChild(document.getElementById(prefix + "-div-option" + i));
+        selection.options.remove(0);
+    }
+    addOptions(prefix);
+    addOptions(prefix);
+}
+
+// create a alert box
 function makeAlert(before, alertId, title, content) {
     if (document.getElementById(alertId) != null) {
         $("#" + alertId).alert('close');
@@ -374,51 +420,67 @@ function makeAlert(before, alertId, title, content) {
     current.parentNode.insertBefore(divAlert, current);
 }
 
-function checkQuestionForm() {
-    if (document.getElementById("input-question-content").value.length == 0) {
-        document.getElementById("div-question-content").classList.add("has-error");
-        makeAlert("form_add_question", "question_form_alert", "题目内容不能为空", "");
+// validation for question form
+function checkQuestionForm(prefix) {
+    if (document.getElementById(prefix + "-input-question-content").value.length == 0) {
+        document.getElementById(prefix + "-div-question-content").classList.add("has-error");
+        makeAlert("form_" + prefix + "_question", "question_form_alert", "题目内容不能为空", "");
         return false;
-    } else if (document.getElementById("input-question-content").value.length > 110) {
-        document.getElementById("div-question-content").classList.add("has-error");
-        makeAlert("form_add_question", "question_form_alert", "题目内容太长", "");
+    } else if (document.getElementById(prefix + "-input-question-content").value.length > 110) {
+        document.getElementById(prefix + "-div-question-content").classList.add("has-error");
+        makeAlert("form_" + prefix + "_question", "question_form_alert", "题目内容太长", "");
         return false;
     } else {
-        document.getElementById("div-question-content").classList.remove("has-error");
+        document.getElementById(prefix + "-div-question-content").classList.remove("has-error");
     }
-    if (document.getElementById("input-question-score").value.length == 0) {
-        makeAlert("form_add_question", "question_form_alert", "分值不能为空", "");
-        document.getElementById("div-question-score").classList.add("has-error");
+    if (document.getElementById(prefix + "-input-question-score").value.length == 0) {
+        makeAlert("form_" + prefix + "_question", "question_form_alert", "分值不能为空", "");
+        document.getElementById(prefix + "-div-question-score").classList.add("has-error");
         return false;
     } else {
-        document.getElementById("div-question-score").classList.remove("has-error");
+        document.getElementById(prefix + "-div-question-score").classList.remove("has-error");
     }
-    if (document.getElementById("input-question-score").value.length > 3) {
-        makeAlert("form_add_question", "question_form_alert", "分值太大", "");
-        document.getElementById("div-question-score").classList.add("has-error");
+    if (document.getElementById(prefix + "-input-question-score").value.length > 3) {
+        makeAlert("form_" + prefix + "_question", "question_form_alert", "分值太大", "");
+        document.getElementById(prefix + "-div-question-score").classList.add("has-error");
         return false;
     } else {
-        document.getElementById("div-question-score").classList.remove("has-error");
+        document.getElementById(prefix + "-div-question-score").classList.remove("has-error");
     }
 
-    var num = document.getElementById("option_sum").value;
+    var num = document.getElementById(prefix + "-option_sum").value;
     var sum = parseInt(num);
     for (var i = 1; i <= sum; i++) {
-        if (document.getElementById("input-option" + i).value.length == 0) {
-            makeAlert("form_add_question", "question_form_alert", "选项不能为空！", "");
-            document.getElementById("div-option" + i).classList.add("has-error");
+        if (document.getElementById(prefix + "-input-option" + i).value.length == 0) {
+            makeAlert("form_" + prefix + "_question", "question_form_alert", "选项不能为空！", "");
+            document.getElementById(prefix + "-div-option" + i).classList.add("has-error");
             return false;
-        } else if (document.getElementById("input-option" + i).value.length >= 200) {
-            makeAlert("form_add_question", "question_form_alert", "选项太长！", "");
-            document.getElementById("div-option" + i).classList.add("has-error");
+        } else if (document.getElementById(prefix + "-input-option" + i).value.length >= 200) {
+            makeAlert("form_" + prefix + "_question", "question_form_alert", "选项太长！", "");
+            document.getElementById(prefix + "-div-option" + i).classList.add("has-error");
             return false;
         } else {
-            document.getElementById("div-option" + i).classList.remove("has-error");
+            document.getElementById(prefix + "-div-option" + i).classList.remove("has-error");
         }
     }
+
+    for (var i = 1; i <= sum; i++) {
+        for (var j = i + 1; j <= sum; j++) {
+            var op1 = document.getElementById(prefix + "-input-option" + i).value;
+            var op2 = document.getElementById(prefix + "-input-option" + j).value;
+            if (op1 == op2) {
+                makeAlert("form_" + prefix + "_question", "question_form_alert", "重复的选项！", "");
+                document.getElementById(prefix + "-div-option" + i).classList.add("has-error");
+                document.getElementById(prefix + "-div-option" + j).classList.add("has-error");
+                return false;
+            }
+        }
+    }
+
     return true;
 }
 
+// validation for modify exam form
 function checkAlterExamForm() {
     if (document.getElementById("input-title").value.length == 0) {
         makeAlert("div-title", "alter_exam_alert", "考试标题不能为空！", "");
@@ -448,10 +510,17 @@ function checkAlterExamForm() {
 }
 
 function submitAddQuestionForm() {
-    if (checkQuestionForm() == false) {
+    if (checkQuestionForm('add') == false) {
         return;
     }
     sendData("form_add_question", "server_addQuestion.jsp");
+}
+
+function submitModifyQuestionForm() {
+    if (checkQuestionForm('modify') == false) {
+        return;
+    }
+    sendData("form_modify_question", "server_modifyQuestion.jsp");
 }
 
 function submitAlterExamForm() {
@@ -459,4 +528,26 @@ function submitAlterExamForm() {
         return;
     }
     sendData("form_change_exam_info", "server_change_exam_info.jsp");
+}
+
+function callModifyQuestionModel(qid, qnumber) {
+    initOptions("modify");
+    var optionSum = parseInt(document.getElementById("option-sum-" + qnumber).innerText);
+    if (optionSum > 2) {
+        for (var i = 2; i < optionSum; i++) {
+            addOptions("modify");
+        }
+    }
+
+    for (var i = 1; i <= optionSum; i++) {
+        var optionContent = document.getElementById("option-" + qnumber + "-" + i).innerText;
+        document.getElementById("modify-input-option" + i).setAttribute("value", optionContent.substr(2));
+    }
+    
+    var questionContent = document.getElementById("question-" + qnumber).innerText;
+    document.getElementById("modify-input-question-content").setAttribute("value", questionContent);
+
+    document.getElementById("modify-question_id").setAttribute("value", qid);
+
+    $('#modal-modify-choice-question').modal();
 }
