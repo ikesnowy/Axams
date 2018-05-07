@@ -37,6 +37,23 @@
             
             <div class="panel panel-primary">
                 <div class="panel-heading">
+                  <h3 class="panel-title">2018年5月7日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>架构</dt>
+                    <dd>
+                      <ol>
+                        <li>修复新建考试时没有自动生成 eid 的问题</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
                   <h3 class="panel-title">2018年5月5日</h3>
                 </div>
                 <div class="panel-body">
