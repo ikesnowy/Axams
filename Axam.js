@@ -189,7 +189,7 @@ function sendData(formId, targetURL) {
     XHR.send(FD);
 }
 
-// add a question to the page
+// add a question to the edit page
 function addQuestions(id, number, points, question, rightAnswer, ...options) {
     // <div class="row">
     var divRow = document.createElement("div");
@@ -207,8 +207,8 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     var questionContent = document.createTextNode(number + "." + question);
     var h3Question = document.createElement("h3");
     h3Question.appendChild(questionContent);
-    h3Question.setAttribute("onmouseover", "displayElement('modify-question-" + number + "');");
-    h3Question.setAttribute("onmouseout", "hideElement('modify-question-" + number + "');");
+    h3Question.setAttribute("onmouseover", "displayElement('modify-question-" + number + "');" + "displayElement('delete-question-" + number + "');");
+    h3Question.setAttribute("onmouseout", "hideElement('modify-question-" + number + "');" + "hideElement('delete-question-" + number + "');");
 
     // <small></small>
     var pointContent = document.createTextNode("（" + points + "分）");
@@ -219,14 +219,27 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     var smallModifyQuetion = document.createElement("small");
     var aModifyQuestion = document.createElement("a");
     aModifyQuestion.setAttribute("id", "modify-question-" + number);
+    aModifyQuestion.setAttribute("style", "display: none");
     aModifyQuestion.classList.add("glyphicon");
     aModifyQuestion.classList.add("glyphicon-pencil");
     aModifyQuestion.setAttribute("onclick", "callModifyQuestionModel(" + id + ", " + number + ");");
     aModifyQuestion.setAttribute("href", "javascript:void(0)");
     smallModifyQuetion.appendChild(aModifyQuestion);
+
+    // <small></small>
+    var smallDeleteQuetion = document.createElement("small");
+    var aDeleteQuestion = document.createElement("a");
+    aDeleteQuestion.setAttribute("id", "delete-question-" + number);
+    aDeleteQuestion.setAttribute("style", "display: none");
+    aDeleteQuestion.classList.add("glyphicon");
+    aDeleteQuestion.classList.add("glyphicon-trash");
+    aDeleteQuestion.setAttribute("onclick", "callDeleteQuestionModel(" + id + ");");
+    aDeleteQuestion.setAttribute("href", "javascript:void(0)");
+    smallDeleteQuetion.appendChild(aDeleteQuestion);
     
     // </h3>
     h3Question.appendChild(smallPoint);
+    h3Question.appendChild(smallDeleteQuetion);
     h3Question.appendChild(smallModifyQuetion);
 
     // </li>
@@ -530,6 +543,10 @@ function submitAlterExamForm() {
     sendData("form_change_exam_info", "server_change_exam_info.jsp");
 }
 
+function submitDeleteQuestionForm() {
+    sendData("form_delete_question", "server_deleteQuestion.jsp");
+}
+
 function callModifyQuestionModel(qid, qnumber) {
     initOptions("modify");
     var optionSum = parseInt(document.getElementById("option-sum-" + qnumber).innerText);
@@ -550,4 +567,9 @@ function callModifyQuestionModel(qid, qnumber) {
     document.getElementById("modify-question_id").setAttribute("value", qid);
 
     $('#modal-modify-choice-question').modal();
+}
+
+function callDeleteQuestionModel(qid) {
+    document.getElementById("delete-question_id").setAttribute("value", qid);
+    $('#modal-delete-choice-question').modal();
 }
