@@ -36,6 +36,29 @@
             
             <div class="panel panel-primary">
                 <div class="panel-heading">
+                  <h3 class="panel-title">2018年5月8日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>增加删除问题功能</li>
+                      </ol>
+                    </dd>
+                    <dt>架构</dt>
+                    <dd>
+                      <ol>
+                        <li>增加问题删除后端支持（deleteQuestion.jsp）</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+            
+            <div class="panel panel-info">
+                <div class="panel-heading">
                   <h3 class="panel-title">2018年5月7日</h3>
                 </div>
                 <div class="panel-body">

@@ -543,6 +543,10 @@ function submitAlterExamForm() {
     sendData("form_change_exam_info", "server_change_exam_info.jsp");
 }
 
+function submitDeleteQuestionForm() {
+    sendData("form_delete_question", "server_deleteQuestion.jsp");
+}
+
 function callModifyQuestionModel(qid, qnumber) {
     initOptions("modify");
     var optionSum = parseInt(document.getElementById("option-sum-" + qnumber).innerText);
