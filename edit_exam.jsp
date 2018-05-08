@@ -79,7 +79,7 @@
                             考试时长：<%out.print(examDuration == 0 ? "无限制" : examDuration + "分钟");%>
                         </small>
                         <small>
-                            <a id="modify_title" class="glyphicon glyphicon-pencil" data-toggle="modal" href='#modal-modify-title'></a>                          
+                            <a id="modify_title" class="glyphicon glyphicon-pencil" style="display: none" data-toggle="modal" href='#modal-modify-title'></a>                          
                         </small>
                     </h1>
                 </div>
@@ -292,5 +292,34 @@
                 </div>
             </div>
         </div>
+
+        <!-- 删除选择题 -->
+        <div class="modal fade" id="modal-delete-choice-question">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">删除确认</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>确认删除这个问题吗？<strong>该操作不可恢复</strong></p>
+                        <form id="form_delete_question" action="" method="POST" role="form">
+                            <div class="form-group" style="display: none">
+                                <input type="text" name="exam_id" id="exam_id_delete_question" value="0">
+                                <%out.print("<script>changeInputValue('exam_id_delete_question', '" + eid + "')</script>");%>
+                            </div>
+                            <div class="form-group" style="display: none">
+                                <input type="number" name="question_id" id="delete-question_id" value="0">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-danger">删除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </body>
 </html>
