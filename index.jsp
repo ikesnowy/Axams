@@ -24,17 +24,46 @@
               <strong>项目进度</strong>
             </p>
             <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="72" aria-valuemin="0"
-                aria-valuemax="100" style="width: 72%; min-width: 2em">
-                72%
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="78" aria-valuemin="0"
+                aria-valuemax="100" style="width: 78%; min-width: 2em">
+                78%
               </div>
             </div>
             <p>
               <strong>更新日志</strong>
             </p>
             
-            
             <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年5月16日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>增加教师个人中心</li>
+                        <li>教师个人中心添加考试管理页</li>
+                        <li>增加删除考试功能</li>
+                        <li>调整新建考试、编辑考试功能的位置，移入教师个人中心页</li>
+                        <li>添加显示考试 ID 功能</li>
+                        <li>添加考试发布功能</li>
+                        <li>编辑考试页增加返回并保存按钮</li>
+                      </ol>
+                    </dd>
+                    <dt>架构</dt>
+                    <dd>
+                      <ol>
+                        <li>增加考试删除后端支持（deleteExam.jsp）</li>
+                        <li>增加考试发布后端支持（publishExam.jsp）</li>
+                        <li>增加学生-考试表（ase）</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+              
+            <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">2018年5月8日</h3>
                 </div>
