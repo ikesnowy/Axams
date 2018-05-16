@@ -592,6 +592,11 @@ function callDeleteExamModel(eid) {
     $('#confirm-delete-exam-model').modal();
 }
 
+function callShowExamIDModal(eid) {
+    document.getElementById("exam_id_show").setAttribute("value", eid);
+    $('#get-exam-id-model').modal();
+}
+
 function addExamRecord(eid, ename, epublished) {
     var tr = document.createElement("tr");
     var tdEName = document.createElement("td");
@@ -610,8 +615,16 @@ function addExamRecord(eid, ename, epublished) {
         var textPub = document.createTextNode("未发布");
         tdEPub.appendChild(textPub);
     } else {
-        var textPub = document.createTextNode("已发布");
+        var textPub = document.createTextNode("已发布（");
         tdEPub.appendChild(textPub);
+        var aGetExamID = document.createElement("a");
+        var textGetExamID = document.createTextNode("获取考试 ID");
+        aGetExamID.setAttribute("href", "javascript:void(0);");
+        aGetExamID.setAttribute("onclick", "callShowExamIDModal('" + eid + "');");
+        aGetExamID.appendChild(textGetExamID);
+        tdEPub.appendChild(aGetExamID);
+        var textRightBracket = document.createTextNode("）");
+        tdEPub.appendChild(textRightBracket);
     }
     tr.appendChild(tdEPub);
 
@@ -650,8 +663,11 @@ function addExamRecord(eid, ename, epublished) {
         var textShowExamResult = document.createTextNode("查看结果");
         aShowExamResult.appendChild(textShowExamResult);
         tdEOperation.appendChild(aShowExamResult);
+        
         var textSpace4 = document.createTextNode(" ");
         tdEOperation.appendChild(textSpace4);
+        
+        
     }
 
     tr.appendChild(tdEOperation);

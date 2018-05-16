@@ -131,6 +131,26 @@
         </div>
     </div>
     
+    <!-- 获得考试 ID 模态框 -->
+    <div class="modal fade" id="get-exam-id-model">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">获取考试 ID</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" id="show-eid-form">
+                        <label for="">考试ID</label>
+                        <input class="form-control" id="exam_id_show" name="exam_id" type="text" value="0">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
