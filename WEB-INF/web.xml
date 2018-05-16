@@ -223,7 +223,7 @@
         <param-value>eid</param-value>
     </context-param>
     <context-param>
-        <!-- 数据库-选项ID-->
+        <!-- 数据库-考试发布状态-->
         <param-name>DB_EPUBLISHED</param-name>
         <param-value>epublished</param-value>
     </context-param>

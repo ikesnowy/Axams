@@ -85,10 +85,30 @@
                         </tbody>
                     </table>  
             </div>
-            
         </div>
-        
     </div>
+    <!-- 确认发布模态框 -->
+    <div class="modal fade" id="confirm-publish-model">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">确认发布考试</h4>
+                </div>
+                <div class="modal-body">
+                    <p>确认发布吗？发布后，考试将不能再被编辑！</p>
+                    <form id="confirm-publish-form" style="display: none">
+                        <input id="exam_id_publish" name="exam_id" type="text" value="0">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="submitPublishExamForm();">发布</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </body>
 
 </html>
