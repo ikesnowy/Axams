@@ -573,3 +573,66 @@ function callDeleteQuestionModel(qid) {
     document.getElementById("delete-question_id").setAttribute("value", qid);
     $('#modal-delete-choice-question').modal();
 }
+
+function addExamRecord(eid, ename, epublished) {
+    var tr = document.createElement("tr");
+    var tdEName = document.createElement("td");
+    var textEName = document.createTextNode(ename);
+    tdEName.appendChild(textEName);
+    tr.appendChild(tdEName);
+
+    var tdDate = document.createElement("td");
+    var createDate = new Date(eid).toLocaleDateString();
+    var textDate = document.createTextNode(createDate);
+    tdDate.appendChild(textDate);
+    tr.appendChild(tdDate);
+
+    var tdEPub = document.createElement("td");
+    if (epublished == 0) {
+        var textPub = document.createTextNode("未发布");
+        tdEPub.appendChild(textPub);
+    } else {
+        var textPub = document.createTextNode("已发布");
+        tdEPub.appendChild(textPub);
+    }
+    tr.appendChild(tdEPub);
+
+    var tdEOperation = document.createElement("td");
+    var aDeleteExam = document.createElement("a");
+    var textDelete = document.createTextNode("删除");
+    aDeleteExam.appendChild(textDelete);
+    tdEOperation.appendChild(aDeleteExam);
+
+    var textSpace1 = document.createTextNode(" ");
+    tdEOperation.appendChild(textSpace1);
+
+    if (epublished == 0) {
+        var aEditExam = document.createElement("a");
+        var textEditExam = document.createTextNode("编辑");
+        aEditExam.setAttribute("href", "edit_exam.jsp?eid=" + eid);
+        aEditExam.appendChild(textEditExam);
+        tdEOperation.appendChild(aEditExam);
+
+        var textSpace2 = document.createTextNode(" ");
+        tdEOperation.appendChild(textSpace2);
+
+        var aPublishExam = document.createElement("a");
+        var textPublishExam = document.createTextNode("发布");
+        aPublishExam.appendChild(textPublishExam);
+        tdEOperation.appendChild(aPublishExam);
+
+        var textSpace3 = document.createTextNode(" ");
+        tdEOperation.appendChild(textSpace3);
+    } else {
+        var aShowExamResult = document.createElement("a");
+        var textShowExamResult = document.createTextNode("查看结果");
+        aShowExamResult.appendChild(textShowExamResult);
+        tdEOperation.appendChild(aShowExamResult);
+        var textSpace4 = document.createTextNode(" ");
+        tdEOperation.appendChild(textSpace4);
+    }
+
+    tr.appendChild(tdEOperation);
+    var table = document.getElementById("exam-records");
+    table.appendChild(tr);
+}

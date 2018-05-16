@@ -69,10 +69,10 @@
         <title>Axam-编辑考试</title>
     </head>
     <body>
-        <script>setNavbarActive('new_exam');</script>
         <!-- 在这里增加网站内容 -->
-        <div class="container" id="main-container">            
+        <div class="container" id="main-container">         
             <div class="row">
+                
                 <div class="page-header">
                     <h1 id="exam-title" onmouseover="displayElement('modify_title');" onmouseout="hideElement('modify_title')"><%=examName%>  
                         <small>
@@ -82,14 +82,22 @@
                             <a id="modify_title" class="glyphicon glyphicon-pencil" style="display: none" data-toggle="modal" href='#modal-modify-title'></a>                          
                         </small>
                     </h1>
+                    
                 </div>
             </div>                     
             <div class="row" id="add-question">   
-                <div class="list-group">
-                    <a class="list-group-item" data-toggle="modal" href="#modal-add-choice-question" onclick="initOptions('add');">
+                <div class="list-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <a class="list-group-item active" data-toggle="modal" href="#modal-add-choice-question" onclick="initOptions('add');">
                         <h4><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加题目</h4>
                     </a>
                 </div>
+                
+                <div class="list-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <a class="list-group-item" href="dashboard.jsp">
+                        <h4 class="text-right">保存并返回 <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span></h4>
+                    </a>
+                </div>
+                
             </div>
             <%
                 String getQuestionList = "select * from get_exam_question_option_list where " + application.getInitParameter("DB_EID") + "=" + eid + " order by " + application.getInitParameter("DB_QNUMBER");
