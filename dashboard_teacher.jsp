@@ -108,6 +108,28 @@
             </div>
         </div>
     </div>
+
+    <!-- 确认删除模态框 -->
+    <div class="modal fade" id="confirm-delete-exam-model">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">确认删除考试</h4>
+                </div>
+                <div class="modal-body">
+                    <p>确认删除考试吗？删除后，学生和教师都将不能再访问该考试！</p>
+                    <form id="confirm-delete-form" style="display: none">
+                        <input id="exam_id_delete" name="exam_id" type="text" value="0">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-danger" onclick="submitDeleteExamForm();">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
 </body>
 

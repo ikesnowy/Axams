@@ -551,6 +551,10 @@ function submitPublishExamForm() {
     sendData("confirm-publish-form", "server_publishExam.jsp");
 }
 
+function submitDeleteExamForm() {
+    sendData("confirm-delete-form", "server_deleteExam.jsp");
+}
+
 function callModifyQuestionModel(qid, qnumber) {
     initOptions("modify");
     var optionSum = parseInt(document.getElementById("option-sum-" + qnumber).innerText);
@@ -583,6 +587,11 @@ function callPublishExamModel(eid) {
     $('#confirm-publish-model').modal();
 }
 
+function callDeleteExamModel(eid) {
+    document.getElementById("exam_id_delete").setAttribute("value", eid);
+    $('#confirm-delete-exam-model').modal();
+}
+
 function addExamRecord(eid, ename, epublished) {
     var tr = document.createElement("tr");
     var tdEName = document.createElement("td");
@@ -609,6 +618,8 @@ function addExamRecord(eid, ename, epublished) {
     var tdEOperation = document.createElement("td");
     var aDeleteExam = document.createElement("a");
     var textDelete = document.createTextNode("删除");
+    aDeleteExam.setAttribute("href", "javascript:void(0);");
+    aDeleteExam.setAttribute("onclick", "callDeleteExamModel('" + eid + "');");
     aDeleteExam.appendChild(textDelete);
     tdEOperation.appendChild(aDeleteExam);
 
