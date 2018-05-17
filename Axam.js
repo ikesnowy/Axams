@@ -222,7 +222,7 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     aModifyQuestion.setAttribute("style", "display: none");
     aModifyQuestion.classList.add("glyphicon");
     aModifyQuestion.classList.add("glyphicon-pencil");
-    aModifyQuestion.setAttribute("onclick", "callModifyQuestionModel(" + id + ", " + number + ");");
+    aModifyQuestion.setAttribute("onclick", "callModifyQuestionModel(" + id + ", " + number + ", " + points + ");");
     aModifyQuestion.setAttribute("href", "javascript:void(0)");
     smallModifyQuetion.appendChild(aModifyQuestion);
 
@@ -541,7 +541,12 @@ function checkQuestionForm(prefix) {
         makeAlert("form_" + prefix + "_question", "question_form_alert", "分值太大", "");
         document.getElementById(prefix + "-div-question-score").classList.add("has-error");
         return false;
-    } else {
+    }else if(parseInt(document.getElementById(prefix + "-input-question-score").value) < 0) {
+        makeAlert("form_" + prefix + "_question", "question_form_alert", "分值不能为负", "");
+        document.getElementById(prefix + "-div-question-score").classList.add("has-error");
+        return false;
+    }
+    else {
         document.getElementById(prefix + "-div-question-score").classList.remove("has-error");
     }
 
@@ -599,7 +604,12 @@ function checkAlterExamForm() {
         makeAlert("div-duration", "alter_exam_alert", "考试时间太长！", "");
         document.getElementById("div-duration").classList.add("has-error");
         return false;
-    } else {
+    }else if(parseInt(document.getElementById("input-duration").value) < 0) {
+        makeAlert("div-duration", "alter_exam_alert", "考试时间不能为负！", "");
+        document.getElementById("div-duration").classList.add("has-error");
+        return false;
+    } 
+    else {
         document.getElementById("div-duration").classList.remove("has-error");
     }
 
@@ -639,7 +649,7 @@ function submitDeleteExamForm() {
     sendData("confirm-delete-form", "server_deleteExam.jsp");
 }
 
-function callModifyQuestionModel(qid, qnumber) {
+function callModifyQuestionModel(qid, qnumber, score) {
     initOptions("modify");
     var optionSum = parseInt(document.getElementById("option-sum-" + qnumber).innerText);
     if (optionSum > 2) {
@@ -657,6 +667,8 @@ function callModifyQuestionModel(qid, qnumber) {
     document.getElementById("modify-input-question-content").setAttribute("value", questionContent);
 
     document.getElementById("modify-question_id").setAttribute("value", qid);
+
+    document.getElementById("modify-input-question-score").setAttribute("value", score);
 
     $('#modal-modify-choice-question').modal();
 }
