@@ -295,6 +295,90 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     divAddQuestion.parentNode.insertBefore(divRow, divAddQuestion);
 }
 
+function addQuestions_show(id, number, points, question, rightAnswer, ...options) {
+    // <div class="row">
+    var divRow = document.createElement("div");
+    divRow.classList.add("row");
+
+    // <div class="col-12">
+    var divCol = document.createElement("div");
+    divCol.classList.add("col-xs-12","col-sm-12", "col-md-12", "col-lg-12");
+
+    // <div class="list-group">
+    var divListGroup = document.createElement("div");
+    divListGroup.classList.add("list-group");
+
+    // <li class="list-group-item">
+    var liQuestion = document.createElement("li");
+    liQuestion.classList.add("list-group-item");
+
+    // <h3>
+    var questionContent = document.createTextNode(number + "." + question);
+    var h3Question = document.createElement("h3");
+    h3Question.appendChild(questionContent);
+
+    // <small></small>
+    var pointContent = document.createTextNode("（" + points + "分）");
+    var smallPoint = document.createElement("small");
+    smallPoint.appendChild(pointContent);
+    
+    // </h3>
+    h3Question.appendChild(smallPoint);
+
+    // </li>
+    liQuestion.appendChild(h3Question);
+    divListGroup.appendChild(liQuestion);
+
+    var optionMark = new Array(
+    'A', 'B', 'C', 'D', 'E', 'F', 'G',
+    'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    'O', 'P', 'Q', 'R', 'S', 'T',
+    'U', 'V', 'W', 'X', 'Y', 'Z');
+
+    // add Question content
+    var aQuestionContent = document.createElement("a");
+    var pureQuestionContent = document.createTextNode(question);
+    aQuestionContent.setAttribute("id", "question-" + number);
+    aQuestionContent.setAttribute("style", "display: none");
+    aQuestionContent.appendChild(pureQuestionContent);
+    divListGroup.appendChild(aQuestionContent);
+
+    // add Question point
+    var aQuestionPoint = document.createElement("a");
+    var pointValue = document.createTextNode(points + "");
+    aQuestionPoint.setAttribute("id", "question-point-" + number);
+    aQuestionPoint.setAttribute("style", "display: none");
+    aQuestionPoint.appendChild(pointValue);
+    divListGroup.appendChild(aQuestionPoint);
+
+    // add option sum
+    var aOptionSum = document.createElement("a");
+    var optionSumText = document.createTextNode(options.length + "");
+    aOptionSum.setAttribute("id", "option-sum-" + number);
+    aOptionSum.setAttribute("style", "display: none");
+    aOptionSum.appendChild(optionSumText);
+    divListGroup.appendChild(aOptionSum);
+    
+    // add options
+    for (var i = 1; i <= options.length; i++) {
+        var optionContent = document.createTextNode(optionMark[i - 1] + "." + options[i - 1]);
+        var aOption = document.createElement("a");
+        aOption.appendChild(optionContent);
+        aOption.setAttribute("id", "option-" + number + "-" + i);
+        aOption.setAttribute("href", "javascript:void(0)");
+        aOption.classList.add("list-group-item");
+        if (options[i - 1] == rightAnswer) {
+            aOption.classList.add("list-group-item-success");
+        }
+        divListGroup.appendChild(aOption);
+    }
+
+    divCol.appendChild(divListGroup);
+    divRow.appendChild(divCol);
+    var divAddQuestion = document.getElementById("add-question");
+    divAddQuestion.parentNode.insertBefore(divRow, divAddQuestion);
+}
+
 // add new option input box
 function addOptions(prefix) {
     var optionMark = new Array(
@@ -661,6 +745,7 @@ function addExamRecord(eid, ename, epublished) {
     } else {
         var aShowExamResult = document.createElement("a");
         var textShowExamResult = document.createTextNode("查看结果");
+        aShowExamResult.setAttribute("href", "show_exam_result_teacher.jsp?eid=" + eid);
         aShowExamResult.appendChild(textShowExamResult);
         tdEOperation.appendChild(aShowExamResult);
         

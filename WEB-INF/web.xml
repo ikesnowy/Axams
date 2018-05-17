@@ -267,6 +267,19 @@
         <param-name>DB_OID</param-name>
         <param-value>oid</param-value>
     </context-param>
-
-           
+    <context-param>
+        <!-- 数据库-考试参与人数-->
+        <param-name>DB_PEOPLE_SUM</param-name>
+        <param-value>totalPeople</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-考试最高分-->
+        <param-name>DB_MAX_SCORE</param-name>
+        <param-value>maxScore</param-value>
+    </context-param>
+    <context-param>
+        <!-- 数据库-考试平均分-->
+        <param-name>DB_AVE_SCORE</param-name>
+        <param-value>averageScore</param-value>
+    </context-param>               
 </web-app>
