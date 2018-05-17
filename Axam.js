@@ -222,7 +222,7 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     aModifyQuestion.setAttribute("style", "display: none");
     aModifyQuestion.classList.add("glyphicon");
     aModifyQuestion.classList.add("glyphicon-pencil");
-    aModifyQuestion.setAttribute("onclick", "callModifyQuestionModel(" + id + ", " + number + ");");
+    aModifyQuestion.setAttribute("onclick", "callModifyQuestionModel(" + id + ", " + number + ", " + points + ");");
     aModifyQuestion.setAttribute("href", "javascript:void(0)");
     smallModifyQuetion.appendChild(aModifyQuestion);
 
@@ -236,7 +236,7 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     aDeleteQuestion.setAttribute("onclick", "callDeleteQuestionModel(" + id + ");");
     aDeleteQuestion.setAttribute("href", "javascript:void(0)");
     smallDeleteQuetion.appendChild(aDeleteQuestion);
-    
+
     // </h3>
     h3Question.appendChild(smallPoint);
     h3Question.appendChild(smallDeleteQuetion);
@@ -247,10 +247,10 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     divListGroup.appendChild(liQuestion);
 
     var optionMark = new Array(
-    'A', 'B', 'C', 'D', 'E', 'F', 'G',
-    'H', 'I', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T',
-    'U', 'V', 'W', 'X', 'Y', 'Z');
+        'A', 'B', 'C', 'D', 'E', 'F', 'G',
+        'H', 'I', 'J', 'K', 'L', 'M', 'N',
+        'O', 'P', 'Q', 'R', 'S', 'T',
+        'U', 'V', 'W', 'X', 'Y', 'Z');
 
     // add Question content
     var aQuestionContent = document.createElement("a");
@@ -275,7 +275,7 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     aOptionSum.setAttribute("style", "display: none");
     aOptionSum.appendChild(optionSumText);
     divListGroup.appendChild(aOptionSum);
-    
+
     // add options
     for (var i = 1; i <= options.length; i++) {
         var optionContent = document.createTextNode(optionMark[i - 1] + "." + options[i - 1]);
@@ -291,6 +291,90 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     }
 
     divRow.appendChild(divListGroup);
+    var divAddQuestion = document.getElementById("add-question");
+    divAddQuestion.parentNode.insertBefore(divRow, divAddQuestion);
+}
+
+function addQuestions_show(id, number, points, question, rightAnswer, ...options) {
+    // <div class="row">
+    var divRow = document.createElement("div");
+    divRow.classList.add("row");
+
+    // <div class="col-12">
+    var divCol = document.createElement("div");
+    divCol.classList.add("col-xs-12", "col-sm-12", "col-md-12", "col-lg-12");
+
+    // <div class="list-group">
+    var divListGroup = document.createElement("div");
+    divListGroup.classList.add("list-group");
+
+    // <li class="list-group-item">
+    var liQuestion = document.createElement("li");
+    liQuestion.classList.add("list-group-item");
+
+    // <h3>
+    var questionContent = document.createTextNode(number + "." + question);
+    var h3Question = document.createElement("h3");
+    h3Question.appendChild(questionContent);
+
+    // <small></small>
+    var pointContent = document.createTextNode("（" + points + "分）");
+    var smallPoint = document.createElement("small");
+    smallPoint.appendChild(pointContent);
+
+    // </h3>
+    h3Question.appendChild(smallPoint);
+
+    // </li>
+    liQuestion.appendChild(h3Question);
+    divListGroup.appendChild(liQuestion);
+
+    var optionMark = new Array(
+        'A', 'B', 'C', 'D', 'E', 'F', 'G',
+        'H', 'I', 'J', 'K', 'L', 'M', 'N',
+        'O', 'P', 'Q', 'R', 'S', 'T',
+        'U', 'V', 'W', 'X', 'Y', 'Z');
+
+    // add Question content
+    var aQuestionContent = document.createElement("a");
+    var pureQuestionContent = document.createTextNode(question);
+    aQuestionContent.setAttribute("id", "question-" + number);
+    aQuestionContent.setAttribute("style", "display: none");
+    aQuestionContent.appendChild(pureQuestionContent);
+    divListGroup.appendChild(aQuestionContent);
+
+    // add Question point
+    var aQuestionPoint = document.createElement("a");
+    var pointValue = document.createTextNode(points + "");
+    aQuestionPoint.setAttribute("id", "question-point-" + number);
+    aQuestionPoint.setAttribute("style", "display: none");
+    aQuestionPoint.appendChild(pointValue);
+    divListGroup.appendChild(aQuestionPoint);
+
+    // add option sum
+    var aOptionSum = document.createElement("a");
+    var optionSumText = document.createTextNode(options.length + "");
+    aOptionSum.setAttribute("id", "option-sum-" + number);
+    aOptionSum.setAttribute("style", "display: none");
+    aOptionSum.appendChild(optionSumText);
+    divListGroup.appendChild(aOptionSum);
+
+    // add options
+    for (var i = 1; i <= options.length; i++) {
+        var optionContent = document.createTextNode(optionMark[i - 1] + "." + options[i - 1]);
+        var aOption = document.createElement("a");
+        aOption.appendChild(optionContent);
+        aOption.setAttribute("id", "option-" + number + "-" + i);
+        aOption.setAttribute("href", "javascript:void(0)");
+        aOption.classList.add("list-group-item");
+        if (options[i - 1] == rightAnswer) {
+            aOption.classList.add("list-group-item-success");
+        }
+        divListGroup.appendChild(aOption);
+    }
+
+    divCol.appendChild(divListGroup);
+    divRow.appendChild(divCol);
     var divAddQuestion = document.getElementById("add-question");
     divAddQuestion.parentNode.insertBefore(divRow, divAddQuestion);
 }
@@ -457,7 +541,12 @@ function checkQuestionForm(prefix) {
         makeAlert("form_" + prefix + "_question", "question_form_alert", "分值太大", "");
         document.getElementById(prefix + "-div-question-score").classList.add("has-error");
         return false;
-    } else {
+    } else if (parseInt(document.getElementById(prefix + "-input-question-score").value) < 0) {
+        makeAlert("form_" + prefix + "_question", "question_form_alert", "分值不能为负", "");
+        document.getElementById(prefix + "-div-question-score").classList.add("has-error");
+        return false;
+    }
+    else {
         document.getElementById(prefix + "-div-question-score").classList.remove("has-error");
     }
 
@@ -515,6 +604,10 @@ function checkAlterExamForm() {
         makeAlert("div-duration", "alter_exam_alert", "考试时间太长！", "");
         document.getElementById("div-duration").classList.add("has-error");
         return false;
+    } else if (parseInt(document.getElementById("input-duration").value) < 0) {
+        makeAlert("div-duration", "alter_exam_alert", "考试时间不能为负！", "");
+        document.getElementById("div-duration").classList.add("has-error");
+        return false;
     } else {
         document.getElementById("div-duration").classList.remove("has-error");
     }
@@ -547,7 +640,15 @@ function submitDeleteQuestionForm() {
     sendData("form_delete_question", "server_deleteQuestion.jsp");
 }
 
-function callModifyQuestionModel(qid, qnumber) {
+function submitPublishExamForm() {
+    sendData("confirm-publish-form", "server_publishExam.jsp");
+}
+
+function submitDeleteExamForm() {
+    sendData("confirm-delete-form", "server_deleteExam.jsp");
+}
+
+function callModifyQuestionModel(qid, qnumber, score) {
     initOptions("modify");
     var optionSum = parseInt(document.getElementById("option-sum-" + qnumber).innerText);
     if (optionSum > 2) {
@@ -560,11 +661,13 @@ function callModifyQuestionModel(qid, qnumber) {
         var optionContent = document.getElementById("option-" + qnumber + "-" + i).innerText;
         document.getElementById("modify-input-option" + i).setAttribute("value", optionContent.substr(2));
     }
-    
+
     var questionContent = document.getElementById("question-" + qnumber).innerText;
     document.getElementById("modify-input-question-content").setAttribute("value", questionContent);
 
     document.getElementById("modify-question_id").setAttribute("value", qid);
+
+    document.getElementById("modify-input-question-score").setAttribute("value", score);
 
     $('#modal-modify-choice-question').modal();
 }
@@ -572,4 +675,98 @@ function callModifyQuestionModel(qid, qnumber) {
 function callDeleteQuestionModel(qid) {
     document.getElementById("delete-question_id").setAttribute("value", qid);
     $('#modal-delete-choice-question').modal();
+}
+
+function callPublishExamModel(eid) {
+    document.getElementById("exam_id_publish").setAttribute("value", eid);
+    $('#confirm-publish-model').modal();
+}
+
+function callDeleteExamModel(eid) {
+    document.getElementById("exam_id_delete").setAttribute("value", eid);
+    $('#confirm-delete-exam-model').modal();
+}
+
+function callShowExamIDModal(eid) {
+    document.getElementById("exam_id_show").setAttribute("value", eid);
+    $('#get-exam-id-model').modal();
+}
+
+function addExamRecord(eid, ename, epublished) {
+    var tr = document.createElement("tr");
+    var tdEName = document.createElement("td");
+    var textEName = document.createTextNode(ename);
+    tdEName.appendChild(textEName);
+    tr.appendChild(tdEName);
+
+    var tdDate = document.createElement("td");
+    var createDate = new Date(eid).toLocaleDateString();
+    var textDate = document.createTextNode(createDate);
+    tdDate.appendChild(textDate);
+    tr.appendChild(tdDate);
+
+    var tdEPub = document.createElement("td");
+    if (epublished == 0) {
+        var textPub = document.createTextNode("未发布");
+        tdEPub.appendChild(textPub);
+    } else {
+        var textPub = document.createTextNode("已发布（");
+        tdEPub.appendChild(textPub);
+        var aGetExamID = document.createElement("a");
+        var textGetExamID = document.createTextNode("获取考试 ID");
+        aGetExamID.setAttribute("href", "javascript:void(0);");
+        aGetExamID.setAttribute("onclick", "callShowExamIDModal('" + eid + "');");
+        aGetExamID.appendChild(textGetExamID);
+        tdEPub.appendChild(aGetExamID);
+        var textRightBracket = document.createTextNode("）");
+        tdEPub.appendChild(textRightBracket);
+    }
+    tr.appendChild(tdEPub);
+
+    var tdEOperation = document.createElement("td");
+    var aDeleteExam = document.createElement("a");
+    var textDelete = document.createTextNode("删除");
+    aDeleteExam.setAttribute("href", "javascript:void(0);");
+    aDeleteExam.setAttribute("onclick", "callDeleteExamModel('" + eid + "');");
+    aDeleteExam.appendChild(textDelete);
+    tdEOperation.appendChild(aDeleteExam);
+
+    var textSpace1 = document.createTextNode(" ");
+    tdEOperation.appendChild(textSpace1);
+
+    if (epublished == 0) {
+        var aEditExam = document.createElement("a");
+        var textEditExam = document.createTextNode("编辑");
+        aEditExam.setAttribute("href", "edit_exam.jsp?eid=" + eid);
+        aEditExam.appendChild(textEditExam);
+        tdEOperation.appendChild(aEditExam);
+
+        var textSpace2 = document.createTextNode(" ");
+        tdEOperation.appendChild(textSpace2);
+
+        var aPublishExam = document.createElement("a");
+        var textPublishExam = document.createTextNode("发布");
+        aPublishExam.setAttribute("href", "javascript:void(0);");
+        aPublishExam.setAttribute("onclick", "callPublishExamModel('" + eid + "');");
+        aPublishExam.appendChild(textPublishExam);
+        tdEOperation.appendChild(aPublishExam);
+
+        var textSpace3 = document.createTextNode(" ");
+        tdEOperation.appendChild(textSpace3);
+    } else {
+        var aShowExamResult = document.createElement("a");
+        var textShowExamResult = document.createTextNode("查看结果");
+        aShowExamResult.setAttribute("href", "show_exam_result_teacher.jsp?eid=" + eid);
+        aShowExamResult.appendChild(textShowExamResult);
+        tdEOperation.appendChild(aShowExamResult);
+
+        var textSpace4 = document.createTextNode(" ");
+        tdEOperation.appendChild(textSpace4);
+
+
+    }
+
+    tr.appendChild(tdEOperation);
+    var table = document.getElementById("exam-records");
+    table.appendChild(tr);
 }

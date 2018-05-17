@@ -6,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <%  
 	request.setCharacterEncoding("UTF-8");
+    Long uid = System.currentTimeMillis();
 	String uemail = request.getParameter(application.getInitParameter("HTML_SIGNUP_INPUT_EMAIL"));
 	String upass = request.getParameter(application.getInitParameter("HTML_SIGNUP_INPUT_PASSWORD"));
     String uname = request.getParameter(application.getInitParameter("HTML_SIGNUP_INPUT_USERNAME"));
@@ -14,23 +15,26 @@
 
     String sql, checkUserExist;
     if (isStudent) {
-        sql = "insert into astudent("+ application.getInitParameter("DB_SUSERNAME");
+        sql = "insert into astudent("+ application.getInitParameter("DB_SID");
+        sql += ", " + application.getInitParameter("DB_SUSERNAME") + "";
         sql += ", " + application.getInitParameter("DB_SPASSWORD") + "";
         sql += ", " + application.getInitParameter("DB_SEMAIL") + ") ";
-        sql += "values ('" + uname + "'";
+        sql += "values (" + uid + "";
+        sql += ", '" + uname + "'";
         sql += ", '" + upass + "'";
         sql += ", '" + uemail + "')";
         checkUserExist = "select * from astudent where " + application.getInitParameter("DB_SEMAIL") + " = '" + uemail + "'";
     } else {
-        sql = "insert into ateacher("+ application.getInitParameter("DB_TUSERNAME");
+        sql = "insert into ateacher("+ application.getInitParameter("DB_TID");
+        sql += ", " + application.getInitParameter("DB_TUSERNAME") + "";
         sql += ", " + application.getInitParameter("DB_TPASSWORD") + "";
         sql += ", " + application.getInitParameter("DB_TEMAIL") + ") ";
-        sql += "values ('" + uname + "'";
+        sql += "values (" + uid + "";
+        sql += ", '" + uname + "'";
         sql += ", '" + upass + "'";
         sql += ", '" + uemail + "')";
         checkUserExist = "select * from ateacher where " + application.getInitParameter("DB_TEMAIL") + " = '" + uemail + "'";
     }
-
 
     // 数据库链接  
     Connection conn = null;  
