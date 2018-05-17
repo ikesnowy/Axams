@@ -12,7 +12,7 @@
     String examName = "";
     int examDuration = 0;
     int examPeopleSum = 0;
-    int examAverageScore = 0;
+    float examAverageScore = 0;
     int examMaxScore = 0;
     // check user type
     String userid = (String)session.getAttribute(application.getInitParameter("ATTR_USERID"));
@@ -55,7 +55,7 @@
         rs = st.executeQuery(getExamAnalyze);
         if (rs.next()) {
             examPeopleSum = rs.getInt(application.getInitParameter("DB_PEOPLE_SUM"));
-            examAverageScore = rs.getInt(application.getInitParameter("DB_AVE_SCORE"));
+            examAverageScore = rs.getFloat(application.getInitParameter("DB_AVE_SCORE"));
             examMaxScore = rs.getInt(application.getInitParameter("DB_MAX_SCORE"));
         }
     } catch (Exception e) {  

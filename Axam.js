@@ -236,7 +236,7 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     aDeleteQuestion.setAttribute("onclick", "callDeleteQuestionModel(" + id + ");");
     aDeleteQuestion.setAttribute("href", "javascript:void(0)");
     smallDeleteQuetion.appendChild(aDeleteQuestion);
-    
+
     // </h3>
     h3Question.appendChild(smallPoint);
     h3Question.appendChild(smallDeleteQuetion);
@@ -247,10 +247,10 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     divListGroup.appendChild(liQuestion);
 
     var optionMark = new Array(
-    'A', 'B', 'C', 'D', 'E', 'F', 'G',
-    'H', 'I', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T',
-    'U', 'V', 'W', 'X', 'Y', 'Z');
+        'A', 'B', 'C', 'D', 'E', 'F', 'G',
+        'H', 'I', 'J', 'K', 'L', 'M', 'N',
+        'O', 'P', 'Q', 'R', 'S', 'T',
+        'U', 'V', 'W', 'X', 'Y', 'Z');
 
     // add Question content
     var aQuestionContent = document.createElement("a");
@@ -275,7 +275,7 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     aOptionSum.setAttribute("style", "display: none");
     aOptionSum.appendChild(optionSumText);
     divListGroup.appendChild(aOptionSum);
-    
+
     // add options
     for (var i = 1; i <= options.length; i++) {
         var optionContent = document.createTextNode(optionMark[i - 1] + "." + options[i - 1]);
@@ -302,7 +302,7 @@ function addQuestions_show(id, number, points, question, rightAnswer, ...options
 
     // <div class="col-12">
     var divCol = document.createElement("div");
-    divCol.classList.add("col-xs-12","col-sm-12", "col-md-12", "col-lg-12");
+    divCol.classList.add("col-xs-12", "col-sm-12", "col-md-12", "col-lg-12");
 
     // <div class="list-group">
     var divListGroup = document.createElement("div");
@@ -321,7 +321,7 @@ function addQuestions_show(id, number, points, question, rightAnswer, ...options
     var pointContent = document.createTextNode("（" + points + "分）");
     var smallPoint = document.createElement("small");
     smallPoint.appendChild(pointContent);
-    
+
     // </h3>
     h3Question.appendChild(smallPoint);
 
@@ -330,10 +330,10 @@ function addQuestions_show(id, number, points, question, rightAnswer, ...options
     divListGroup.appendChild(liQuestion);
 
     var optionMark = new Array(
-    'A', 'B', 'C', 'D', 'E', 'F', 'G',
-    'H', 'I', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T',
-    'U', 'V', 'W', 'X', 'Y', 'Z');
+        'A', 'B', 'C', 'D', 'E', 'F', 'G',
+        'H', 'I', 'J', 'K', 'L', 'M', 'N',
+        'O', 'P', 'Q', 'R', 'S', 'T',
+        'U', 'V', 'W', 'X', 'Y', 'Z');
 
     // add Question content
     var aQuestionContent = document.createElement("a");
@@ -358,7 +358,7 @@ function addQuestions_show(id, number, points, question, rightAnswer, ...options
     aOptionSum.setAttribute("style", "display: none");
     aOptionSum.appendChild(optionSumText);
     divListGroup.appendChild(aOptionSum);
-    
+
     // add options
     for (var i = 1; i <= options.length; i++) {
         var optionContent = document.createTextNode(optionMark[i - 1] + "." + options[i - 1]);
@@ -541,7 +541,7 @@ function checkQuestionForm(prefix) {
         makeAlert("form_" + prefix + "_question", "question_form_alert", "分值太大", "");
         document.getElementById(prefix + "-div-question-score").classList.add("has-error");
         return false;
-    }else if(parseInt(document.getElementById(prefix + "-input-question-score").value) < 0) {
+    } else if (parseInt(document.getElementById(prefix + "-input-question-score").value) < 0) {
         makeAlert("form_" + prefix + "_question", "question_form_alert", "分值不能为负", "");
         document.getElementById(prefix + "-div-question-score").classList.add("has-error");
         return false;
@@ -604,12 +604,11 @@ function checkAlterExamForm() {
         makeAlert("div-duration", "alter_exam_alert", "考试时间太长！", "");
         document.getElementById("div-duration").classList.add("has-error");
         return false;
-    }else if(parseInt(document.getElementById("input-duration").value) < 0) {
+    } else if (parseInt(document.getElementById("input-duration").value) < 0) {
         makeAlert("div-duration", "alter_exam_alert", "考试时间不能为负！", "");
         document.getElementById("div-duration").classList.add("has-error");
         return false;
-    } 
-    else {
+    } else {
         document.getElementById("div-duration").classList.remove("has-error");
     }
 
@@ -662,7 +661,7 @@ function callModifyQuestionModel(qid, qnumber, score) {
         var optionContent = document.getElementById("option-" + qnumber + "-" + i).innerText;
         document.getElementById("modify-input-option" + i).setAttribute("value", optionContent.substr(2));
     }
-    
+
     var questionContent = document.getElementById("question-" + qnumber).innerText;
     document.getElementById("modify-input-question-content").setAttribute("value", questionContent);
 
@@ -760,11 +759,11 @@ function addExamRecord(eid, ename, epublished) {
         aShowExamResult.setAttribute("href", "show_exam_result_teacher.jsp?eid=" + eid);
         aShowExamResult.appendChild(textShowExamResult);
         tdEOperation.appendChild(aShowExamResult);
-        
+
         var textSpace4 = document.createTextNode(" ");
         tdEOperation.appendChild(textSpace4);
-        
-        
+
+
     }
 
     tr.appendChild(tdEOperation);
