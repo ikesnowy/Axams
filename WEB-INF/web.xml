@@ -23,6 +23,21 @@
         <param-value>dashboard</param-value>
     </context-param>
     <context-param>
+        <!-- 参加考试页-无效的考试 ID 弹窗 -->
+        <param-name>HTML_PRE_EXAM_ALERT_INVALID_EID</param-name>
+        <param-value>error_invalid_eid</param-value>
+    </context-param>
+    <context-param>
+        <!-- 参加考试页-考试已经参加过弹窗 -->
+        <param-name>HTML_PRE_EXAM_ALERT_EXAM_ALREADY_TAKEN</param-name>
+        <param-value>error_already_take_exam</param-value>
+    </context-param>
+    <context-param>
+        <!-- 参加考试页-EID 输入框 -->
+        <param-name>HTML_TAKE_EXAM_INPUT_EID</param-name>
+        <param-value>eid</param-value>
+    </context-param>
+    <context-param>
         <!-- 登录页-用户名或密码错误弹窗 -->
         <param-name>HTML_SIGNIN_ALERT_INVALID_PASS</param-name>
         <param-value>error_invalid_pass</param-value>
