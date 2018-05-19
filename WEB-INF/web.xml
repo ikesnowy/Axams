@@ -173,6 +173,21 @@
         <param-value>question_id</param-value>
     </context-param>
     <context-param>
+        <!-- 考试页-作答-问题 ID-->
+        <param-name>HTML_DO_EXAM_INPUT_QUESTION_ID</param-name>
+        <param-value>question_id</param-value>
+    </context-param>
+        <context-param>
+        <!-- 考试页-作答-学生 ID-->
+        <param-name>HTML_DO_EXAM_INPUT_STUDENT_ID</param-name>
+        <param-value>student_id</param-value>
+    </context-param>
+        <context-param>
+        <!-- 考试页-作答-选项 ID-->
+        <param-name>HTML_DO_EXAM_INPUT_OPTION_ID</param-name>
+        <param-value>option_id</param-value>
+    </context-param>
+    <context-param>
         <!-- session-用户名 -->
         <param-name>ATTR_USERNAME</param-name> 
         <param-value>attr_username</param-value>
@@ -296,5 +311,10 @@
         <!-- 数据库-考试平均分-->
         <param-name>DB_AVE_SCORE</param-name>
         <param-value>averageScore</param-value>
-    </context-param>               
+    </context-param>
+    <context-param>
+        <!-- 数据库-学生考试得分-->
+        <param-name>DB_SCORE</param-name>
+        <param-value>score</param-value>
+    </context-param>                 
 </web-app>

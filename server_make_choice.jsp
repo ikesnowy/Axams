@@ -1,0 +1,69 @@
+<%@page import="java.sql.DriverManager"%>  
+<%@page import="java.sql.ResultSet"%>  
+<%@page import="java.sql.Statement"%>  
+<%@page import="java.sql.Connection"%>
+<%@ page import="java.util.*" %>
+<%@ page import="org.apache.commons.fileupload.FileItem" %>
+<%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory" %>
+<%@ page import="org.apache.commons.fileupload.FileUploadException" %>
+<%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload" %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%
+    request.setCharacterEncoding("UTF-8");
+    String sid = "";  
+    String qid = "";  
+    String oid = "";
+    DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+    ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
+    try {
+        List list = servletFileUpload.parseRequest(request);
+        Iterator iterator = list.iterator();
+        while (iterator.hasNext()) {
+            FileItem item = (FileItem)iterator.next();
+            if (item.isFormField()) { // judge if it is not the file field
+                String name = item.getFieldName(); // get the form's child name
+                if (name.equals(application.getInitParameter("HTML_DO_EXAM_INPUT_QUESTION_ID"))) {
+                    qid = item.getString("utf-8");
+                } else if (name.equals(application.getInitParameter("HTML_DO_EXAM_INPUT_STUDENT_ID"))) {
+                    sid = item.getString("utf-8");
+                } else if (name.equals(application.getInitParameter("HTML_DO_EXAM_INPUT_OPTION_ID"))) {
+                    oid = item.getString("utf-8");
+                }
+            }
+        }
+    } catch (FileUploadException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    // 数据库链接  
+    Connection conn = null;  
+    // 向数据库发送sql语句  
+    Statement st = null;  
+    String url = "jdbc:mysql://123.206.201.200:3306/Axam";  
+    String user = "root";  
+    String pass = "acLALDIQc3Qb";
+    try { 
+        Class.forName("com.mysql.jdbc.Driver");  
+        //数据库的地址，密码，用户名  
+        conn = DriverManager.getConnection(url, user, pass);
+        st = conn.createStatement();
+
+        String alterRecord = "update asq set " + application.getInitParameter("DB_OID") + "=" + oid + " where " + application.getInitParameter("DB_SID") + "=" + sid + " AND " + application.getInitParameter("DB_QID") + "=" + qid;
+        st.execute(alterRecord);
+    } catch (Exception e) {  
+  		out.print(e.getMessage());
+    	out.print(e);
+    } finally {   
+        try {  
+            st.close();  
+        } catch (Exception e) {}  
+        try {  
+            conn.close();  
+        } catch (Exception e) {}  
+    }
+%>

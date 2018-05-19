@@ -189,6 +189,33 @@ function sendData(formId, targetURL) {
     XHR.send(FD);
 }
 
+// submit form
+function sendDataSilence(src, formId, targetURL) {
+    var XHR = new XMLHttpRequest();
+
+    // We bind the FormData object and the form element
+    var f = document.getElementById(formId);
+    var FD = new FormData(f);
+
+    // We define what will happen if the data are successfully sent
+    XHR.addEventListener("load", function (event) {
+        document.getElementById(src).classList.remove("disabled");
+        document.getElementById(src).classList.add("active");
+    });
+
+    // We define what will happen if case of error
+    XHR.addEventListener("error", function (event) {
+        alert('Oups! Something goes wrong.');
+    });
+
+    // We setup our request
+    XHR.open("POST", targetURL);
+    // XHR.setRequestHeader("Content-Type", "multipart/form-data");
+
+    // The data send are the one the user provide in the form
+    XHR.send(FD);
+}
+
 // add a question to the edit page
 function addQuestions(id, number, points, question, rightAnswer, ...options) {
     // <div class="row">
@@ -295,6 +322,95 @@ function addQuestions(id, number, points, question, rightAnswer, ...options) {
     divAddQuestion.parentNode.insertBefore(divRow, divAddQuestion);
 }
 
+function addQuestions_contrast(id, number, points, question, rightAnswer, userAnswer, ...options) {
+    // <div class="row">
+    var divRow = document.createElement("div");
+    divRow.classList.add("row");
+
+    // <div class="col-12">
+    var divCol = document.createElement("div");
+    divCol.classList.add("col-xs-12", "col-sm-12", "col-md-12", "col-lg-12");
+
+    // <div class="list-group">
+    var divListGroup = document.createElement("div");
+    divListGroup.classList.add("list-group");
+
+    // <li class="list-group-item">
+    var liQuestion = document.createElement("li");
+    liQuestion.classList.add("list-group-item");
+
+    // <h3>
+    var questionContent = document.createTextNode(number + "." + question);
+    var h3Question = document.createElement("h3");
+    h3Question.appendChild(questionContent);
+
+    // <small></small>
+    var pointContent = document.createTextNode("（" + points + "分）");
+    var smallPoint = document.createElement("small");
+    smallPoint.appendChild(pointContent);
+
+    // </h3>
+    h3Question.appendChild(smallPoint);
+
+    // </li>
+    liQuestion.appendChild(h3Question);
+    divListGroup.appendChild(liQuestion);
+
+    var optionMark = new Array(
+        'A', 'B', 'C', 'D', 'E', 'F', 'G',
+        'H', 'I', 'J', 'K', 'L', 'M', 'N',
+        'O', 'P', 'Q', 'R', 'S', 'T',
+        'U', 'V', 'W', 'X', 'Y', 'Z');
+
+    // add Question content
+    var aQuestionContent = document.createElement("a");
+    var pureQuestionContent = document.createTextNode(question);
+    aQuestionContent.setAttribute("id", "question-" + number);
+    aQuestionContent.setAttribute("style", "display: none");
+    aQuestionContent.appendChild(pureQuestionContent);
+    divListGroup.appendChild(aQuestionContent);
+
+    // add Question point
+    var aQuestionPoint = document.createElement("a");
+    var pointValue = document.createTextNode(points + "");
+    aQuestionPoint.setAttribute("id", "question-point-" + number);
+    aQuestionPoint.setAttribute("style", "display: none");
+    aQuestionPoint.appendChild(pointValue);
+    divListGroup.appendChild(aQuestionPoint);
+
+    // add option sum
+    var aOptionSum = document.createElement("a");
+    var optionSumText = document.createTextNode(options.length + "");
+    aOptionSum.setAttribute("id", "option-sum-" + number);
+    aOptionSum.setAttribute("style", "display: none");
+    aOptionSum.appendChild(optionSumText);
+    divListGroup.appendChild(aOptionSum);
+
+    // add options
+    for (var i = 1; i <= options.length; i++) {
+        var optionContent = document.createTextNode(optionMark[i - 1] + "." + options[i - 1]);
+        var aOption = document.createElement("a");
+        aOption.appendChild(optionContent);
+        aOption.setAttribute("id", "option-" + number + "-" + i);
+        aOption.setAttribute("href", "javascript:void(0)");
+        aOption.classList.add("list-group-item");
+        if (options[i - 1] == rightAnswer) {
+            if (rightAnswer == userAnswer)
+                aOption.classList.add("list-group-item-success");
+            else
+                aOption.classList.add("list-group-item-info");
+        } else if (options[i - 1] == userAnswer) {
+            aOption.classList.add("list-group-item-danger");
+        }
+        divListGroup.appendChild(aOption);
+    }
+
+    divCol.appendChild(divListGroup);
+    divRow.appendChild(divCol);
+    var divAddQuestion = document.getElementById("add-question");
+    divAddQuestion.parentNode.insertBefore(divRow, divAddQuestion);
+}
+
 function addQuestions_show(id, number, points, question, rightAnswer, ...options) {
     // <div class="row">
     var divRow = document.createElement("div");
@@ -377,6 +493,103 @@ function addQuestions_show(id, number, points, question, rightAnswer, ...options
     divRow.appendChild(divCol);
     var divAddQuestion = document.getElementById("add-question");
     divAddQuestion.parentNode.insertBefore(divRow, divAddQuestion);
+}
+
+function addQuestions_do(id, number, points, question, ...options) {
+    // <div class="row">
+    var divRow = document.createElement("div");
+    divRow.classList.add("row");
+
+    // <div class="col-12">
+    var divCol = document.createElement("div");
+    divCol.classList.add("col-xs-12", "col-sm-12", "col-md-12", "col-lg-12");
+
+    // <div class="list-group">
+    var divListGroup = document.createElement("div");
+    divListGroup.classList.add("list-group");
+
+    // <li class="list-group-item">
+    var liQuestion = document.createElement("li");
+    liQuestion.classList.add("list-group-item");
+
+    // <h3>
+    var questionContent = document.createTextNode(number + "." + question);
+    var h3Question = document.createElement("h3");
+    h3Question.appendChild(questionContent);
+
+    // <small></small>
+    var pointContent = document.createTextNode("（" + points + "分）");
+    var smallPoint = document.createElement("small");
+    smallPoint.appendChild(pointContent);
+
+    // </h3>
+    h3Question.appendChild(smallPoint);
+
+    // </li>
+    liQuestion.appendChild(h3Question);
+    divListGroup.appendChild(liQuestion);
+
+    var optionMark = new Array(
+        'A', 'B', 'C', 'D', 'E', 'F', 'G',
+        'H', 'I', 'J', 'K', 'L', 'M', 'N',
+        'O', 'P', 'Q', 'R', 'S', 'T',
+        'U', 'V', 'W', 'X', 'Y', 'Z');
+
+    // add Question content
+    var aQuestionContent = document.createElement("a");
+    var pureQuestionContent = document.createTextNode(question);
+    aQuestionContent.setAttribute("id", "question-" + number);
+    aQuestionContent.setAttribute("style", "display: none");
+    aQuestionContent.appendChild(pureQuestionContent);
+    divListGroup.appendChild(aQuestionContent);
+
+    // add Question point
+    var aQuestionPoint = document.createElement("a");
+    var pointValue = document.createTextNode(points + "");
+    aQuestionPoint.setAttribute("id", "question-point-" + number);
+    aQuestionPoint.setAttribute("style", "display: none");
+    aQuestionPoint.appendChild(pointValue);
+    divListGroup.appendChild(aQuestionPoint);
+
+    // add option sum
+    var aOptionSum = document.createElement("a");
+    var optionSumText = document.createTextNode(options.length + "");
+    aOptionSum.setAttribute("id", "option-sum-" + number);
+    aOptionSum.setAttribute("style", "display: none");
+    aOptionSum.appendChild(optionSumText);
+    divListGroup.appendChild(aOptionSum);
+
+    // add options
+    for (var i = 1; i <= options.length; i++) {
+        var optionContent = document.createTextNode(optionMark[i - 1] + "." + options[i - 1]);
+        var aOption = document.createElement("a");
+        aOption.appendChild(optionContent);
+        aOption.setAttribute("id", "option-" + number + "-" + i);
+        aOption.setAttribute("href", "javascript:void(0)");
+        aOption.classList.add("list-group-item");
+        divListGroup.appendChild(aOption);
+    }
+
+    divCol.appendChild(divListGroup);
+    divRow.appendChild(divCol);
+    var divAddQuestion = document.getElementById("add-question");
+    divAddQuestion.parentNode.insertBefore(divRow, divAddQuestion);
+}
+
+function setOptionsClickEvent(qid, qnumber, ...oids) {
+    for (var i = 1; i <= oids.length; i++) {
+        var aOption = document.getElementById("option-" + qnumber + "-" + i);
+        aOption.setAttribute("onclick", "makeCoice(" + qnumber + ", '" + qid + "', '" + oids[i - 1] + "', " + oids.length + ", " + i + ");");
+    }    
+}
+
+function makeCoice(qnumber, qid, oid, osum, src) {
+    for (var i = 1; i <= osum; i++)
+        document.getElementById("option-" + qnumber + "-" + i).classList.remove("active");
+    document.getElementById("option-" + qnumber + "-" + src).classList.add("disabled");
+    document.getElementById("make-choice-qid").setAttribute("value", qid);
+    document.getElementById("make-choice-oid").setAttribute("value", oid);
+    sendDataSilence("option-" + qnumber + "-" + src, "form-make-choice", "server_make_choice.jsp");
 }
 
 // add new option input box
@@ -769,4 +982,60 @@ function addExamRecord(eid, ename, epublished) {
     tr.appendChild(tdEOperation);
     var table = document.getElementById("exam-records");
     table.appendChild(tr);
+}
+
+function startTimer(minutes) {    
+    var hour = 0;
+    var minute = 0;
+    var second = 0;
+    if (minutes >= 60) {
+        hour = parseInt(minutes / 60);
+        minute = minutes % 60;
+    } else {
+        minute = minutes;
+    }
+    updateTimeLeft(hour, minute, second);
+    decTime();
+}
+
+function updateTimeLeft(hour, minute, second) {
+    var clock = document.getElementById("time-left");
+    var clockText = "";
+    clockText += hour < 10 ? "0" + hour : hour;
+    clockText += ":";
+    clockText += minute < 10 ? "0" + minute : minute;
+    clockText += ":";
+    clockText += second < 10 ? "0" + second : second;
+    clock.innerText = clockText;
+}
+
+function decTime() {
+    var nowTimeString = document.getElementById("time-left").innerText.split(":");
+    var hour = parseInt(nowTimeString[0]);
+    var minute = parseInt(nowTimeString[1]);
+    var second = parseInt(nowTimeString[2]);
+    second--;
+    if (second < 0) {
+        second = 59;
+        minute--;
+        if (minute < 0) {
+            minute = 59;
+            hour--;
+            if (hour < 0) {
+                examTimeOut();
+                return;
+            }
+        }
+    }
+    updateTimeLeft(hour, minute, second);
+    setTimeout("decTime()", 1000);
+}
+
+function examTimeOut() {
+    alert("考试时间到！");
+    location.href(document.getElementById("submit-exam").getAttribute("href"));
+}
+
+function changeHref(id, sid, eid) {
+    document.getElementById(id).setAttribute("href", "server_grade.jsp?sid=" + sid + "&eid=" + eid);
 }
