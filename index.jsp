@@ -24,16 +24,52 @@
               <strong>项目进度</strong>
             </p>
             <div class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="82" aria-valuemin="0"
-                aria-valuemax="100" style="width: 82%; min-width: 2em">
-                82%
+              <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="92" aria-valuemin="0"
+                aria-valuemax="100" style="width: 92%; min-width: 2em">
+                92%
               </div>
             </div>
             <p>
               <strong>更新日志</strong>
             </p>
+
             
             <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">2018年5月19日</h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <dt>界面</dt>
+                    <dd>
+                      <ol>
+                        <li>增加参加考试页，提供考试ID查询功能</li>
+                        <li>增加答题页，提供答题功能</li>
+                        <li>增加倒计时功能，时间到达之后立即交卷</li>
+                        <li>增加阅卷功能，自动阅卷并计入数据库</li>
+                        <li>增加学生考试结果显示页面，自动显示正确答案及错选答案</li>
+                        <li>增加学生个人中心页面，显示往期考试结果</li>
+                      </ol>
+                    </dd>
+                    <dt>架构</dt>
+                    <dd>
+                      <ol>
+                        <li>提供学生-考试视图，用于提取学生的考试信息</li>
+                        <li>提供学生-考试-选项视图，用于提取学生的详细作答情况</li>
+                      </ol>
+                    </dd>
+                    <dt>修复</dt>
+                    <dd>
+                      <ol>
+                        <li>修复学生/教师无法注册的问题（需要动态生成 sid 和 tid）</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
+            </div>
+            
+            
+            <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">2018年5月17日</h3>
                 </div>
