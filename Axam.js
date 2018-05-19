@@ -975,9 +975,31 @@ function addExamRecord(eid, ename, epublished) {
 
         var textSpace4 = document.createTextNode(" ");
         tdEOperation.appendChild(textSpace4);
-
-
     }
+
+    tr.appendChild(tdEOperation);
+    var table = document.getElementById("exam-records");
+    table.appendChild(tr);
+}
+
+function addExamRecord_student(eid, ename, score, sid) {
+    var tr = document.createElement("tr");
+    var tdEName = document.createElement("td");
+    var textEName = document.createTextNode(ename);
+    tdEName.appendChild(textEName);
+    tr.appendChild(tdEName);
+
+    var tdEScore = document.createElement("td");
+    var textScore = document.createTextNode(score + ""); 
+    tdEScore.appendChild(textScore);   
+    tr.appendChild(tdEScore);
+
+    var tdEOperation = document.createElement("td");
+    var aShowExamResult = document.createElement("a");
+    var textShowExamResult = document.createTextNode("查看结果");
+    aShowExamResult.setAttribute("href", "show_exam_result_student.jsp?eid=" + eid + "&sid=" + sid);
+    aShowExamResult.appendChild(textShowExamResult);
+    tdEOperation.appendChild(aShowExamResult);
 
     tr.appendChild(tdEOperation);
     var table = document.getElementById("exam-records");
