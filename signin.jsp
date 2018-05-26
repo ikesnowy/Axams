@@ -8,18 +8,20 @@
 
     <!-- 在这里增加网站内容 -->
     <style> /*web background*/ 
+    .bk{background-image: url("bg.jpg");}
     .container{ display:table; height:100%; } 
     .row{ display: table-cell; vertical-align: middle; } 
+    .container#location{padding-top:150px;}
     /* centered columns styles */ 
     .row-centered { text-align:center; } 
     .col-centered { display:inline-block; float:none; text-align:left; margin-right:-4px; } 
     </style>
     <title>Axam-登录</title>
   </head>
-  <body>
+  <body class="bk">
     <%@include file="navbar.jsp" %>
     <script>setNavbarActive('sign_in');</script>
-    <div class="container"> 
+    <div class="container" id="location"> 
         <div class="row row-centered">
             <div class="well col-xs-6 col-sm-6 col-md-6 col-lg-6 col-centered">
                 <div id="error_invalid_pass" class="alert alert-danger" hidden="hidden">
