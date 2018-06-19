@@ -29,6 +29,9 @@
                 <div id="error_already_take_exam" class="alert alert-danger" hidden="hidden">
                     <strong>你已经参加过这项考试了！</strong>
                 </div>
+                <div id="error_teacher_cant_take_exam" class="alert alert-danger" hidden="hidden">
+                    <strong>教师用户不允许参加考试</strong>
+                </div>
                 <form action="server_check_exam.jsp" method="POST" role="form">
                     <legend>输入考试 ID</legend>    
                     <div class="form-group" id="eid-input">
@@ -42,8 +45,10 @@
                 <%
                     String alert_invalid_eid = application.getInitParameter("HTML_PRE_EXAM_ALERT_INVALID_EID");
                     String alert_already_take_exam = application.getInitParameter("HTML_PRE_EXAM_ALERT_EXAM_ALREADY_TAKEN");
+                    String alert_teacher_cant_take_exam = application.getInitParameter("HTML_PRE_EXAM_ALERT_TEACHER_CANT_TAKE_EXAM");
                     Boolean isEidInvalid = (Boolean)session.getAttribute(alert_invalid_eid);
                     Boolean isExamAlreadyTaken = (Boolean)session.getAttribute(alert_already_take_exam);
+                    Boolean isTeacherUser = (Boolean)session.getAttribute(alert_teacher_cant_take_exam);
                     if (isEidInvalid == null) {
                         session.setAttribute(alert_invalid_eid, false);
                         isEidInvalid = false;
@@ -53,14 +58,25 @@
                         session.setAttribute(alert_already_take_exam, false);
                         isExamAlreadyTaken = false;
                     }
-                        
+
+                    if (isTeacherUser == null) {
+                        session.setAttribute(alert_teacher_cant_take_exam, false);
+                        isTeacherUser = false;
+                    }
+
                     if (isEidInvalid) {
                         out.print("<script>displayElement('" + alert_invalid_eid +"'); </script>");
                         session.setAttribute(alert_invalid_eid, false);
                     }
+
                     if (isExamAlreadyTaken) {
                         out.print("<script>displayElement('" + alert_already_take_exam +"'); </script>");
                         session.setAttribute(alert_already_take_exam, false);
+                    }
+                    
+                    if (isTeacherUser) {
+                        out.print("<script>displayElement('" + alert_teacher_cant_take_exam +"'); </script>");
+                        session.setAttribute(alert_teacher_cant_take_exam, false);
                     }
                 %>      
             </div>

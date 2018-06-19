@@ -7,6 +7,12 @@
 <%  
 	request.setCharacterEncoding("UTF-8");
 	String eid = request.getParameter(application.getInitParameter("HTML_TAKE_EXAM_INPUT_EID"));
+    Boolean usertype = (Boolean) session.getAttribute(application.getInitParameter("ATTR_IS_STUDENT"));
+    if (usertype == false) {
+        session.setAttribute(application.getInitParameter("HTML_PRE_EXAM_ALERT_TEACHER_CANT_TAKE_EXAM"), true);
+        response.sendRedirect("pre_exam.jsp");
+        return;
+    }
     String sid = (String)session.getAttribute(application.getInitParameter("ATTR_USERID"));
     String sql = "select * from aexam where " + application.getInitParameter("DB_EID") + "=" + eid + " AND " + application.getInitParameter("DB_EPUBLISHED") + "= 1;";
     // 数据库链接  

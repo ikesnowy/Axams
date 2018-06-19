@@ -33,6 +33,11 @@
         <param-value>error_already_take_exam</param-value>
     </context-param>
     <context-param>
+        <!-- 参加考试页-教师不能参加考试弹窗 -->
+        <param-name>HTML_PRE_EXAM_ALERT_TEACHER_CANT_TAKE_EXAM</param-name>
+        <param-value>error_teacher_cant_take_exam</param-value>
+    </context-param>   
+    <context-param>
         <!-- 参加考试页-EID 输入框 -->
         <param-name>HTML_TAKE_EXAM_INPUT_EID</param-name>
         <param-value>eid</param-value>
